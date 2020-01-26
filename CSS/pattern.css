@@ -8,3 +8,6 @@ html {
     background-position: 0 0;
     background-attachment: fixed;
 }
+body {
+  box-shadow: 0 0 5px white;
+}
