@@ -1,3 +1,44 @@
+@import "Template_content6.css";
+@import "Template_footer1.css";
+@import "Template_footer2.css";
+@import "Template_demo1.css";
+
+:root {
+	--fonttitle: "Sedgwick Ave Display";
+	--fontParagraph: "Grenze"; 
+	--sizeScreen: 1100px;
+	--sizeFontTitle: 1.5em;
+	--sizefontParagraph: 1.4em;
+	--backgroundfill: #4e5342;
+	--backgroundColor: #212121;
+	--colorWord: #afc67b;
+	--fontSpecial: "Leckerli One";
+	--paddingtop: 35px;
+	--bg-secondary: #7FD7F5;
+    --bg-primary: #c0ebfa;
+}
+
+* {
+	box-sizing: border-box;
+	}
+body {
+	margin: 0;
+  text-align: center;
+  box-shadow: 0 0 5px white;
+}
+h3 {
+	font-family: "Sedgwick Ave Display";
+	font-size: 1.5em;
+	color: white;
+	margin-bottom: 0;
+}
+p {
+	font-family: "Grenze";
+	font-size: 1.4em;
+	color: whitesmoke;
+	text-align: justify;
+	margin-top: 0.5em;
+}
 
 html {
     background-color:white;
@@ -7,7 +48,4 @@ html {
     background-size: 30px 30px, 90px 90px;
     background-position: 0 0;
     background-attachment: fixed;
-}
-body {
-  box-shadow: 0 0 5px white;
 }
