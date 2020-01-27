@@ -22,9 +22,10 @@
 	box-sizing: border-box;
 	}
 body {
-	margin: 0;
+  margin: 0;
+  width: 100%;
   text-align: center;
-  box-shadow: 0 0 5px white;
+  /* box-shadow: 0 0 5px white; */
 }
 h3 {
 	font-family: "Sedgwick Ave Display";
@@ -50,8 +51,170 @@ html {
     background-attachment: fixed;
 }
 
-/* @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   :root {
     --sizeScreen: 100%;
   }
-} */
+  main.header {
+    left: 1rem;
+  }
+  nav.NavHeader {
+    width: 100%;
+  }
+  nav.NavHeader div:first-of-type {
+    padding: 0px;
+  }
+  nav.NavHeader div.not-media-navba {
+    display: none;
+  }
+  section.ContentHeader {
+    margin-left: 0px;
+  }
+  main.content1 {
+    display: block;
+    padding: 1rem;
+    height: max-content;
+  }
+  main.content1 > div:last-of-type {
+    display: none;
+  }
+  div.cont1.div1 > div {
+    position: relative;
+    transform: translateY(0%);
+    left: 0px;
+  }
+  div.cont1.div1 > div h3 {
+    margin: 0px;
+    line-height: 1;
+  }
+  div.cont1.div1 > div p {
+    margin-bottom: 0px;
+  }
+  main.content2 {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+    height: max-content;
+    padding: 1rem 1rem;
+  }
+  main.content2 > div {
+    border-bottom: 2px solid white;
+  }
+  /* main.content2 > div:last-of-type {
+    border: none;
+  } */
+  div.cont6Menu {
+    flex-direction: column;
+    margin: auto 1rem;
+  }
+  section.cont6Child {
+    padding: 1rem 0px;
+  }
+  section.cont6Child > p {
+    margin: 0 0 1rem;
+  }
+  div.cont6Menu figure {
+    margin: 0 0 1rem;
+  }
+  div.cont6Menu figure:last-of-type {
+    margin-bottom: 0px;
+  }
+  div.cont4Dish {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0px;
+    grid-column-gap: 0px;
+  }
+  main.footer-main2 {
+    flex-direction: column;
+  }
+  div.footer-flex-us {
+    margin-left: 0px;
+    padding-top: 1rem;
+  }
+  main.footer-main2 h4 {
+    color: black;
+  }
+  main.content4 > figure {
+    height: max-content;
+  }
+  main.content3 {
+    padding: 1rem 1rem;
+  }
+  main.content3::before {
+    top: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+  main.content3 > div {
+    margin: 1rem 1rem;
+  }
+  div.cont3Food {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+  }
+  div.cont3Food > div {
+    height: max-content;
+    padding-top: 0%;
+  }
+  div.WrapFood > div {
+    position: relative;
+    overflow: hidden;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    margin: 1rem;
+  }
+  div.cont3Food.MienTrung figure:first-of-type {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  div.cont3Food.MienTrung figure:last-of-type {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  div.footer-social {
+    margin: 1rem 15% auto;
+    height: auto;
+  }
+  section.cont4Child {
+    padding: 1rem 1rem;
+  }
+  main.content4 > div {
+    padding: 1rem 1rem;
+  }
+  main.footer-main1 {
+    padding: 1rem;
+  }
+  main.footer-main1 > p {
+    margin: 0px;
+    text-align: justify;
+  }
+  main.footer-main2 {
+    padding: 1rem;
+  }
+  main.content5 > h3 {
+    margin: 1rem auto;
+  }
+  main.content5 figure {
+    height: max-content;
+  }
+  div.DishNew h3 {
+    margin-top: 1rem;
+  }
+  div.DishNew p {
+    margin-bottom: 0px;
+  }
+  div.DishNew div {
+		width: calc(100vw - 7em - 2em);
+  }
+  section.cont5Child {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  div.cont5Info {
+    width: max-content;
+  }
+  section.cont5Child div:nth-of-type(2) {
+    grid-area: 3 / 1 /4 / 2;
+  }
+  
+}

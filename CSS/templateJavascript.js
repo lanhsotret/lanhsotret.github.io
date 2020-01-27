@@ -7,15 +7,15 @@ $(function(){
     DataWeb["linkImg"].forEach((partical,index)=>{
         $('.js-cont6-background').eq(index).css('background-image', `url(${partical})`);
     });
-    function maxHeightFn() {
-        var maxheigh = $('.js-cont6-div').eq(0).outerHeight();
-        for(i = 1; i < $('.js-cont6-div').lenth; i++) {
-            var check = maxheigh >= $('.js-cont6-div').eq(i).outerHeight();
-            maxheigh = check? maxheigh + "px" : $('.js-cont6-div').eq(i).outerHeight();
-        }
-        $('.js-cont6-div').css('height', `${maxheigh}px`);
-    }
-    maxHeightFn();
+    // function maxHeightFn() {
+    //     var maxheigh = $('.js-cont6-div').eq(0).outerHeight();
+    //     for(i = 1; i < $('.js-cont6-div').lenth; i++) {
+    //         var check = maxheigh >= $('.js-cont6-div').eq(i).outerHeight();
+    //         maxheigh = check? maxheigh + "px" : $('.js-cont6-div').eq(i).outerHeight();
+    //     }
+    //     $('.js-cont6-div').css('height', `${maxheigh}px`);
+    // }
+    // maxHeightFn();
     DataWeb.social.forEach((partical,index)=>{
         $('main.footer-main1 abbr').eq(index).html(partical["Tags"]);
     });

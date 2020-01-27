@@ -52,16 +52,28 @@ section.cont6Child > h3 {
     font-weight: bold;
     margin: 0;
 }
-figure.cont6Dish span {
+figure.cont6Dish {
     position: relative;
-    bottom: 0px;
+}
+figure.cont6Dish > span {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: var(--sizeFontTitle);
+    font-family: var(--fontParagraph);
+    text-align: left;
+    width: max-content;
+    line-height: 1;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    border-bottom: 4px solid var(--colorWord);
+    cursor: pointer;
 }
 div.cont6Dish-div2 {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: space-around;
+    position: relative;
     margin: 20px;
+    padding-bottom: 10px;
 }
 div.cont6Dish-div2 p {
     margin: 0px;
@@ -79,16 +91,4 @@ div.cont6Dish-div2 h4 {
     font-family: var(--fontSpecial);
     margin: 0;
     line-height: 1;
-}
-div.cont6Dish-div2 span {
-    font-size: var(--sizeFontTitle);
-    font-family: var(--fontParagraph);
-    text-align: left;
-    width: max-content;
-    line-height: 1;
-    text-transform: uppercase;
-    color: white;
-    font-weight: bold;
-    border-bottom: 4px solid var(--colorWord);
-    cursor: pointer;
 }
