@@ -3,7 +3,7 @@ const DataWeb = {
         "Image/goi-cuon-tom-thit-4-chiec-49434.jpg",
         "Image/cach-nau-oi-la-dua-ngon-phunutoday_vn.jpg",
         "Image/212banhmitainhahangconfetti1.jpg"
-    ],
+    ],  
     social: [
         {
 			Id: 1,
