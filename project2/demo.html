@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Learn Jquery</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+		
+
+		$(document).ready(htmlChange);
+		function htmlChange() {
+			$('#headh1').text('welcome my website').css('text-transform', 'uppercase').css('color', 'fuchsia');
+			$('div > h3').css('text-transform', 'capitalize').css('background', 'silver').css('padding', '4px');
+			$('.main').css('display', 'grid').css('grid-template-columns', "repeat(4, 1fr)").css('grid-gap', '10px').css('text-align', 'center');
+			$('a').attr('target', '_blank').css('display', 'block').css('text-decoration', 'none');
+			$('input[value="Ship"]').attr("type", "radio");
+			$('div:first').find('a[href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp"]').text('Bootstrap Tutorial');
+			$('div :not(a)').css('font-size', '1.3em');
+		}
+	</script>
+	<h1 id="headh1">hello world</h1>
+	<hr>
+	<main class="main">
+		<div class="div">
+			<h3>top Tutorials</h3>
+			<a href="https://www.w3schools.com/html/default.asp">HTML Tutorial</a>
+			<a href="https://www.w3schools.com/css/default.asp">CSS Tutorial</a>
+			<a href="https://www.w3schools.com/js/default.asp">JavaScript Tutorial</a>
+			<a href="https://www.w3schools.com/howto/default.asp">How To Tutorial</a>
+			<a href="https://www.w3schools.com/sql/default.asp">SQL Tutorial</a>
+			<a href="https://www.w3schools.com/python/default.asp">Python Tutorial</a>
+			<a href="https://www.w3schools.com/w3css/default.asp">W3.CSS Tutorial</a>
+			<a href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp"></a>
+		</div>
+		<div>
+			<h3>top References</h3>
+		</div>
+		<div>
+			<h3>Top Examples</h3>
+		</div>
+		<div>
+			<h3>Web Certificates</h3>
+		</div>
+	</main>
+	<input type="radio" name="vehicle" value="Bike" checked>Bike<br>
+	<input type="radio" name="vehicle" value="Aircraft">Aircraft<br>
+	<input type="text" name="vehicle" value="Ship">Ship
+
+	<form id='form'>
+		<div class="form-group">
+			<label for="user">User Name</label><br>
+			<input type="text" name="username">
+		</div>
+		<div class="form-group">
+			<label for="email">Email address:</label><br>
+			<input type="email" name="email" autocomplete>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password</label><br>
+			<input type="password" name="password">
+		</div>
+		<button type="submit">Submit</button>
+		<button id="Updata">Update</button>
+		<button id="DeData">Delete</button>
+	</form>
+	<script>
+		$(function() {
+			$("#form").on('submit', function() {
+				event.preventDefault();
+				$.ajax({
+					url : '/demo.html/',
+					type : 'POST',
+					contentType : 'application/json',
+					data : JSON.stringify({ name: $('.form-group:eq(0) > input').val(),
+											email: $('.form-group:eq(1) > input').val(),
+											password: $('.form-group:eq(2) > input').val()}),
+					success : (response)=>{
+						// alert('successfully got response');
+						console.log(response);
+					}
+				});
+			});
+
+
+			$('#Updata').on('click', function() {
+				event.preventDefault();
+				$.ajax({
+					url : '/demo.html/' + $('.form-group:eq(0) > input').val(),
+					type : 'PUT',
+					contentType : 'application/json',
+					data : JSON.stringify({ email: $('.form-group:eq(1) > input').val(),
+											password: $('.form-group:eq(2) > input').val()}),
+					success : (response)=>{
+						// alert('successfully got response');
+						console.log(response);
+					}
+				});
+			});
+
+			$('#DeData').on('click', function() {
+				event.preventDefault();
+				$.ajax({
+					url : '/demo.html/' + $('.form-group:eq(0) > input').val(),
+					type : 'DELETE',
+					contentType : 'application/json',
+					success : (response)=>{
+						// alert('successfully got response');
+						console.log(response);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

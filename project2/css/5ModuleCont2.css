@@ -1,0 +1,89 @@
+
+		section.onePuch > div {
+			position: relative;
+			overflow: hidden;
+			}
+		#readMore {
+			position: absolute;
+			display: none;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			left: 0px;
+			background-image: linear-gradient(to bottom, rgba(255, 225, 225, 0) 75%, rgba(225, 225, 225, 1) 95%);
+			}
+			#readMore span {
+				position: absolute;
+				left: 8px;
+				bottom: 4px;
+				z-index: 2;
+				color: blue;
+				text-decoration: underline;
+				cursor: pointer;
+				}
+			section.onePuch h3 {
+				text-transform: capitalize;
+				margin-bottom: 0;
+				}
+		section.parentFloat > h3 {
+			text-transform: capitalize;
+			margin-bottom: 0;
+		}
+
+.js-onePuch-Icon {
+	position: absolute;
+	top: 50%;	
+	transform: translate(0, -50%);
+	z-index: 2;
+	height: 100%;
+	width: 3rem;
+	padding: 0 0.8rem;
+	background: linear-gradient(to left, rgba(220,220,220 ,0), rgba(220,220,220 ,1));
+	border: none;
+	outline: none;
+}
+button.onePuch-span2 {
+	background: linear-gradient(to right, rgba(220,220,220 ,0), rgba(220,220,220 ,1));
+	right: 0;
+	transition: all 0.5s ease;
+}
+button.onePuch-span1 path {
+	transform: rotate(180deg);
+	transform-origin: center center;
+}
+.js-onePuch-Icon path {
+	fill: rgba(30,144,255 ,1);
+	transition: all 0.5s ease;
+}
+section.onePuch > div:first-of-type {
+	width: 100%;
+}
+div.onePuch-div-flex {
+	width: 0px;
+	position: relative;
+	padding-top: 25%;
+}
+
+figure.onePuch-figure {
+	display: flex;
+	position: absolute;
+	flex-wrap: nowrap;
+	margin: 0;
+	width: calc(100vw - calc(var(--margin-article) * 3));
+	justify-content: space-between;
+	left: 0%;
+	top: 50%;
+	/* transition: transform 1.5s ease; */
+}
+figure.onePuch-figure > div {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding-top: 25%;
+	width: 100%;
+	margin-right: var(--margin-article);
+	overflow: hidden;
+}
+figure.onePuch-figure > div:last-of-type {
+	margin-right: 0px;
+}

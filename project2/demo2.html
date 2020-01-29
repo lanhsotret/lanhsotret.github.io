@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Try</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            :root {
+                --gap: 5px;
+            }
+            .onePuch-div-flex {
+                margin: auto auto;
+                width: 200px;
+                border: 1px solid maroon;
+            }
+            .onePuch-figure {
+                margin: 0px;
+                position: relative;
+                border: 1px solid teal;
+                width: 0px;
+                padding-top: 50px;
+                transform: translate(calc(0px - var(--gap)), 0%);
+            }
+            .onePuch-div-1 {
+                display: flex;
+                flex-wrap: nowrap;
+                position: absolute;
+                width: 200px;
+                border: 1px solid fuchsia;
+                left: 0%;
+                top: 50%;
+                transform: translate3d(calc(0% + var(--gap)),-50%,0);
+            }
+            .onePuch-div-1 > div {
+                width: 100%;
+                padding-top: 50px;
+                border: 1px solid navy;
+                margin-right: var(--gap);
+            }
+            .onePuch-div-1 > div:last-of-type {
+                margin-right: 0px;
+            }
+            .div3 {
+                transform: translate3d(calc(100% + calc(var(--gap))*2),-50%,0);
+            }
+            .div1 {
+                transform: translate3d(-100%,-50%,0);
+            }
+            .div2 {
+                transform: translate3d(var(--gap),-50%,0);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="onePuch-div-flex">
+            <figure class="onePuch-figure">
+                <div class="onePuch-div-1 div1">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="onePuch-div-1 div2">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="onePuch-div-1 div3">
+                    <div></div>
+                    <div></div>
+                </div>
+            </figure>
+            
+            <!-- <figure class="onePuch-figure">
+                <div class="onePuch-div-1 div5"></div>
+                <div class="onePuch-div-2 div6"></div>
+            </figure>
+            <figure class="onePuch-figure">
+                <div class="onePuch-div-1 div7"></div>
+                <div class="onePuch-div-2 div8"></div>
+            </figure> -->
+        </div>
+    </body>
+</html>

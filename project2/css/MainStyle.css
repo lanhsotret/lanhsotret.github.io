@@ -1,0 +1,72 @@
+@import "1ModuleNav.css";
+@import "2ModuleContHead.css";
+@import "3ModuleCont1.css";
+@import "4ModulePage.css";
+@import "5ModuleCont2.css";
+@import "6ModuleCont3.css";
+@import "7ModuleCont4.css";
+@import "8ModuleCont5.css";
+
+* {
+	box-sizing: border-box;
+}
+:root {
+	--size: 100vw;
+	--widthNav: 250px;
+	--margin-article: 15px;
+	--paddingRoot: 1em;
+	--WidthMax: min-content;
+}
+body {
+	background-color: gray;
+	overflow-x:hidden;
+	margin: 0;
+}
+		
+@media screen and (max-width: 1100px) {
+	nav {
+		transform: translateX(-100%);
+		-webkit-transition: transform 0.5s ease;
+		transition: transform 0.5s ease;
+	}
+
+	article.primarily {
+		margin-left: var(--margin-article);
+		-webkit-transition: margin-left 0.5s ease;
+		transition: margin-left 0.5s ease;
+	}
+	main.container > div.content figure {
+		height: calc(var(--size) * 4 /23);
+	}
+}
+@media screen and (max-width: 900px) {
+	article.primarily > main.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		-webkit-transition: grid-template-columns 0.5s ease;
+		transition: grid-template-columns 0.5s ease;
+	}
+	div.aboutMe > section {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		}
+	main.container > div.content figure {
+		height: calc(var(--size) * 3 /12);
+	}
+}
+@media screen and (max-width: 600px) {
+	div.tableChar {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		}
+	article.primarily > main.container {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
+	div.tableChar th.img {
+		height: calc(var(--size) * 6 / 15);
+	}
+	main.container > div.content figure {
+		height: calc(var(--size) *  10/19);
+	}
+}

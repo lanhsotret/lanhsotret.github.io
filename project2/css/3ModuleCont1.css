@@ -1,0 +1,101 @@
+article.primarily > main.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--margin-article);
+    -webkit-transition: grid-template-columns 0.5s ease;
+    transition: grid-template-columns 0.5s ease;
+    }
+    article.primarily > main.container div.content {
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        transition: 0.3s ease-out;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        }
+    main.container div.content:hover {
+        transform: scale(1.01);
+        box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
+        /* -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none; */
+        border-radius: 0px !important;
+        -webkit-border-radius: initial;
+        -moz-border-radius: initial;
+    }
+        main.container > div.content p {
+            margin: 0.5em 0.7em;
+            text-align: justify;
+            overflow-y: auto;
+            }
+        div.content h3 {
+            margin: 0.5em 0.7em;
+            overflow: hidden;
+            }
+            div.content h3 > span {
+            text-align: left;
+            transition: 2s ease;
+            white-space: nowrap;
+            }
+            span.showHide {
+                position: relative;
+                color: white;
+                margin-left: 0.5em;
+                opacity: 0;
+                transform: scale(0,0);
+                transform-origin: center center;
+                cursor: pointer;
+                -webkit-transition: 0.3s ease;
+                transition: 0.3s ease;
+                }
+            span.showHide::after {
+                content: '';
+                opacity: inherit;
+                position: absolute;
+                top: 2px;
+                left: -6px;
+                right: -6px;
+                bottom: 2px;
+                z-index: -1;
+                background-color: silver;
+                border-radius: 25px;
+                -webkit-transition: inherit;
+                transform-origin: inherit;
+                transition: inherit;
+                transform: inherit;
+                }
+            div.content p:hover span.showHide {
+                opacity: 1;
+                transform: scale(0.9);
+                /* -webkit-transition: 0.3s ease;
+                transition: 0.3s ease; */
+            }
+        main.container > div.content figure {
+            position: relative;
+            height: calc(calc(var(--size) - var(--widthNav)) * 4 /23);
+            margin: 0px;
+            width: 100%;
+            overflow: hidden;
+            }
+            main.container > div.content img {
+                width: 100%;
+                object-fit: cover;
+                transition: 0.3s ease-out;
+                }
+            div.content:hover img {
+                transform: scale(1.05);
+            }
+/* css for psuedo */
+
+div.Fig-cont-abso {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0;
+    right: 0;
+    color: fuchsia;
+    background-image: linear-gradient(to bottom, rgba(1, 1, 1, 0.7) 3%, rgba(1, 1, 1, 0) 20%, rgba(1, 1, 1, 0) 80%, rgba(1, 1, 1, 0.7) 97%);
+}

@@ -1,0 +1,59 @@
+article.primarily > div.page {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    font-size: 1.5em;
+    align-items: center;
+    margin: 2em auto;
+    
+    }
+    div.page input:first-of-type {
+        background-color: black !important;
+    }
+    article.primarily > div.page input[type="button"] {
+        background-color: gray;
+        border: none;
+        font-size: 0.7em;
+        color: white;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        }
+    article.primarily > div.page input[type="button"]:hover {
+        background-color: black;
+        }
+    div.page input[type="text"] {
+        width: 80px;
+        height: 1.5rem;
+        margin-right: 10px;
+        font-size: medium;
+    }
+    div.page span {
+        font-size: 1.5rem;
+        margin-left: 2rem;
+        margin-right: 5px;
+    }
+    div.page button {
+        background-color: black;
+        border: none;
+        padding: 0px;
+        outline: none;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+    }
+    div.page button:first-of-type{
+        background-color:silver;
+    }
+    div.page #previousPage svg {
+        transform: rotate(180deg);
+    }
+    div.page button path {
+        fill: white;
+    }
+    div.page button svg {
+        padding: 3px 0px;
+    }
+    #previousPage {
+        margin-right: 5px;
+    }
