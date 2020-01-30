@@ -4,7 +4,6 @@
 }
 #NavHeader-Svg svg path {
     fill: var(--colorWord);
-    transform: rotate(0deg);
 }
 /* #NavHeader-Svg svg path:nth-of-type(2) {
     transform: scaleX(0.75);
