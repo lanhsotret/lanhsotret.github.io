@@ -21,46 +21,48 @@ header.TopDocument {
 	}
 	main.header {
 		position: absolute;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		top: 20px;
 		right: 30px;
+		bottom: 10%;
 		}
 	nav.NavHeader {
-		font-family: "Lakki Reddy";
+		font-family: "Bangers";
 		text-transform: uppercase;
-		font-size: 1.6em;
+		font-size: 1.8rem;
+		letter-spacing: 1.5px;
 		display: flex;
 		flex-wrap: nowrap;
-		position: relative;
-		width: 60%;
+		justify-content: flex-end;
+		width: 100%;
+		}
+		nav.NavHeader span {
+			line-height: 1;
 		}
 		nav.NavHeader > div {
 			padding: 0 0.5em;
 			}
 		nav.NavHeader > div:first-child {
 			padding-right: 1.2em;
+			padding-left: 0px;
 			}
-	section.ContentHeader {
+		nav.NavHeader > div:last-child {
+			padding-right: 0px;
+		}
+		main.header > div {
 		margin-left: 5em;
 		width: max-content;
-		margin-top: 1.1em;
 		font-family: "Lato";
 		text-transform: uppercase;
 		font-size: 2em;
-		max-height: 400px;
-		height: 45vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
 		text-align: left;
 		}
-		section.ContentHeader div:last-child {
-			text-align: left;
-			width: 100%;
-			font-size: inherit;
-		}
-		section.ContentHeader input {
+		main.header input {
+			font-family: "Righteous";
 			outline: none;
-			font-size: 0.8em;
+			font-size: 0.9em;
 			width: max-content;
 			text-transform: uppercase;
 			color: inherit;
@@ -69,20 +71,17 @@ header.TopDocument {
 			background-color: rgba(1, 1, 1, 0.5);
 		}
 		div.logo {
-			width: max-content;
-			text-align: center;
-			font-family: "Leckerli One";
-			text-transform: capitalize;
+			font-family: "Uncial Antiqua" !important;
+			text-transform: capitalize !important;
 			}
 		div.event {
-			width: max-content;
 			font-weight: normal;
 			}
 		div.event span:last-child{
 			font-weight: bold;
 			font-size: 1.8em;
 			}
-		section.ContentHeader span {
+		main.header > div span {
 			display: block;
 			}
 

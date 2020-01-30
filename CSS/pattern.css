@@ -107,6 +107,7 @@ html {
   }
   nav.NavHeader {
     width: 100%;
+    justify-content: flex-start;
   }
   nav.NavHeader div:first-of-type {
     padding: 0px;
@@ -114,7 +115,7 @@ html {
   nav.NavHeader div.not-media-navba {
     display: none;
   }
-  section.ContentHeader {
+  main.header > div {
     margin-left: 0px;
   }
   main.content1 {
