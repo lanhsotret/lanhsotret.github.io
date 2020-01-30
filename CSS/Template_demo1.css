@@ -11,6 +11,7 @@ header.TopDocument {
 	min-height: 370px;
 	max-height: 600px;
 	height: 70vh;
+	overflow: hidden;
 	}
 	header.TopDocument > img {
 		width: 100%;
@@ -31,15 +32,13 @@ header.TopDocument {
 	nav.NavHeader {
 		font-family: "Bangers";
 		text-transform: uppercase;
-		font-size: 1.8rem;
+		font-size: 2rem;
 		letter-spacing: 1.5px;
 		display: flex;
 		flex-wrap: nowrap;
 		justify-content: flex-end;
 		width: 100%;
-		}
-		nav.NavHeader span {
-			line-height: 1;
+		line-height: 1;
 		}
 		nav.NavHeader > div {
 			padding: 0 0.5em;
@@ -48,17 +47,24 @@ header.TopDocument {
 			padding-right: 1.2em;
 			padding-left: 0px;
 			}
-		nav.NavHeader > div:last-child {
+		nav.NavHeader > div:nth-of-type(4) {
 			padding-right: 0px;
 		}
-		main.header > div {
-		margin-left: 5em;
-		width: max-content;
-		font-family: "Lato";
-		text-transform: uppercase;
-		font-size: 2em;
-		text-align: left;
+		nav.NavHeader > div:last-child {
+			padding-right: 0px;
+			z-index: 2;
+			display: none;
 		}
+		
+		main.header > div {
+			line-height: 1;
+			margin-left: 5em;
+			width: max-content;
+			font-family: "Lato";
+			text-transform: uppercase;
+			font-size: 2em;
+			text-align: left;
+			}
 		main.header input {
 			font-family: "Righteous";
 			outline: none;

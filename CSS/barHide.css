@@ -1,0 +1,52 @@
+#NavHeader-Svg svg {
+    height: 2rem;
+    width: 2rem;
+}
+#NavHeader-Svg svg path {
+    fill: var(--colorWord);
+    transform: rotate(0deg);
+}
+/* #NavHeader-Svg svg path:nth-of-type(2) {
+    transform: scaleX(0.75);
+}
+#NavHeader-Svg svg path:last-child {
+    transform: scaleX(0.5);
+} */
+#header-navBar-Hide {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    top: 0px;
+    right: 0px;
+    transform: translateX(100%);
+    transition: transform 1s ease;
+}
+#header-navBar-Hide div:first-child {
+    margin-top: 70px;
+}
+#header-navBar-Hide > div {
+    position: relative;
+    font-family: "Bangers";
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    font-size: 2rem;
+    padding: 5px 0px;
+    cursor: pointer;
+}
+#header-navBar-Hide > div:before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    width: 75%;
+    border-radius: 1px;
+    /* background-color: white; */
+    height: 2px;
+    bottom: 0px;
+    box-shadow: 0 1px 1px rgba(1, 1, 1, 0.5);
+    transform: translate(-50%,0);
+}

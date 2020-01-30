@@ -22,7 +22,33 @@ $(window).on('load', function () {
     DataWeb.social.forEach((partical, index) => {
         $('main.footer-main1 abbr').eq(index).html(partical["Tags"]);
     });
+    $('nav.NavHeader > div').last().html(icon2['Tags']);
     $(`<div class="js-footer-main1-icon">${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}</div>`).insertBefore('main.footer-main1 > p');
+    let showBar = (function(){
+        let checkColor = $('#NavHeader-Svg svg path').css('fill');
+        $('#NavHeader-Svg').click(function(){
+            if($('#NavHeader-Svg svg path').css('fill') === checkColor) {
+                $('#NavHeader-Svg svg path').first().css('opacity', '0');
+                $('#NavHeader-Svg svg path').last().css('opacity', '0');
+                $('#NavHeader-Svg svg path').eq(1).clone().insertBefore('#NavHeader-Svg svg path:last-child');
+                $('#NavHeader-Svg svg path').eq(1).css({'transform': 'rotate(45deg)','transform-origin': 'center center'});
+                $('#NavHeader-Svg svg path').eq(2).css({'transform': 'rotate(-45deg)','transform-origin': 'center center'});
+                $('#header-navBar-Hide').css('transform', 'translateX(0%)');
+                $('#NavHeader-Svg svg path').css('fill','red');
+            }else{
+                $('#NavHeader-Svg svg path').css('fill', checkColor);
+                $('#NavHeader-Svg svg path').first().css('opacity', '1');
+                $('#NavHeader-Svg svg path').last().css('opacity', '1');
+                $('#NavHeader-Svg svg path').eq(1).css({'transform': 'rotate(0deg)','transform-origin': 'center center'});
+                $('#NavHeader-Svg svg path').eq(2).css({'transform': 'rotate(0deg)','transform-origin': 'center center'});
+                $('#NavHeader-Svg svg path').eq(2).remove();
+                $('#header-navBar-Hide').css('transform', 'translateX(100%)');
+            }
+        });
+    })();
+    
+
+
     let animation = (function () {
         let callFn = function(value) {
             setTimeout(value, 2000);

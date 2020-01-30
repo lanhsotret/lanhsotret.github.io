@@ -2,6 +2,7 @@
 @import "Template_footer1.css";
 @import "Template_footer2.css";
 @import "Template_demo1.css";
+@import "barHide.css";
 
 :root {
 	--fonttitle: "Sedgwick Ave Display";
@@ -107,10 +108,13 @@ html {
   }
   nav.NavHeader {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
   nav.NavHeader div:first-of-type {
     padding: 0px;
+  }
+  nav.NavHeader > div:last-child {
+    display: block;
   }
   nav.NavHeader div.not-media-navba {
     display: none;
