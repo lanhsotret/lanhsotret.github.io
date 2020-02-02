@@ -72,7 +72,7 @@ let setOptional = (function () {
 
 
 let event3Fn = (function () {
-    function EventButton(button1, button2, ele) {
+    function EventButton(button1, button2, ele, media) {
         var target1 = document.getElementsByClassName(button1)[0];
         var target2 = document.getElementsByClassName(button2)[0];
         var EleTarget = document.getElementsByClassName(ele)[0];
@@ -81,12 +81,12 @@ let event3Fn = (function () {
         var composeStyle = window.getComputedStyle(EleChild[0].children[0]);
         var scroll = window.innerWidth - document.documentElement.clientWidth;
         var margin = composeStyle.marginRight != "0px" ? composeStyle.marginRight : "15px";
-        EleTarget.style.transform = `translateX(calc(0px - (100vw - ${margin} - ${scroll}px)))`;
+        EleTarget.style.transform = `translateX(calc(0px - (100vw - ${media || 0}px - ${margin} - ${scroll}px)))`;
         [...EleChild].forEach((particle,index)=>{
-            particle.style.width = `calc(100vw - ${parseFloat(margin)*2}px - ${scroll}px)`;
-            particle.style.transform = `translate(calc(${index}*calc(100vw - ${margin} - ${scroll}px)), -50%)`;
+            particle.style.width = `calc(100vw - ${media || 0}px - ${parseFloat(margin)*2}px - ${scroll}px)`;
+            particle.style.transform = `translate(calc(${index}*calc(100vw - ${media || 0}px - ${margin} - ${scroll}px)), -50%)`;
         });
-        target1.addEventListener('click', () => {
+        target1.onclick = function() {
             target1.disabled = true;
             var count = EleChild[EleChild.length - 1].childElementCount;
             var AttrTarget = EleChild[EleChild.length - 1].children[count - 1].style.backgroundImage;
@@ -95,7 +95,7 @@ let event3Fn = (function () {
             var cloneEle = EleChild[EleChild.length - 1].cloneNode(true);
             [...EleChild].forEach((particle,index)=>{
                 particle.style.transition = `transform 1.5s ease`;
-                particle.style.transform = `translate(calc(${index}*calc(100vw - ${margin} - ${scroll}px) - calc(100vw - ${margin} - ${scroll}px)), -50%)`;
+                particle.style.transform = `translate(calc(${index}*calc(100vw - ${media || 0}px - ${margin} - ${scroll}px) - calc(100vw - ${media || 0}px - ${margin} - ${scroll}px)), -50%)`;
             });
             EleTarget.appendChild(cloneEle);
             var num1 = 0;
@@ -109,8 +109,8 @@ let event3Fn = (function () {
             EleChild[0].addEventListener('transitionend', function () {
                 target1.disabled = false;
             });
-        });
-        target2.addEventListener('click', () => {
+        };
+        target2.onclick = function() {
             target2.disabled = true;
             var count = EleChild[0].childElementCount;
             var AttrTarget = EleChild[0].children[0].style.backgroundImage;
@@ -119,7 +119,7 @@ let event3Fn = (function () {
             var cloneEle = EleChild[0].cloneNode(true);
                 [...EleChild].forEach((particle,index)=>{
                     particle.style.transition = `transform 1.5s ease`;
-                    particle.style.transform = `translate(calc(${index + 1}*calc(100vw - ${margin} - ${scroll}px)), -50%)`;
+                    particle.style.transform = `translate(calc(${index + 1}*calc(100vw - ${media || 0}px - ${margin} - ${scroll}px)), -50%)`;
                 });
             EleTarget.insertBefore(cloneEle, EleTarget.childNodes[0]);
             [...cloneEle.children].forEach((partical, index) => { //Array.from(cloneEle.children)
@@ -134,10 +134,10 @@ let event3Fn = (function () {
             EleChild[1].addEventListener('transitionend', function () {
                 target2.disabled = false;
             });
-        });
+        };
     }
     return {
         EventButton: EventButton
     }
 })();
-event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex');
+// event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex', 250);

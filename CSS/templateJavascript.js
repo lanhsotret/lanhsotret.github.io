@@ -23,6 +23,7 @@ $(window).on('load', function () {
         $('main.footer-main1 abbr').eq(index).html(partical["Tags"]);
     });
     $('nav.NavHeader > div').last().html(icon2['Tags']);
+    
     $(`<div class="js-footer-main1-icon">${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}${DataWeb["Icon"][0]["Tags"]}</div>`).insertBefore('main.footer-main1 > p');
     let showBar = (function(){
         let checkColor = $('#NavHeader-Svg svg path').css('fill');
@@ -36,7 +37,7 @@ $(window).on('load', function () {
             if($('#NavHeader-Svg svg path').css('fill') === checkColor) {
                 $('#NavHeader-Svg svg path').first().css({'transition': 'transform 1s ease','transform': 'translateY(0rem) rotate(45deg)', 'transform-origin': 'center center'});
                 $('#NavHeader-Svg svg path').last().css({'transition': 'transform 1s ease','transform': 'translateY(0rem) rotate(-45deg)', 'transform-origin': 'center center'});
-                $('#NavHeader-Svg svg path').eq(1).css({'transition': 'transform 1s ease', 'transform': 'scale(0)','transform-origin': 'center center'});
+                $('#NavHeader-Svg svg path').eq(1).css({'transition': 'transform 1s ease', 'transform': 'scale(0)','transform-origin': 'center left'});
                 $('#header-navBar-Hide').css({'transform': 'translateX(0%)'});
                 $('#NavHeader-Svg svg path').css('fill','red');
             }else{

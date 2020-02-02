@@ -23,18 +23,18 @@ let intFn = (function () {
 // let int = setInterval(function () { intFn.StyleFn('onePuch-div-flex'); }, 5);
 
 
-
 let mediaQuery = (function(){
-    var limitMedia = window.matchMedia(`(max-width: 600px)`);
+    var limitMedia = window.matchMedia(`(max-width: 1100px)`);
     function checkMedia() {
         if(limitMedia.matches) {
-            let eleTarget = document.querySelector('.onePuch-div-flex');
-            eleTarget.style.paddingTop = `55%`;
-            [...eleTarget.children].forEach((particle)=>{
-                let elechild = particle.children;
-                elechild[elechild.length - 1].remove();
-                elechild[0].style.paddingTop = `55%`;
-            });
+            event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex');
+            // let eleTarget = document.querySelector('.onePuch-div-flex');
+            // eleTarget.style.paddingTop = `55%`;
+            // [...eleTarget.children].forEach((particle)=>{
+            //     let elechild = particle.children;
+            //     elechild[elechild.length - 1].remove();
+            //     elechild[0].style.paddingTop = `55%`;
+            // });
             // AppendEle.Image('.onePuch-div-flex div');
             // event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex');
         // } else {
@@ -48,13 +48,15 @@ let mediaQuery = (function(){
         //         AppendEle.Image('.onePuch-div-flex div');
         //         event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex');
         //     });
+        } else {
+            event3Fn.EventButton('onePuch-span1', 'onePuch-span2', 'onePuch-div-flex', 250);
         }
-        if(limitMedia.matches) {
-            let domTarget = document.querySelector('.OtherChar .section-div');
-            [...domTarget.children].forEach((particle,index)=>{
-                index !== 0 ? particle.remove():"";
-            });
-        }
+        // if(limitMedia.matches) {
+        //     let domTarget = document.querySelector('.OtherChar .section-div');
+        //     [...domTarget.children].forEach((particle,index)=>{
+        //         index !== 0 ? particle.remove():"";
+        //     });
+        // }
     }
     checkMedia();
     limitMedia.addListener(checkMedia);
