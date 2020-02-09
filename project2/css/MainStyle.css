@@ -69,4 +69,7 @@ body {
 	main.container > div.content figure {
 		height: calc(var(--size) *  10/19);
 	}
+	div.section-div {
+		overflow-x: scroll;
+	}
 }

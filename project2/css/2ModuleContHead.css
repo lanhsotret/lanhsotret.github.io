@@ -53,6 +53,7 @@ article.primarily {
 			margin-left: calc(var(--margin-article)/3);
 			padding: 6px;
 			background-color: silver;
+			white-space: nowrap;
 		}
 		#Svg-Icon-Head div a {
 			margin-left: initial;

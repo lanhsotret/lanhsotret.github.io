@@ -9,10 +9,10 @@ article.primarily > main.container {
     article.primarily > main.container div.content {
         width: 100%;
         background-color: white;
-        border-radius: 10px;
+        /* border-radius: 10px;
         -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        transition: 0.3s ease-out;
+        -moz-border-radius: 10px; */
+        transition: all 0.3s ease-out;
         overflow-y: hidden;
         overflow-x: hidden;
         }
@@ -22,9 +22,6 @@ article.primarily > main.container {
         /* -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none; */
-        border-radius: 0px !important;
-        -webkit-border-radius: initial;
-        -moz-border-radius: initial;
     }
         main.container > div.content p {
             margin: 0.5em 0.7em;
@@ -67,9 +64,9 @@ article.primarily > main.container {
                 transition: inherit;
                 transform: inherit;
                 }
-            div.content p:hover span.showHide {
+            div.content:hover span.showHide {
                 opacity: 1;
-                transform: scale(0.9);
+                transform: scale(1);
                 /* -webkit-transition: 0.3s ease;
                 transition: 0.3s ease; */
             }
@@ -87,6 +84,15 @@ article.primarily > main.container {
                 }
             div.content:hover img {
                 transform: scale(1.05);
+            }
+            .nohover {
+                pointer-events: none;
+            }
+            .hideScroll::-webkit-scrollbar {
+                display: none;
+            }
+            .hideScroll {
+                -ms-overflow-style: none;
             }
 /* css for psuedo */
 

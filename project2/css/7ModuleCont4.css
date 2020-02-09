@@ -1,10 +1,12 @@
+
+
 section.OtherChar > h3 {
     text-transform: capitalize;
     }
     div.section-div {
     display: flex;
     flex-wrap: nowrap;
-    transition: all 0.5s ease;
+    will-change: contents;
     align-items: center; 
     }
     div.div-flex{
