@@ -1,0 +1,111 @@
+@import variables
+
+=flex-format()
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-between
+    align-items: center
+
+=flex_customize($value1, $value2, $value3, $value4, $value5)
+    display: flex
+    flex-wrap: $value1
+    @if $value2
+        flex-direction: $value2
+    @if $value3
+        justify-content: $value3
+    @if $value4
+        align-items: $value4
+    @if $value5
+        align-content: $value5
+
+=flex_default()
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-between
+    align-items: center
+
+=margin_padding_format0()
+    margin: 0px
+    padding: 0px
+
+=padding_r_l($value)
+    padding-left: $value
+    padding-right: $value
+
+=position_absolute($param1,$param2, $param3, $param4)
+    position: absolute
+    top: $param1
+    left: $param2
+    bottom: $param3
+    right: $param4
+
+=background-image($url)
+    @if $url
+        background-image: $url
+    background-position: center center
+    background-size: cover
+    background-repeat: no-repeat
+
+=padding_even($t_b, $r_l, $include) //padding r=l || t=b; $include: all||rl||tb
+    @if $include == all
+        padding: $t_b $r_l
+    @else if $include == rl
+        padding-left: $r_l
+        padding-right: $r_l
+    @else if $include == tb
+        padding-top: $t_b
+        padding-bottom: $t_b
+    @else
+        @error "unknown parameter #{$include}."
+
+=padding_customizer($top, $left, $bottom, $right)
+    @if $top
+        padding-top: $top
+    @if $left
+        padding-left: $left
+    @if $bottom
+        padding-bottom: $bottom
+    @if $right
+        padding-right: $right
+
+=margin_even($t_b, $r_l, $include)//margin r=l || t=b; $include: all||rl||tb
+    @if $include == all
+        margin: $t_b $r_l
+    @else if $include == rl
+        margin: auto $r_l
+    @else if $include ==tb
+        margin: $t_b auto
+    @else
+        @error "unknown parameter #{$include}."
+
+=margin_customizer($top, $left, $bottom, $right)
+    @if $top
+        margin-top: $top
+    @if $left
+        margin-left: $left
+    @if $bottom
+        margin-bottom: $bottom
+    @if $right
+        margin-right: $right
+
+=absolute_customize($value1, $value2, $value3, $value4)
+    position: absolute
+    top: $value1
+    left: $value2
+    bottom: $value3
+    right: $value4
+
+=pattern_simple($color1, $color2)
+    background: linear-gradient(135deg, $color1 25%, transparent 25%) -50px 0, linear-gradient(225deg, $color1 25%, transparent 25%) -50px 0, linear-gradient(315deg, $color1 25%, transparent 25%), linear-gradient(45deg, $color1 25%, transparent 25%)
+    background-size: 2em 2em
+    background-color: $color2
+    background-attachment: fixed
+
+=mixin_if($total, $ele, $key_word, $value)
+    @for $i from 1 through $total
+        &#{$ele}:nth-of-type(#{$i})
+            background-image: map-get($key-word, "#{$value}#{$i}")
+            @if $i == 1
+                display: block
+            @else 
+                display: none

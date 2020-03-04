@@ -1,0 +1,55 @@
+@import ../abstracts/variables
+@import ../abstracts/mixins
+@import ../abstracts/extend
+
+//modify css for #.sideshow-popular
+
+.sideshow-popular
+    &__nav
+        +flex_default()
+
+    &__div-title
+        +flex-default()
+    
+    &__content
+        @extend %p-format
+
+
+//modify css for #.sideshow-favourite
+
+.sideshow-favourite
+    &__nav
+        +flex_default()
+        
+    &__div-title
+        +flex_default()
+        
+    &__content
+        @extend %p-format
+
+//modify css for #.sideshow-latest
+
+.sideshow-latest
+    &__nav
+        +flex_default()
+
+    &__title
+        @extend %p-format
+
+//modify css for #.sideshow-editorChoice
+
+.sideshow-editorChoice
+    &__nav
+        +flex_default()
+
+    &__title
+        @extend %p-format
+
+//modify css for #.sideshow-filmSoon
+
+.sideshow-filmSoon
+    &__nav
+        +flex_default()
+
+    &__title
+        @extend %p-format

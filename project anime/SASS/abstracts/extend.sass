@@ -1,0 +1,82 @@
+@import variables
+@import mixins
+
+%p-format //format for paragraph in #.panel list
+    position: relative
+    +padding_even(false, map-get($padding, "px1"), rl)
+    white-space: nowrap
+    text-transform: uppercase
+    font-size: map-get($fontsize,"medium")
+    line-height: 1
+    font-style: italic
+    +margin_customizer(0px, false, map-get($margin, "mg2"), false)
+
+    &::before
+        content: ""
+        +absolute_customize(95%, 10%, 0px, 10%)
+        background-color: black
+
+    &:first-of-type
+        font-style: normal
+        cursor: pointer
+
+//format for #.panel-list
+
+%__divPrimary
+    overflow: auto
+    +flex_customize(nowrap, row, flex-start, center, false)
+    -ms-overflow-style: none
+    scrollbar-width: none
+
+    &::-webkit-scrollbar
+        display: none
+
+%__divChild
+    +flex_customize(nowrap, column, false, center, space-between)
+    min-width: $width_div
+    +margin_even(false, map-get($margin, "mg2"), rl)
+    overflow: hidden
+
+    &:first-of-type
+        margin-left: 0px
+
+    &:last-of-type
+        margin-right: 0px
+
+%__figure
+    display: flex
+    align-items: center
+    +margin_even(0px, 0px, all)
+    height: calc(#{$width_div} * 1.33)
+    width: 100%
+    overflow: hidden
+
+%__name-film
+    white-space: nowrap
+    font-size: map-get($fontsize, "medium")
+    text-transform: capitalize
+    +margin_even(map-get($margin, "mg2"), false, tb)
+
+%__button
+    display: flex
+    align-items: center
+    justify-content: center
+    border: none
+    +padding_even(3px, 3px, all)
+    +margin_customizer(0px, 3px, map-get($margin, "mg2"), 3px)
+    outline: none
+    border-radius: 50%
+    background-color: map-get($colorBackground, "button")
+    height: 30px
+    width: 30px
+    line-height: 1
+    box-shadow: -2px -2px 5px rgba(255, 255, 255, 1), 3px 3px 5px rgba(0, 0, 0, 0.1)
+
+    .fa
+        font-size: map-get($fontsize, "normal")
+
+    &:last-of-type
+        margin-right: 0px
+
+    &:first-of-type
+        margin-left: 0px

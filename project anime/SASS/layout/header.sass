@@ -1,0 +1,49 @@
+@import ../abstracts/mixins
+@import ../abstracts/variables
+
+header
+    background-color: map-get($colorBackground, "header")
+
+header > main
+    background-color: map-get($colorBackground, "header")
+    .logo-web
+        +flex-default()
+        +padding_even(map-get($padding, "px6"), false, tb)
+        
+        &__div
+            +flex-default()
+            +padding_even(map-get($padding, "px2"), map-get($padding, "px2"), all)
+            color: map-get($colorText, "header")
+            font-size: map-get($fontsize, "huge")
+            border-radius: 15px
+            box-shadow: -1px -1px 2px rgba(225, 225, 225, 0.5),  1px 1px 3px black
+
+        &__span
+            white-space: nowrap
+            text-transform: uppercase
+            padding-right: map-get($padding, "px1")
+
+        &__link
+            width: 40%
+
+        &__img
+            width: 100%
+            
+    .nav
+        +flex_default()
+        background-color: map-get($colorBackground, "nav")
+        box-shadow: -1px -1px 1px rgba(225, 225, 225, 0.3),  0px 1px 3px black
+
+        &__section
+            +flex-customize(nowrap, row, flex-start, center, false)
+            
+        &__div
+            +padding_even(map-get($padding, "px2"), map-get($padding, "px2"), all)
+            text-transform: capitalize
+            font-size: map-get($fontsize, "medium")
+            color: map-get($colorText, "color_nav")
+
+            p
+                +margin_even(0px, false, tb)
+
+

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../SASS/abstracts/variables.sass",
+        "../SASS/abstracts/functions.sass"
+    ],
+    "names": [],
+    "file": "variables.css"
+}

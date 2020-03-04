@@ -1,0 +1,55 @@
+@import ../abstracts/mixins
+@import ../abstracts/variables
+@import ../abstracts/extend
+
+.panel-list
+    .div-button__JS-bt1
+        svg
+            transform-origin: center center
+            transform: rotate(180deg)
+
+
+//modify css for #.sideshow-popular
+
+.sideshow-popular
+    &__div-button
+        +flex_default()
+
+    &__button
+        @extend %__button
+
+//modify css for #.sideshow-favourite
+
+.sideshow-favourite
+    &__div-button
+        +flex_default()
+        
+    &__button
+        @extend %__button
+
+//modify edit css for #.sideshow-latest
+
+.sideshow-latest
+    &__div-button
+        +flex_default()
+        
+    &__button
+        @extend %__button
+
+//modify edit css for #.sideshow-editorChoice
+
+.sideshow-editorChoice
+    &__div-button
+        +flex_default()
+
+    &__button
+        @extend %__button
+        
+//modify edit css for #.sideshow-filmSoon
+
+.sideshow-filmSoon
+    &__div-button
+        +flex_default()
+
+    &__button
+        @extend %__button
