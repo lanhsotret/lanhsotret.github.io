@@ -3,6 +3,17 @@
 @import ../abstracts/functions
 @import ..//abstracts/extend
 
+.panel-list
+    .circle-bottom-js
+        +flex_customize(nowrap, row, center, center, false)
+
+        &__div
+            +margin_even(0px, map-get($margin, "mg1"), all)
+            border-radius: 50%
+            height: 10px
+            width: 10px
+            box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.5)
+
 //modify css for .sideshow-primary
 
 .sideshow-primary
@@ -47,6 +58,7 @@
 .sideshow-popular
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     background-color: map-get($colorBackground, "div")
+    position: relative
     
     &__boxParent
         @extend %__divPrimary
@@ -69,6 +81,7 @@
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     +margin_even(map-get($margin, "mg4"), false, tb)
     background-color: map-get($colorBackground, "div")
+    position: relative
 
     &__containParent
         @extend %__divPrimary
@@ -88,6 +101,7 @@
 //modify css for #.sideshow-latest
 
 .sideshow-latest
+    position: relative
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     background-color: map-get($colorBackground, "div")
 
@@ -109,6 +123,7 @@
 //modify css for #.sideshow-editorChoice
 
 .sideshow-editorChoice
+    position: relative
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     +margin_even(map-get($margin, "mg4"), false, tb)
     background-color: map-get($colorBackground, "div")
@@ -131,6 +146,7 @@
 //modify css for #.sideshow-filmSoon
 
 .sideshow-filmSoon
+    position: relative
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     background-color: map-get($colorBackground, "div")
 

@@ -102,6 +102,164 @@ header > main .nav__div p {
   margin: 0px auto;
 }
 
+.hoverJs-panel-slider {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 220px;
+  z-index: 0;
+  opacity: 0;
+  display: none;
+  -webkit-transition: opacity 0.3 ease;
+  transition: opacity 0.3 ease;
+}
+
+.hoverJs-panel-slider .panel-sliderJS {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  padding: 10px 10px;
+  background-color: #f1f3f6;
+  -webkit-box-shadow: rgba(0, 128, 128, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+          box-shadow: rgba(0, 128, 128, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+}
+
+.hoverJs-panel-slider .panel-sliderJS::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  bottom: -12px;
+  right: -12px;
+  border: 6px solid teal;
+  z-index: -2;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.3) -1px -1px 2px, rgba(0, 0, 0, 0.7) 1px 1px 2px, rgba(255, 255, 255, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.3) -1px -1px 2px, rgba(0, 0, 0, 0.7) 1px 1px 2px, rgba(255, 255, 255, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+}
+
+.hoverJs-panel-slider .panel-sliderJS::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: -3px;
+  right: -3px;
+  border: 3px solid teal;
+  z-index: -1;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.9) -1px -1px 2px, rgba(0, 0, 0, 0.6) 1px 1px 2px;
+          box-shadow: rgba(255, 255, 255, 0.9) -1px -1px 2px, rgba(0, 0, 0, 0.6) 1px 1px 2px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS p, .hoverJs-panel-slider .panel-sliderJS span, .hoverJs-panel-slider .panel-sliderJS i {
+  font-size: 0.9rem;
+  margin: 0px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title {
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title > p {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  font-weight: bold;
+  text-align: left;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title i {
+  font-size: calc(0.9rem - 3px);
+  margin-right: 3px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__caption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__caption > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__rate-view {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0px !important;
+}
+
+.hoverJs-panel-slider .panel-sliderJS > div {
+  margin-bottom: 10px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__line {
+  width: 90%;
+  height: 4px;
+  -webkit-box-shadow: white -2px -2px 2px inset, rgba(0, 0, 0, 0.7) 2px 2px 2px inset;
+          box-shadow: white -2px -2px 2px inset, rgba(0, 0, 0, 0.7) 2px 2px 2px inset;
+  border-radius: 2px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__view i {
+  margin-right: 3px;
+}
+
 .sideshow-popular__content, .sideshow-favourite__content, .sideshow-latest__title, .sideshow-editorChoice__title, .sideshow-filmSoon__title {
   position: relative;
   padding-left: 5px;
@@ -241,6 +399,33 @@ header > main .nav__div p {
   margin-left: 0px;
 }
 
+.panel-list .circle-bottom-js {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.panel-list .circle-bottom-js__div {
+  margin: 0px 5px;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  -webkit-box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.5);
+          box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.5);
+}
+
 .sideshow-primary {
   position: relative;
   height: 500px;
@@ -327,6 +512,7 @@ header > main .nav__div p {
 .sideshow-popular {
   padding: 30px 30px;
   background-color: #f1f3f6;
+  position: relative;
 }
 
 .sideshow-popular__img {
@@ -337,6 +523,7 @@ header > main .nav__div p {
   padding: 30px 30px;
   margin: 20px auto;
   background-color: #f1f3f6;
+  position: relative;
 }
 
 .sideshow-favourite__img {
@@ -344,6 +531,7 @@ header > main .nav__div p {
 }
 
 .sideshow-latest {
+  position: relative;
   padding: 30px 30px;
   background-color: #f1f3f6;
 }
@@ -353,6 +541,7 @@ header > main .nav__div p {
 }
 
 .sideshow-editorChoice {
+  position: relative;
   padding: 30px 30px;
   margin: 20px auto;
   background-color: #f1f3f6;
@@ -363,6 +552,7 @@ header > main .nav__div p {
 }
 
 .sideshow-filmSoon {
+  position: relative;
   padding: 30px 30px;
   background-color: #f1f3f6;
 }
@@ -508,13 +698,6 @@ header > main .nav__div p {
 
 .sideshow-popular__button:first-of-type, .sideshow-favourite__button:first-of-type, .sideshow-latest__button:first-of-type, .sideshow-editorChoice__button:first-of-type, .sideshow-filmSoon__button:first-of-type {
   margin-left: 0px;
-}
-
-.panel-list .div-button__JS-bt1 svg {
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
 }
 
 .sideshow-popular__div-button {
@@ -927,6 +1110,186 @@ footer > main hr {
   margin-top: 0px;
   white-space: nowrap;
   cursor: default;
+}
+
+.sideshow-popular .translate-JS-1 {
+  -webkit-transform: translateX(0px);
+          transform: translateX(0px);
+}
+
+.sideshow-popular .translate-JS-2 {
+  -webkit-transform: translateX(-480px);
+          transform: translateX(-480px);
+}
+
+.sideshow-popular .translate-JS-3 {
+  -webkit-transform: translateX(-960px);
+          transform: translateX(-960px);
+}
+
+.sideshow-popular .sideshow-popular__div {
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.hoverJs-panel-slider {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 220px;
+  z-index: 0;
+  opacity: 0;
+  display: none;
+  -webkit-transition: opacity 0.3 ease;
+  transition: opacity 0.3 ease;
+}
+
+.hoverJs-panel-slider .panel-sliderJS {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  padding: 10px 10px;
+  background-color: #f1f3f6;
+  -webkit-box-shadow: rgba(0, 128, 128, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+          box-shadow: rgba(0, 128, 128, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+}
+
+.hoverJs-panel-slider .panel-sliderJS::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  bottom: -12px;
+  right: -12px;
+  border: 6px solid teal;
+  z-index: -2;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.3) -1px -1px 2px, rgba(0, 0, 0, 0.7) 1px 1px 2px, rgba(255, 255, 255, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.3) -1px -1px 2px, rgba(0, 0, 0, 0.7) 1px 1px 2px, rgba(255, 255, 255, 0.3) -1px -1px 2px inset, rgba(0, 0, 0, 0.7) 1px 1px 2px inset;
+}
+
+.hoverJs-panel-slider .panel-sliderJS::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: -3px;
+  right: -3px;
+  border: 3px solid teal;
+  z-index: -1;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.9) -1px -1px 2px, rgba(0, 0, 0, 0.6) 1px 1px 2px;
+          box-shadow: rgba(255, 255, 255, 0.9) -1px -1px 2px, rgba(0, 0, 0, 0.6) 1px 1px 2px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS p, .hoverJs-panel-slider .panel-sliderJS span, .hoverJs-panel-slider .panel-sliderJS i {
+  font-size: 0.9rem;
+  margin: 0px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title {
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title > p {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  font-weight: bold;
+  text-align: left;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__title i {
+  font-size: calc(0.9rem - 3px);
+  margin-right: 3px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__caption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__caption > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__rate-view {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0px !important;
+}
+
+.hoverJs-panel-slider .panel-sliderJS > div {
+  margin-bottom: 10px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__line {
+  width: 90%;
+  height: 4px;
+  -webkit-box-shadow: white -2px -2px 2px inset, rgba(0, 0, 0, 0.7) 2px 2px 2px inset;
+          box-shadow: white -2px -2px 2px inset, rgba(0, 0, 0, 0.7) 2px 2px 2px inset;
+  border-radius: 2px;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hoverJs-panel-slider .panel-sliderJS__view i {
+  margin-right: 3px;
 }
 
 body {

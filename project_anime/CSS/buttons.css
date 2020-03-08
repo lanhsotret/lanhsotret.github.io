@@ -36,13 +36,6 @@
   margin-left: 0px;
 }
 
-.panel-list .div-button__JS-bt1 svg {
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
 .sideshow-popular__div-button {
   display: -webkit-box;
   display: -ms-flexbox;
