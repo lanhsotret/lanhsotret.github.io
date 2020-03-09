@@ -95,6 +95,19 @@
     @else
         @error "unknown parameter #{$include}."
 
+=margin_even_2($t_b, $r_l, $include)
+    @if $include == all
+        @if $r_l == similar
+            margin: $t_b
+        @else 
+            margin: $t_b $r_l
+    @else if $include == rl
+        margin: auto $r_l
+    @else if $include ==tb
+        margin: $t_b auto
+    @else
+        @error "unknown parameter #{$include}."
+
 =margin_customizer($top, $left, $bottom, $right)
     @if $top
         margin-top: $top

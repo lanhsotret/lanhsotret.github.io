@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AIiJQ,iBJjJS,CIiJT,eAAe,CAAS;EAKZ,SAAS,EAAE,eAA0B;CAKI;;AJ3J7D,AIiJQ,iBJjJS,CIiJT,eAAe,CAAS;EAKZ,SAAS,EAAE,kBAA0B;CAKI;;AJ3J7D,AIiJQ,iBJjJS,CIiJT,eAAe,CAAS;EAGZ,SAAS,EAAE,kBAAmF;CAOrD;;AJ3J7D,AAGI,iBAHa,CAGb,sBAAsB,CAAC;EACnB,UAAU,EAAE,mBAAmB;CAAG",
+    "sources": [
+        "carousel.sass",
+        "../abstracts/functions.sass",
+        "../abstracts/variables.sass",
+        "../abstracts/functions.sass",
+        "../abstracts/mixins.sass",
+        "../abstracts/variables.sass",
+        "../abstracts/functions.sass"
+    ],
+    "names": [],
+    "file": "carousel.css"
+}

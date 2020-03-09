@@ -1,0 +1,40 @@
+@import ../abstracts/extend
+@import ../abstracts/mixins
+@import ../abstracts/variables
+    
+.nav__div.nav__genre
+    position: relative
+    cursor: pointer
+    .nav__genre--slider
+        display: none
+        opacity: 0
+        transition: opacity 0.6s ease
+        +absolute_customize(100%, 0px, false, false)
+        background-color: map-get($colorBackground, "nav")
+        color: map-get($colorText, "word")
+        z-index: 1
+        +padding_even(0px, map-get($padding, "px1"), rl)
+        box-shadow: rgba(black, 0.6) 0px 1px 2px inset
+
+        .div-genre
+            cursor: pointer
+            +padding_even(map-get($padding, "px1"), map-get($padding, "px2"), all)
+
+        .div-line
+            border-radius: 2px
+            width: 100%
+            height: 3px
+            +box_shadow(rgba(black,0.9) 1px 1px 1px, rgba(white, 0.5) -1px -1px 1px, inset)
+
+        .div-circle
+            +flex_customize_2(row nowrap, center, center, false)
+            width: 100%
+            height: 5px
+            margin-bottom: map-get($margin, "mg1")
+            
+            &>div
+                +margin_even_2(map-get($margin, "mg1"), similar, all)
+                width: 5px
+                height: 5px
+                border-radius: 50%
+                +box_shadow(rgba(black, 0.9) 1px 1px 2px, rgba(white, 0.5) -1px -1px 2px, inset)

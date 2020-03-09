@@ -1513,4 +1513,10 @@ main {
   margin: auto;
   background-color: #161616;
 }
+
+abbr[title] {
+  color: red;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
 /*# sourceMappingURL=main.css.map */

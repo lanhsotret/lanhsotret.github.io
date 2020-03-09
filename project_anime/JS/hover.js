@@ -51,6 +51,31 @@ const applyHTML = (function() {
 
 applyHTML.append(applyHTML.createEle, "div", "hoverJs-panel-slider", "body > main");
 
+const modifierHTML = (function(){
+  function Alt(ele) {
+    let eleTarget = document.querySelectorAll(`body > ${ele} img`);
+    eleTarget.forEach(particle=>{
+      let numBegin = particle.src.lastIndexOf("/");
+      let numEnd = particle.src.lastIndexOf(".");
+      let content = particle.src.substring(numBegin + 1, numEnd);
+      particle.alt = content.split("-").join(" ").split("_").join(" ");
+    });
+  }
+  function abbrHTML(ele) {
+    let eleTarget = document.querySelectorAll(ele);
+    eleTarget.forEach(particle=>{
+      particle.innerHTML = `<abbr title="view all ${particle.innerHTML}">${particle.innerHTML}</abbr>`
+      Array.from(particle.getElementsByTagName("abbr")).forEach(particle=>{
+        particle.style.textDecoration = "none";
+      })
+    })
+  }
+  return {imgAlt: Alt,
+    abbr: abbrHTML
+  }
+})();
+modifierHTML.imgAlt("main");
+modifierHTML.abbr(".footer-category__div-child p");
 
 const event = (function(){
   function mousemove(ele) {
