@@ -1,0 +1,22 @@
+@import abstracts/variables
+@import layout/header
+@import layout/sidebar
+@import layout/primary
+@import components/buttons
+@import layout/navigation
+@import layout/footer
+@import components/carousel
+@import layout/sidebar
+@import components/slider
+
+
+body
+    margin: 0px
+    background-color: map-get($colorBackground, "body")
+    &>main
+        +pattern_simple(black, #232323)
+main
+    width: map-get($width_max, "max_pixel")
+    box-sizing: border-box
+    margin: auto
+    background-color: map-get($colorBackground, "nav")

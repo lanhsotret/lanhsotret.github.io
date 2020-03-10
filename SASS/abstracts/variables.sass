@@ -1,0 +1,29 @@
+@import ../abstracts/functions
+    
+$fontsize: ("small": 0.9rem, "normal": 1.1rem, "medium": 1.3rem, "large": 1.5rem, "huge": 1.8rem)
+
+$colorText: ("color_nav": white, "color_title": blue, "header": white, "word": white)
+
+$colorBackground: ("body": gray, "main": silver, "nav": #161616, "div": #f1f3f6, "button": #f1f3f6, "footer": black, "header": #1b1b1b)
+
+$padding: ("px1": 5px, "px2": 10px, "px3": 15px, "px4": 20px, "px5": 25px, "px6": 30px)
+
+$margin: ("mg1": 5px, "mg2": 10px, "mg3": 15px, "mg4": 20px, "mg5": 25px, "mg6": 30px)
+
+$background_sideshow: ("img1": url('../IMAGE/background/sideshow/Boku_dak_ ga_Inai_Machi.png'), "img2": url('../IMAGE/background/sideshow/darker_than_black.jpg'), "img3": url('../IMAGE/background/sideshow/durarara.jpg'), "img4": url('../IMAGE/background/sideshow/My_Hero_Academia.png'), "img5": url('../IMAGE/background/sideshow/psycho_pass.jpg'))
+
+$width_max: ("max_per": 100%, "max_pixel": 1000px, "maxVw": 100vw)
+
+$width_svg: ("ws1": 10px, "ws2": 15px, "ws3": 20px, "ws4": 25px)
+
+$width_div: width_box(map-get($width_max, "max_pixel"), map-get($padding, "px6"), map-get($margin, "mg2"), 4)
+
+$width_scrollbar:  width_scrollbar(8, $width_div, 2, map-get($margin, "mg2"))
+
+$width_translate: translate_width($width_div, map-get($margin, "mg2"), 2)
+
+$wisth_mainDiv: width_scrollbar(4, $width_div, 2, map-get($margin, "mg2"))
+
+$width: ("div": 220px)
+
+$dix_box: ("h1": 500px, "w1": 100%)

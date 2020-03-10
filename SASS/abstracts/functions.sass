@@ -1,0 +1,13 @@
+@function width_box($main, $gap_main, $gap_child, $num) 
+    @return ($main - 2 * $gap_main - 2 * ($num - 1) * $gap_child)/$num
+
+@function translate_width($box-width, $gap, $num-box)
+    $num-gap: $num-box * 2
+    @return $box-width * $num-box + $gap * $num-gap
+
+@function width_scrollbar($sum_img, $boxwidth_child, $sub_gap, $width_gap)
+    $sum_gap: $sum_img * 2 - $sub_gap
+    @return $sum_img * $boxwidth_child + $sum_gap * $width_gap
+
+
+

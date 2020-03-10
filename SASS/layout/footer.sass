@@ -1,0 +1,46 @@
+@import ../abstracts/mixins
+@import ../abstracts/variables
+    
+footer
+    background-color: rgba(1, 1, 1, 0.9)
+
+footer > main
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    background-color: map-get($colorBackground, "footer")
+
+    p
+        color: map-get($colorText, "word")
+        font-size: map-get($fontsize, "small")
+        line-height: 1
+        text-transform: capitalize
+        +margin_customizer(map-get($margin, "mg2"), false, map-get($margin, "mg2"), false)
+        cursor: pointer
+
+    .p__copyright
+        +margin_customizer(map-get($margin, "mg4"), false, 0px, false)
+        cursor: default
+
+    hr
+        +margin_even(map-get($margin, "mg2"), false, tb)
+
+.footer-primary
+    +flex_customize(nowrap, row, space-between, flex-start, false)
+
+    .footer-category
+        +flex_customize(nowrap, column, false, flex-start, space-between)
+        width: 70%
+
+        &__div-child
+            width: 100%
+            +flex_default()
+
+    .footer-followMe
+        +flex_customize(nowrap, column, false, flex-start, space-between)
+
+    &__div--p
+        font-size: map-get($fontsize, "medium")
+        text-transform: uppercase
+        margin-top: 0px
+        white-space: nowrap
+        cursor: default
+

@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AIgKQ,iBJhKS,CIgKT,eAAe,CAAS;EAKZ,SAAS,EAAE,eAA0B;CAKI;;AJ1K7D,AIgKQ,iBJhKS,CIgKT,eAAe,CAAS;EAKZ,SAAS,EAAE,kBAA0B;CAKI;;AJ1K7D,AIgKQ,iBJhKS,CIgKT,eAAe,CAAS;EAGZ,SAAS,EAAE,kBAAmF;CAOrD;;AJ1K7D,AAGI,iBAHa,CAGb,sBAAsB,CAAC;EACnB,UAAU,EAAE,mBAAmB;CAAG;;AAE1C,AAEQ,aAFK,CACT,SAAS,AACJ,MAAM,CAAC;EACJ,KAAK,EAAE,KAAK;CAAG;;AAH3B,AAKY,aALC,CACT,SAAS,AAGJ,OAAO,AACH,QAAQ,CAAC;EACN,OAAO,EAAE,EAAE;EACX,aAAa,EAAE,GAAG;EIuH9B,QAAQ,EAAE,QAAQ;EAEd,GAAG,EJxHiC,GAAG;EI0HvC,IAAI,EJ1HqC,GAAG;EI4H5C,MAAM,EJ5HwC,GAAG;EI8HjD,KAAK,EJ9H8C,GAAG;EAC9C,OAAO,EAAE,CAAC;EACV,gBAAgB,EAAE,IAAI;CAAG",
+    "sources": [
+        "../SASS/components/carousel.sass",
+        "../SASS/abstracts/functions.sass",
+        "../SASS/abstracts/variables.sass",
+        "../SASS/abstracts/functions.sass",
+        "../SASS/abstracts/mixins.sass",
+        "../SASS/abstracts/variables.sass",
+        "../SASS/abstracts/functions.sass"
+    ],
+    "names": [],
+    "file": "carousel.css"
+}

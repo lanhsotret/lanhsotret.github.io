@@ -1,0 +1,23 @@
+@import ../abstracts/functions
+@import ../abstracts/variables
+@import ../abstracts/mixins
+    
+.sideshow-popular
+    +translate_animation(forward, 8, 2, 4, translate-JS, $width_translate, $wisth_mainDiv, $width_scrollbar)
+
+    .sideshow-popular__div
+        transition: transform 0.5s ease
+
+.nav__section
+    .nav__div
+        &:hover
+            color: white
+        &.active
+            &::before
+                content: ""
+                border-radius: 50%
+                +absolute_customize(95%, 0px, 0px, 0px)
+                z-index: 2
+                background-color: cyan
+            
+

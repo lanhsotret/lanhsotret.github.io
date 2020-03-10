@@ -1,0 +1,63 @@
+.nav__div.nav__genre {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav__div.nav__genre .nav__genre--slider {
+  display: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  background-color: #161616;
+  color: white;
+  z-index: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 2px inset;
+          box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 2px inset;
+}
+
+.nav__div.nav__genre .nav__genre--slider .div-genre {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.nav__div.nav__genre .nav__genre--slider .div-line {
+  border-radius: 2px;
+  width: 100%;
+  height: 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 1px inset, rgba(255, 255, 255, 0.5) -1px -1px 1px inset;
+          box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 1px inset, rgba(255, 255, 255, 0.5) -1px -1px 1px inset;
+}
+
+.nav__div.nav__genre .nav__genre--slider .div-circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 5px;
+}
+
+.nav__div.nav__genre .nav__genre--slider .div-circle > div {
+  margin: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
+          box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
+}
+/*# sourceMappingURL=slider.css.map */

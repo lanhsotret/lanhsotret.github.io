@@ -1,0 +1,98 @@
+@import ../abstracts/mixins
+@import ../abstracts/variables
+
+header
+    background-color: map-get($colorBackground, "header")
+
+header > main
+    background-color: map-get($colorBackground, "header")
+    .logo-web
+        +flex-default()
+        +padding_even(map-get($padding, "px6"), false, tb)
+        &__box-search
+            position: relative
+            +flex_default()
+            input
+                height: 40px
+                width: 300px
+                border-radius: 20px
+                border: none
+                +padding_customizer(false, 15px, false, 50px)
+                font-size: 25px
+                outline: none
+                box-shadow: rgba(black, 0.6) 2px 2px 4px inset, rgba(black, 0.1) -2px -2px 4px inset, rgba(white, 0.5) 1px 1px 2px
+                &:focus
+                    box-shadow: rgba(black, 0.6) 1px 1px 2px inset, rgba(black, 0.1) -1px -1px 2px inset, rgba(white, 0.5) 1px 1px 2px
+            i
+                +absolute_customize(false, false, false, 10px)
+                font-size: 30px
+                cursor: pointer
+        &__div
+            +flex-default()
+            position: relative
+            +padding_even(map-get($padding, "px2"), map-get($padding, "px2"), all)
+            color: map-get($colorText, "header")
+            font-size: map-get($fontsize, "large")
+            z-index: 0
+            cursor: pointer
+            
+            &::before
+                content: ""
+                +absolute_customize(-5px, -5px, -5px, -5px)
+                background-color: map-get($colorBackground, "header")
+                border-radius: 16px
+                z-index: -2
+                +box_shadow(rgba(black, 0.6) 1px 1px 2px, rgba(white, 0.6) -1px -1px 2px, inset)
+            &::after
+                content: ""
+                +absolute_default()
+                border-radius: 15px
+                z-index: -1
+                background-color: map-get($colorBackground, "header")
+                +box_shadow(rgba(white, 0.6) -1px -1px 2px, rgba(black, 0.6) 1px 1px 2px, outset)
+            &:hover
+                &::before
+                    background-color: rgba(cyan, 0.7)
+
+        &__span
+            white-space: nowrap
+            text-transform: uppercase
+            padding-right: map-get($padding, "px1")
+
+        &__link
+            width: 40%
+
+        &__img
+            width: 100%
+            
+    .nav
+        +flex_default()
+        background-color: map-get($colorBackground, "nav")
+        box-shadow: -1px -1px 1px rgba(225, 225, 225, 0.3),  0px 1px 3px black
+
+        &__section
+            +flex-customize(nowrap, row, flex-start, center, false)
+            
+        &__div
+            +flex_default()
+            +padding_even_2(map-get($padding, "px2"), similar, all)
+            text-transform: capitalize
+            font-size: map-get($fontsize, "medium")
+            color: rgba(map-get($colorText, "color_nav"), 0.6)
+
+            i
+                padding-left: map-get($padding, "px1") - 2px
+                color: map-get($colorText, "color_nav")
+
+                &::before
+                    position: relative
+                    bottom: 3px
+            p
+                +margin_even(0px, false, tb)
+
+
+        &__home
+            color: map-get($colorText, "color_nav")
+                    
+
+

@@ -1,0 +1,166 @@
+@import ../abstracts/mixins
+@import ../abstracts/variables
+@import ../abstracts/functions
+@import ..//abstracts/extend
+
+.panel-list
+    .circle-bottom-js
+        +flex_customize(nowrap, row, center, center, false)
+
+        &__div
+            +margin_even(0px, map-get($margin, "mg1"), all)
+            border-radius: 50%
+            height: 10px
+            width: 10px
+            box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.5)
+
+//modify css for .sideshow-primary
+
+.sideshow-primary
+    position: relative
+    height: map-get($dix_box, "h1")
+    width: map-get($dix_box, ""w1"")
+    +mixin_if(5,__div, $background_sideshow, img)
+
+    &__div
+        +position_absolute(0px, 0px, 0px, 0px)
+        +background-image(false)
+
+//modify css for #.list-primary
+
+.list-primary
+    +flex-format()
+    +margin_even(map-get($margin, "mg4"), map-get($margin, "mg2"), all)
+
+    &__div
+        width: 100%
+        text-align: center
+        border: 2px solid white
+        +padding_even(map-get($padding, "px3"), false, tb)
+        +margin_even(false, map-get($margin, "mg2"), rl)
+        p
+            color: map-get($colorText, "word")
+            display: block
+            line-height: 1
+            +margin_customizer(map-get($margin, "mg1"), false, map-get($margin, "mg1"), false)
+
+    &__title
+        text-transform: uppercase
+        font-size: map-get($fontsize, "large")
+
+    &__caption
+        text-transform: capitalize
+        font-size: map-get($fontsize, "normal")
+
+//modify css for #.sideshow-popular
+
+
+.sideshow-popular
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    background-color: map-get($colorBackground, "div")
+    position: relative
+    
+    &__boxParent
+        @extend %__divPrimary
+        
+    &__div
+        @extend %__divChild
+        
+    &__figure
+        @extend %__figure
+
+    &__name-film
+        @extend %__name-film
+
+    &__img
+        width: 100%
+
+//modify css for #.sideshow-favourite
+
+.sideshow-favourite
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    +margin_even(map-get($margin, "mg4"), false, tb)
+    background-color: map-get($colorBackground, "div")
+    position: relative
+
+    &__containParent
+        @extend %__divPrimary
+
+    &__div
+        @extend %__divChild
+
+    &__figure
+        @extend %__figure
+
+    &__name-film
+        @extend %__name-film
+
+    &__img
+        width: 100%
+
+//modify css for #.sideshow-latest
+
+.sideshow-latest
+    position: relative
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    background-color: map-get($colorBackground, "div")
+
+    &__containParent
+        @extend %__divPrimary
+
+    &__div
+        @extend %__divChild
+
+    &__figure
+        @extend %__figure
+
+    &__name-film
+        @extend %__name-film
+
+    &__img
+        width: 100%
+
+//modify css for #.sideshow-editorChoice
+
+.sideshow-editorChoice
+    position: relative
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    +margin_even(map-get($margin, "mg4"), false, tb)
+    background-color: map-get($colorBackground, "div")
+
+    &__containParent
+        @extend %__divPrimary
+
+    &__div
+        @extend %__divChild
+
+    &__figure
+        @extend %__figure
+
+    &__name-film
+        @extend %__name-film
+
+    &__img
+        width: 100%
+
+//modify css for #.sideshow-filmSoon
+
+.sideshow-filmSoon
+    position: relative
+    +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
+    background-color: map-get($colorBackground, "div")
+
+    &__containParent
+        @extend %__divPrimary
+
+    &__div
+        @extend %__divChild
+
+    &__figure
+        @extend %__figure
+
+    &__name-film
+        @extend %__name-film
+
+    &__img
+        width: 100%
