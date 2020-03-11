@@ -75,6 +75,21 @@
     @else
         @error "unknown parameter #{$include}."
 
+=padding_even_2($t_b, $r_l, $include)
+    @if $include == all
+        @if $r_l == similar
+            padding: $t_b
+        @else 
+            padding: $t_b $r_l
+    @else if $include == rl
+        padding-left: $r_l
+        padding-right: $r_l
+    @else if $include == tb
+        padding-top: $t_b
+        padding-bottom: $t_b
+    @else 
+        @error "unkown parameter #{$include}"
+
 =padding_customizer($top, $left, $bottom, $right)
     @if $top
         padding-top: $top

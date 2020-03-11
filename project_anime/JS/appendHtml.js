@@ -151,37 +151,39 @@ genre.modifier = `<div class="div-genre">action</div>
 genre.apply();
 
 appendHTML.prototype.eventClick = function(callback1, callback2) {
-    this._eleTarget.forEach(particle=>{
-        particle.addEventListener("click", ()=>{
-            callback1(this._tagHTML);
-        });
+  this._eleTarget.forEach(particle => {
+    particle.addEventListener("click", () => {
+      callback1(this._tagHTML, particle);
     });
-    this._eleTarget.forEach(particle=>{
-        particle.addEventListener("mouseleave", ()=>{
-            callback2(this._tagHTML);
-        });
+  });
+  this._eleTarget.forEach(particle => {
+    particle.addEventListener("mouseleave", () => {
+      callback2(this._tagHTML, particle);
     });
+  });
 };
 
-const modifierCSS = (function(){
-    function eventClick(ele) {
-        if(ele.style.display == "block") {
-            ele.style.display = "none";
-            ele.style.opacity = 0;
-        } else {
-            ele.style.display = "block";
-        ele.style.opacity = 1;
-        }
-        
+const modifierCSS = (function() {
+  function eventClick(ele, eleRelate) {
+    if (ele.style.display == "block") {
+      ele.style.display = "none";
+      ele.style.opacity = 0;
+      eleRelate.classList.remove("active");
+    } else {
+      ele.style.display = "block";
+      ele.style.opacity = 1;
+      eleRelate.classList.add("active");
     }
-    function eventmouseout(ele) {
-        ele.style.display = "none";
-        ele.style.opacity = 0;
-    }
-    return {
-        clickStyle: eventClick,
-        mouseoutStyle: eventmouseout
-    }
+  }
+  function eventmouseout(ele, eleRelate) {
+    ele.style.display = "none";
+    ele.style.opacity = 0;
+    eleRelate.classList.remove("active");
+  }
+  return {
+    clickStyle: eventClick,
+    mouseoutStyle: eventmouseout
+  };
 })();
 
 genre.eventClick(modifierCSS.clickStyle, modifierCSS.mouseoutStyle);
