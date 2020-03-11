@@ -181,6 +181,19 @@ header > main .nav__div {
   color: rgba(255, 255, 255, 0.6);
 }
 
+header > main .nav__div::after {
+  content: "";
+  border-radius: 3px;
+  position: absolute;
+  top: 95%;
+  left: 40%;
+  bottom: 0px;
+  right: 40%;
+  z-index: 1;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
 header > main .nav__div i {
   padding-left: 3px;
   color: white;

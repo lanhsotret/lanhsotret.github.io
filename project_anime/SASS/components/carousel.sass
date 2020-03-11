@@ -13,11 +13,9 @@
         &:hover
             color: white
         &.active
-            &::before
-                content: ""
-                border-radius: 50%
-                +absolute_customize(95%, 0px, 0px, 0px)
-                z-index: 2
+            &::after
+                right: 0px
+                left: 0px
                 background-color: cyan
             
 

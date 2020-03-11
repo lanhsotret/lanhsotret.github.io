@@ -24,15 +24,9 @@
   color: white;
 }
 
-.nav__section .nav__div.active::before {
-  content: "";
-  border-radius: 50%;
-  position: absolute;
-  top: 95%;
-  left: 0px;
-  bottom: 0px;
+.nav__section .nav__div.active::after {
   right: 0px;
-  z-index: 2;
+  left: 0px;
   background-color: cyan;
 }
 /*# sourceMappingURL=carousel.css.map */

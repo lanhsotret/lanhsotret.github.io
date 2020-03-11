@@ -19,4 +19,14 @@
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
+
+.nav__section .nav__div:hover {
+  color: white;
+}
+
+.nav__section .nav__div.active::after {
+  right: 0px;
+  left: 0px;
+  background-color: cyan;
+}
 /*# sourceMappingURL=carousel.css.map */

@@ -151,6 +151,7 @@ genre.modifier = `<div class="div-genre">action</div>
 genre.apply();
 
 appendHTML.prototype.eventClick = function(callback1, callback2) {
+  let paramater = arguments;
   this._eleTarget.forEach(particle => {
     particle.addEventListener("click", () => {
       callback1(this._tagHTML, particle);
@@ -187,3 +188,13 @@ const modifierCSS = (function() {
 })();
 
 genre.eventClick(modifierCSS.clickStyle, modifierCSS.mouseoutStyle);
+
+let release = new appendHTML("div", "nav.nav", "content", "nav__release-JS")
+release.modifier = function(){
+  let content = "";
+  for(let i = 2000; i <= 2020; i++) {
+    content += `<div class="nav__year-div">${i}</div>`;
+  };
+  return content;
+}();
+release.apply();
