@@ -103,7 +103,7 @@ const translate_js = (function() {
 class appendHTML {
   constructor(tagHTML, eleTarget, content, nameclass) {
     this._tagHTML = document.createElement(tagHTML);
-    this._eleTarget = document.querySelectorAll(eleTarget);
+    this._eleTarget = document.querySelector(eleTarget);
     this._content = content;
     this._nameClass = nameclass;
   }
@@ -116,9 +116,7 @@ class appendHTML {
   apply() {
     this._tagHTML.classList.add(this._nameClass);
     this._tagHTML.innerHTML = this._content;
-    this._eleTarget.forEach(particle => {
-      particle.appendChild(this._tagHTML);
-    });
+    this._eleTarget.appendChild(this._tagHTML);
   }
 }
 
@@ -150,51 +148,106 @@ genre.modifier = `<div class="div-genre">action</div>
 
 genre.apply();
 
-appendHTML.prototype.eventClick = function(callback1, callback2) {
-  let paramater = arguments;
-  this._eleTarget.forEach(particle => {
-    particle.addEventListener("click", () => {
-      callback1(this._tagHTML, particle);
-    });
-  });
-  this._eleTarget.forEach(particle => {
-    particle.addEventListener("mouseleave", () => {
-      callback2(this._tagHTML, particle);
-    });
-  });
+appendHTML.prototype.event = function(callback1, callback2, eleTarget) {
+  callback1(this._tagHTML, eleTarget);
+  callback2(this._tagHTML, eleTarget);
 };
 
-const modifierCSS = (function() {
-  function eventClick(ele, eleRelate) {
-    if (ele.style.display == "block") {
-      ele.style.display = "none";
-      ele.style.opacity = 0;
-      eleRelate.classList.remove("active");
-    } else {
-      ele.style.display = "block";
-      ele.style.opacity = 1;
-      eleRelate.classList.add("active");
-    }
+const eventCallback = (function() {
+  function click(ele, eleTarget) {
+    let domTarget = document.querySelector(eleTarget);
+    domTarget.addEventListener("click",()=>{
+      if (ele.style.display == "block") {
+        ele.style.display = "none";
+        ele.style.opacity = 0;
+        domTarget.classList.remove("active");
+      } else {
+        ele.style.display = "block";
+        ele.style.opacity = 1;
+        domTarget.classList.add("active");
+      }
+    });
   }
-  function eventmouseout(ele, eleRelate) {
-    ele.style.display = "none";
-    ele.style.opacity = 0;
-    eleRelate.classList.remove("active");
+  function windowClick(ele, eleTarget){
+    let domTarget = document.querySelector(eleTarget);
+    window.addEventListener("click", (e)=>{
+      if(!ele.contains(e.target) && !domTarget.contains(e.target)){
+        ele.style.display = "none";
+        ele.style.opacity = 0;
+        domTarget.classList.remove("active");
+      }
+    });
   }
   return {
-    clickStyle: eventClick,
-    mouseoutStyle: eventmouseout
+    click: click,
+    clickOut: windowClick
   };
 })();
 
-genre.eventClick(modifierCSS.clickStyle, modifierCSS.mouseoutStyle);
+genre.event(eventCallback.click, eventCallback.clickOut, ".nav__div.nav__genre");
 
-let release = new appendHTML("div", "nav.nav", "content", "nav__release-JS")
+let release = new appendHTML("div", "nav.nav", "content", "nav__release_js");
 release.modifier = function(){
   let content = "";
   for(let i = 2000; i <= 2020; i++) {
-    content += `<div class="nav__year-div">${i}</div>`;
-  };
-  return content;
+    content += `<div>${i}</div>`;
+  }
+  return `<section class="nav__year-section">
+      <span>year</span>
+      <i class="fa fa-caret-left" aria-hidden="true"></i>
+      <span>2000+</span>
+      <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </section>
+    <div class="nav__year-div">${content}</div>
+    <div class="nav__year-circle">
+      <div></div><div></div><div></div><div></div><div></div>
+    </div>`
 }();
+
 release.apply();
+release.event(eventCallback.click, eventCallback.clickOut, ".nav__div.nav__release");
+
+let gallery = new appendHTML("div", "nav.nav", "content", "nav__setGallery");
+gallery.modifier = `<div class="nav__gallery-div">
+    <section class="nav__gallery-section gallery-romance">
+      <div class="nav__img-div">
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+      </div>
+      <div class="nav__gallery-line"></div>
+      <div class="nav__gallery-title">romances</div>
+    </section>
+    <section class="nav__gallery-section gallery-war">
+      <div class="nav__img-div">
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+      </div>
+      <div class="nav__gallery-line"></div>
+      <div class="nav__gallery-title">wars</div>
+    </section>
+    <section class="nav__gallery-section gallery-fantasy">
+      <div class="nav__img-div">
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+        <figure class="nav__gallery-figure"></figure>
+      </div>
+      <div class="nav__gallery-line"></div>
+      <div class="nav__gallery-title">fantasy</div>
+    </section>
+  </div>
+  <div class="nav__gallery-circle">
+      <div></div><div></div><div></div><div></div><div></div>
+  </div>
+  <div class="nav__gallery-button">
+    <button class="nav__gallery-button1">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <button class="nav__gallery-button2">
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>`
+
+gallery.apply();
+gallery.event(eventCallback.click, eventCallback.clickOut, ".nav__div.nav__gallery");

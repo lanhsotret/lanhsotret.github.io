@@ -1,3 +1,31 @@
+.nav__div.nav__genre .nav__genre--slider .div-circle, .nav__year-circle, .nav__gallery-circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 5px;
+}
+
+.nav__div.nav__genre .nav__genre--slider .div-circle > div, .nav__year-circle > div, .nav__gallery-circle > div {
+  margin: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
+          box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
+}
+
 .nav__div.nav__genre {
   position: relative;
   cursor: pointer;
@@ -33,7 +61,24 @@
           box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 1px inset, rgba(255, 255, 255, 0.5) -1px -1px 1px inset;
 }
 
-.nav__div.nav__genre .nav__genre--slider .div-circle {
+.nav {
+  position: relative;
+}
+
+.nav__release_js {
+  display: none;
+  background-color: inherit;
+  color: white;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: 1;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0px -1px 2px;
+          box-shadow: rgba(0, 0, 0, 0.7) 0px -1px 2px;
+}
+
+.nav__year-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,28 +92,394 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  height: 5px;
-  margin-bottom: 5px;
-}
-
-.nav__div.nav__genre .nav__genre--slider .div-circle > div {
-  margin: 5px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
-          box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px inset, rgba(255, 255, 255, 0.5) -1px -1px 2px inset;
-}
-
-.nav {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  padding-top: 10px;
+  padding-bottom: 10px;
   position: relative;
 }
 
-.nav__release-JS {
+.nav__year-section::before {
+  content: "";
+  position: absolute;
+  top: 92%;
+  left: 10%;
+  bottom: 0px;
+  right: 10%;
+  border-radius: 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+          box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+}
+
+.nav__year-section i {
+  margin: auto 5px;
+  cursor: pointer;
+}
+
+.nav__year-section span:last-of-type {
+  cursor: pointer;
+}
+
+.nav__year-section span:first-of-type {
+  padding-right: 5px;
+}
+
+.nav__year-div {
+  height: 200px;
+  width: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[9];
+      grid-template-columns: repeat(9, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding: 10px;
+  font-size: 1.3rem;
+  background-color: inherit;
+}
+
+.nav__year-div > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.nav__year-div > div::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  bottom: 3px;
+  right: 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+          box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+  z-index: -2;
+}
+
+.nav__year-div > div::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  bottom: 6px;
+  right: 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px, rgba(255, 255, 255, 0.6) -1px -1px 1px;
+          box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px, rgba(255, 255, 255, 0.6) -1px -1px 1px;
+  z-index: -1;
+  background-color: inherit;
+}
+
+.nav__year-div > div:hover::before {
+  background-color: rgba(0, 255, 255, 0.7);
+}
+
+.nav__setGallery {
+  display: none;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 0px;
+  padding-right: 40px;
   position: absolute;
   top: 100%;
   left: 0px;
+  z-index: 1;
+  background-color: inherit;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 2px inset;
+          box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 2px inset;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 100%;
+}
+
+.nav__gallery-div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(1) {
+  background-image: url("../IMAGE/romance/549034.jpg");
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(1)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(2) {
+  background-image: url("../IMAGE/romance/my-love-story-romance-anime.jpg");
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(3) {
+  background-image: url("../IMAGE/romance/romance-mashup-today-tease-1-160105_a2a88bc7f1d08bca5cde2b93bae98bf6.jpg");
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.nav__gallery-div .gallery-romance figure:nth-of-type(3)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(1) {
+  background-image: url("../IMAGE/war/1917-hero.jpg");
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(1)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(2) {
+  background-image: url("../IMAGE/war/960x0.jpg");
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(3) {
+  background-image: url("../IMAGE/war/Avengers-Infinity-War-21-1800x938.jpg");
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.nav__gallery-div .gallery-war figure:nth-of-type(3)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(1) {
+  background-image: url("../IMAGE/fantasy/frozen-animation-movie-film.jpg");
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(1)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(2) {
+  background-image: url("../IMAGE/fantasy/rivendell.jpg");
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(3) {
+  background-image: url("../IMAGE/fantasy/the_wind_rises.jpg");
+  z-index: 3;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.nav__gallery-div .gallery-fantasy figure:nth-of-type(3)::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+          box-shadow: rgba(255, 255, 255, 0.5) 1px 1px 2px inset, rgba(255, 255, 255, 0.3) -1px -1px 2px inset;
+}
+
+.nav__gallery-div > section:nth-of-type(1) {
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
+.nav__gallery-div > section:nth-of-type(2) {
+  margin: auto 20px;
+}
+
+.nav__gallery-div > section:nth-of-type(3) {
+  margin-right: 0px;
+  margin-left: 20px;
+}
+
+.nav__gallery-section {
+  padding: 5px;
+  width: 100%;
+}
+
+.nav__gallery-line {
+  border-radius: 1px;
+  margin-top: 35px;
+  margin-right: 0px;
+  height: 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+          box-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px -1px 1px inset;
+}
+
+.nav__gallery-title {
+  text-align: center;
+  line-height: 1;
+  color: white;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  margin: 10px auto;
+}
+
+.nav__img-div {
+  height: 150px;
+  position: relative;
+  width: 100%;
+}
+
+.nav__img-div figure {
+  cursor: pointer;
+  height: 100%;
+  margin: 0px;
+  width: 100%;
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center center;
+}
+
+.nav__gallery-button {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 3;
+}
+
+.nav__gallery-button button {
+  font-size: 2.5rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  text-shadow: white 1px 1px 3px, white -1px -1px 3px;
+  color: rgba(0, 0, 255, 0.8);
 }
 /*# sourceMappingURL=slider.css.map */

@@ -79,11 +79,12 @@ header > main
             text-transform: capitalize
             font-size: map-get($fontsize, "medium")
             color: rgba(map-get($colorText, "color_nav"), 0.6)
-            
+            cursor: pointer
+            position: relative
             &::after
                 content: ""
-                border-radius: 3px
-                +absolute_customize(95%, 40%, 0px, 40%)
+                border-radius: 2px
+                +absolute_customize(95%, 50%, 0px, 50%)
                 z-index: 1
                 transition: all 0.3s ease
 

@@ -24,9 +24,13 @@
   color: white;
 }
 
+.nav__section .nav__div.active {
+  color: white;
+}
+
 .nav__section .nav__div.active::after {
+  background-color: cyan;
   right: 0px;
   left: 0px;
-  background-color: cyan;
 }
 /*# sourceMappingURL=carousel.css.map */

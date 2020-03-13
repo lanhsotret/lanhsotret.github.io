@@ -182,3 +182,28 @@
     @if $category == all
         box-shadow: $value1, $value2, $value1 inset, $value2 inset
 
+=background_url($name, $total, $url1, $url2, $url3)
+    $url: ("url1": $url1, "url2": $url2, "url3": $url3)
+    @for $i from 1 through $total
+        #{$name}:nth-of-type(#{$i})
+            background-image: url(map-get($url,"url#{$i}"))
+            z-index: #{$i}
+            position: absolute
+            top: 10px * ($i - 1)
+            left: 10px * ($i - 1)
+            &::before
+                content: ""
+                +absolute_customize(-5px, -5px, -5px, -5px)
+                box-shadow: rgba(white, 0.5) 1px 1px 2px inset, rgba(white, 0.3) -1px -1px 2px inset
+=margin_flex($name, $total, $margin)
+    @for $i from 1 through $total
+        & > #{$name}:nth-of-type(#{$i})
+            @if $i == 1
+                margin-left: 0px
+                margin-right: $margin
+            @else if $i == $total
+                margin-right: 0px
+                margin-left: $margin
+            @else 
+                margin: auto $margin
+

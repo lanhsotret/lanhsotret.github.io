@@ -27,21 +27,133 @@
             +box_shadow(rgba(black,0.9) 1px 1px 1px, rgba(white, 0.5) -1px -1px 1px, inset)
 
         .div-circle
-            +flex_customize_2(row nowrap, center, center, false)
-            width: 100%
-            height: 5px
-            margin-bottom: map-get($margin, "mg1")
-            
-            &>div
-                +margin_even_2(map-get($margin, "mg1"), similar, all)
-                width: 5px
-                height: 5px
-                border-radius: 50%
-                +box_shadow(rgba(black, 0.9) 1px 1px 2px, rgba(white, 0.5) -1px -1px 2px, inset)
+            @extend %__div-circle
 
 .nav
     position: relative
-    &__release-JS
-        +absolute_customize(100%, 0px, false, false)
+    &__release_js
+        display: none
+        background-color: inherit
+        color: map-get($colorText, "color_nav")
         width: 100%
+        +absolute_customize(100%, 0px, false, false)
+        z-index: 1
+        box-shadow: rgba(black, 0.7) 0px -1px 2px
+    &__year-section
+        +flex_customize_2(row nowrap, center, center, false)
+        font-size: map-get($fontsize, "medium")
+        text-transform: capitalize
+        +padding_even_2(map-get($padding,"px2"), false, tb)
+        position: relative
+        &::before
+            content: ""
+            +absolute_customize(92%, 10%,0px, 10%)
+            border-radius: 3px
+            +box_shadow(rgba(black, 0.7) 1px 1px 1px, rgba(white, 0.6) -1px -1px 1px, inset)
+        i 
+            +margin_even_2(false , map-get($margin, "mg1"), rl)
+            cursor: pointer
+        span:last-of-type
+            cursor: pointer
+        span:first-of-type
+            padding-right: map-get($padding,"px1")
+    &__year-div
+        height: 200px
+        width: auto
+        display: grid
+        grid-template-columns: repeat(9, 1fr)
+        grid-column-gap: map-get($padding, "px2")
+        grid-row-gap: map-get($padding, "px2")
+        +padding_even_2(map-get($padding, "px2"), similar, all)
+        font-size: map-get($fontsize, "medium")
+        background-color: inherit
+        & > div
+            position: relative
+            +flex_customize_2(row nowrap, center, center, false)
+            z-index: 1
+            background-color: inherit
+            cursor: pointer
+            &::before
+                content: ""
+                +absolute_customize(3px, 3px, 3px, 3px)
+                +box_shadow(rgba(black, 0.7) 1px 1px 1px, rgba(white, 0.6) -1px -1px 1px, inset)
+                z-index: -2
+            &::after
+                content: ""
+                +absolute_customize(6px, 6px, 6px, 6px)
+                +box_shadow(rgba(black, 0.7) 1px 1px 1px, rgba(white, 0.6) -1px -1px 1px, outset)
+                z-index: -1
+                background-color: inherit
 
+            &:hover
+                &::before
+                    background-color: rgba(cyan, 0.7)
+    &__year-circle
+        @extend %__div-circle
+
+    &__setGallery
+        display: none
+        +padding_customizer(map-get($padding, "px4"), map-get($padding, "px4"), 0px, map-get($padding, "px8"))
+        +absolute_customize(100%, 0px, false, false)
+        z-index: 1
+        background-color: inherit
+        box-shadow: rgba(black, 0.6) 0px 1px 2px inset
+        box-sizing: border-box
+        width: 100%
+    &__gallery-div
+        width: 100%
+        +flex_default()
+        .gallery-romance
+            +background_url(figure, 3, '../IMAGE/romance/549034.jpg', '../IMAGE/romance/my-love-story-romance-anime.jpg', '../IMAGE/romance/romance-mashup-today-tease-1-160105_a2a88bc7f1d08bca5cde2b93bae98bf6.jpg')
+        .gallery-war
+            +background_url(figure, 3, '../IMAGE/war/1917-hero.jpg', '../IMAGE/war/960x0.jpg', '../IMAGE/war/Avengers-Infinity-War-21-1800x938.jpg')
+        .gallery-fantasy
+            +background_url(figure, 3, '../IMAGE/fantasy/frozen-animation-movie-film.jpg', '../IMAGE/fantasy/rivendell.jpg', '../IMAGE/fantasy/the_wind_rises.jpg')
+        +margin_flex(section, 3, map-get($margin, "mg4"))
+    &__gallery-section
+        +padding_even_2(map-get($padding, "px1"), similar, all)
+        width: 100%
+    &__gallery-line
+        border-radius: 1px
+        +margin_customizer(map-get($margin, "mg7"), false, false, 0px)
+        height: 3px
+        box-shadow: rgba(black, 0.7) 1px 1px 1px inset, rgba(white, 0.6) -1px -1px 1px inset
+    &__gallery-title
+        text-align: center
+        line-height: 1
+        color: map-get($colorText, "color_nav")
+        font-size: map-get($fontsize, "medium")
+        text-transform: capitalize
+        +margin_even_2(map-get($margin, "mg2"), false, tb)
+    &__img-div
+        height: 150px
+        position: relative
+        width: 100%
+        figure
+            cursor: pointer
+            height: 100%
+            margin: 0px
+            width: 100%
+            border-radius: 5px
+            background-size: cover
+            background-repeat: no-repeat
+            background-origin: content-box
+            background-position: center center
+    &__gallery-circle
+        @extend %__div-circle
+    &__gallery-button
+        box-sizing: border-box
+        +padding_even_2(false, map-get($padding, "px4"), rl)
+        +absolute_default()
+        width: 100%
+        +flex_default()
+        z-index: 3
+        button
+            font-size: map-get($fontsize, "button")
+            width: max-content
+            border: none
+            background-color: transparent
+            +padding_even_2(map-get($padding, "px2"), similar, all)
+            text-shadow: rgba(white , 1) 1px 1px 3px, rgba(white, 1) -1px -1px 3px
+            color: rgba(blue, 0.8)
+        
