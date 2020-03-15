@@ -81,3 +81,29 @@
     &:first-of-type
         margin-left: 0px
 
+%__i-boostrap
+    i
+        margin-left: 3px
+        &::before
+            position: relative
+            bottom: 3px
+%__p-margin0
+    p
+        margin: 0px
+
+%__div-circle
+    +flex_customize_2(row nowrap, center, center, false)
+    width: 100%
+    height: 5px
+    margin-bottom: map-get($margin, "mg1")
+    & > div
+        +margin_even_2(map-get($margin, "mg1"), similar, all)
+        width: 5px
+        height: 5px
+        border-radius: 50%
+        +box_shadow(rgba(black, 0.9) 1px 1px 2px, rgba(white, 0.5) -1px -1px 2px, inset)
+
+%__backgroud-format
+    background-size: cover
+    background-origin: content-box
+    background-position: center center

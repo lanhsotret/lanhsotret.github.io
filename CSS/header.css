@@ -179,6 +179,21 @@ header > main .nav__div {
   text-transform: capitalize;
   font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  position: relative;
+}
+
+header > main .nav__div::after {
+  content: "";
+  border-radius: 2px;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  bottom: 0px;
+  right: 50%;
+  z-index: 1;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 header > main .nav__div i {

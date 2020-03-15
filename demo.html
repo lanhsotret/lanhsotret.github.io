@@ -282,13 +282,61 @@
           document.getElementById("demo").innerHTML = coor;
         }
       </script>
+      <br>
+      
     </div>
-    <div>action</div>
-    <div>adventure</div>
-    <div>tragedy</div>
-    <div>history</div>
-    <div>horror</div>
-    <div>mystery</div>
-    <div>spsychology</div>
-  </body>
+    <style>
+      span.span {
+        position: relative;
+        display: block;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+      }
+      span.span::before {
+        content: "";
+        position:absolute;
+        left: 25%;
+        width: 10px;
+        height: 50%;
+        top: 0px;
+        background-color: white;
+        transform-origin: bottom right;
+        transform: rotate(-30deg);
+        z-index: -2;
+      }
+      span.span::after {
+        content: "";
+        position:absolute;
+        left: 25%;
+        width: 10px;
+        height: 50%;
+        background-color: white;
+        transform-origin: top right;
+        transform: rotate(30deg);
+        bottom: 0px;
+        z-index: -1;
+      }
+      .demodiv {
+        width: max-content;
+        margin-left: 100px;
+        position: relative;
+        z-index: 0;
+        padding: 20px;
+      }
+      .demodiv::before {
+        content: "";
+        position: absolute;
+        background-color: red;
+        border-radius: 50%;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        transform: translateX(-25%);
+      }
+    </style>
+    <div class="demodiv">
+      <span class="span"></span>
+    </div>
 </html>
