@@ -154,10 +154,6 @@
     @for $i from 1 through $total
         &#{$ele}:nth-of-type(#{$i})
             background-image: map-get($key-word, "#{$value}#{$i}")
-            @if $i == 1
-                display: block
-            @else 
-                display: none
 
 =translate_animation($category, $total_img, $num_box, $num_bImg, $namClass, $value, $width_main, $total_width)
     $index: ceil($total_img / $num_box) - floor($num_bImg / $num_box)
@@ -207,3 +203,24 @@
             @else 
                 margin: auto $margin
 
+=background_img($name, $total, $url...)
+    @for $i from 1 through $total
+        #{$name}:nth-of-type(#{$i})
+            background-image: url(nth($url,$i))
+=margin_flex_default()
+    &:first-of-type
+        margin-left: 0px
+    &:last-of-type
+        margin-right: 0px
+=margin_flex_couple($t_b, $r_l, $margin)
+    margin: $margin
+    @if $t_b == tb
+        &:first-of-type
+            margin-top: 0px
+        &:last-of-type
+            margin-bottom: 0px
+    @if $r_l == rl
+        &:first-of-type
+            margin-left: 0px
+        &:last-of-type
+            margin-right: 0px

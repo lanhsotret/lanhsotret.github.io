@@ -1,294 +1,379 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page Title</title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script> -->
-    <style>
-      body {
-        background-color: blue;
-        box-sizing: border-box;
-      }
-      ul {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        border-radius: 10px;
-        padding: 20px;
-        width: 240px;
-        background: #ebf5fc;
-        box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),
-          3px 3px 5px rgba(0, 0, 0, 0.1);
-      }
-      ul li {
-        list-style-type: none;
-        position: relative;
-        text-align: center;
-        margin: 15px;
-      }
-      ul li label {
-        position: relative;
-        cursor: pointer;
-      }
-      ul li label input[type="checkbox"] {
-        position: absolute;
-      }
-      input[type="checkbox"]:checked + .icon-box {
-        box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),
-          inset 3px 3px 5px rgba(0, 0, 0, 0.1);
-      }
-      input[type="checkbox"]:checked ~ .icon-box .fa {
-        transform: scale(0.95);
-      }
-      label .icon-box {
-        width: 60px;
-        height: 60px;
-        background: #ebf5fc;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),
-          3px 3px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-      }
-      .icon-box .fa {
-        font-size: 30px;
-        color: #6a9bd8;
-      }
-    </style>
-  </head>
-  <body>
-    <ul>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-home" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-plane" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-snowflake-o" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-battery-full" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" name="" />
-          <div class="icon-box">
-            <i class="fa fa-code" aria-hidden="true"></i>
-          </div>
-        </label>
-      </li>
-    </ul>
-    <style>
-      div.list {
-        position: relative;
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 220px;
-        margin: auto;
-        padding: 10px;
-      }
-      div.list::after {
-        content: "";
-        position: absolute;
-        top: -8px;
-        bottom: -8px;
-        right: -8px;
-        left: -8px;
-        border: 4px solid yellow;
-        background-color: transparent;
-        box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 1),
-          inset 1px 1px 1px rgba(0, 0, 0, 0.7);
-        z-index: -2;
-      }
-      div.list::before {
-        content: "";
-        position: absolute;
-        top: -0px;
-        bottom: -0px;
-        right: -0px;
-        left: -0px;
-        background-color: yellow;
-        z-index: -1;
-        box-shadow: -1px -1px 1px rgba(255, 255, 255, 1),
-          1px 1px 1px rgba(0, 0, 0, 0.7);
-      }
-      div.caption {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        width: inherit;
-        margin-top: 5px;
-        color: rgba(0, 0, 0, 0.7);
-      }
-      div.title {
-        width: 100%;
-        text-transform: capitalize;
-        text-align: left;
-      }
-      .title > p {
-        font-size: 20px;
-      }
-      .rate-view {
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        justify-content: space-between;
-      }
-      div.list p {
-        margin: 0px;
-        display: flex;
-        flex-flow: column nowrap;
-        line-height: 1.2;
-      }
-      div.list > div {
-        margin: 5px auto;
-        text-align: justify;
-      }
-      div.list > div:first-of-type {
-        margin-top: 0px;
-      }
-      div.list > div:last-of-type {
-        margin-bottom: 0px;
-      }
-      i {
-        font-size: 13px;
-        margin-right: 3px;
-      }
-      div.line {
-        margin: auto;
-        width: 90%;
-        height: 4px;
-        background-color: white;
-        box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 1),
-          inset 1px 1px 2px rgba(0, 0, 0, 0.7);
-        border-radius: 2px;
-      }
-    </style>
-    <div class="list">
-      <div class="title">
-        <p class="title-p">dark than black</p>
-        <div class="caption">
-          <p>tv series</p>
-          <div>
-            <i class="fa fa-hourglass" aria-hidden="true"></i
-            ><span>24 minute</span>
-          </div>
-          <div>
-            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i
-            ><span>2019</span>
-          </div>
+  <style>
+    body {
+      background-color: blue;
+      box-sizing: border-box;
+    }
+
+    ul {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      border-radius: 10px;
+      padding: 20px;
+      width: 240px;
+      background: #ebf5fc;
+      box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),
+        3px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    ul li {
+      list-style-type: none;
+      position: relative;
+      text-align: center;
+      margin: 15px;
+    }
+
+    ul li label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    ul li label input[type="checkbox"] {
+      position: absolute;
+    }
+
+    input[type="checkbox"]:checked+.icon-box {
+      box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),
+        inset 3px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="checkbox"]:checked~.icon-box .fa {
+      transform: scale(0.95);
+    }
+
+    label .icon-box {
+      width: 60px;
+      height: 60px;
+      background: #ebf5fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: -2px -2px 5px rgba(255, 255, 255, 1),
+        3px 3px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .icon-box .fa {
+      font-size: 30px;
+      color: #6a9bd8;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-home" aria-hidden="true"></i>
         </div>
-      </div>
-      <div class="line"></div>
-      <div class="content">
-        Vào năm 2043, Infinite Dendrogram – game thực tế ảo online thành công
-        đầu tiên trên thế giới – đã được ra mắt. Bên cạnh khả năng mô phỏng 5
-        giác quan một cách hoàn hảo, cùng với những tính năng đặc sắc, game hứa
-        hẹn sẽ mang lại cho người chơi một thế giới với những khả năng bất tận.
-        Gần 2 năm sau, cậu học sinh Reiji Mukudori, nay đã sắp thành sinh viên
-        đại học, đã có thể mua game về chơi. Với sự giúp đỡ của anh trai mình là
-        Shu và người bạn Embryo, Reiji bắt đầu chuyến phiêu lưu vào thế giới
-        Infinite Dendrogram
-      </div>
-      <div class="rate-view">
-        <div class="star">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-phone" aria-hidden="true"></i>
         </div>
-        <div class="view">
-          <i class="fa fa-eye" aria-hidden="true"></i><span>2000</span>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-plane" aria-hidden="true"></i>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-battery-full" aria-hidden="true"></i>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="" />
+        <div class="icon-box">
+          <i class="fa fa-code" aria-hidden="true"></i>
+        </div>
+      </label>
+    </li>
+  </ul>
+  <style>
+    div.list {
+      position: relative;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      width: 220px;
+      margin: auto;
+      padding: 10px;
+    }
+
+    div.list::after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      bottom: -8px;
+      right: -8px;
+      left: -8px;
+      border: 4px solid yellow;
+      background-color: transparent;
+      box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 1),
+        inset 1px 1px 1px rgba(0, 0, 0, 0.7);
+      z-index: -2;
+    }
+
+    div.list::before {
+      content: "";
+      position: absolute;
+      top: -0px;
+      bottom: -0px;
+      right: -0px;
+      left: -0px;
+      background-color: yellow;
+      z-index: -1;
+      box-shadow: -1px -1px 1px rgba(255, 255, 255, 1),
+        1px 1px 1px rgba(0, 0, 0, 0.7);
+    }
+
+    div.caption {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      width: inherit;
+      margin-top: 5px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    div.title {
+      width: 100%;
+      text-transform: capitalize;
+      text-align: left;
+    }
+
+    .title>p {
+      font-size: 20px;
+    }
+
+    .rate-view {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    div.list p {
+      margin: 0px;
+      display: flex;
+      flex-flow: column nowrap;
+      line-height: 1.2;
+    }
+
+    div.list>div {
+      margin: 5px auto;
+      text-align: justify;
+    }
+
+    div.list>div:first-of-type {
+      margin-top: 0px;
+    }
+
+    div.list>div:last-of-type {
+      margin-bottom: 0px;
+    }
+
+    i {
+      font-size: 13px;
+      margin-right: 3px;
+    }
+
+    div.line {
+      margin: auto;
+      width: 90%;
+      height: 4px;
+      background-color: white;
+      box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 1),
+        inset 1px 1px 2px rgba(0, 0, 0, 0.7);
+      border-radius: 2px;
+    }
+  </style>
+  <div class="list">
+    <div class="title">
+      <p class="title-p">dark than black</p>
+      <div class="caption">
+        <p>tv series</p>
+        <div>
+          <i class="fa fa-hourglass" aria-hidden="true"></i><span>24 minute</span>
+        </div>
+        <div>
+          <i class="fa fa-calendar-minus-o" aria-hidden="true"></i><span>2019</span>
         </div>
       </div>
     </div>
-    <style>
-      .demo1 div {
-        width: 200px;
-        height: 100px;
-        border: 1px solid black;
-      }
-    </style>
-    <div class="demo1">
-      <p>
-        This example uses the HTML DOM to assign an "onmousemove" event to a div
-        element.
-      </p>
-
-      <div id="myDIV"></div>
-
-      <p>
-        Mouse over the rectangle above, and get the coordinates of your mouse
-        pointer.
-      </p>
-
-      <p id="demo"></p>
-
-      <script>
-        const myevent = function(a, callback) {
-          callback(a);
-        };
-        document.getElementById("myDIV").onmousemove = function(e) {
-          myevent(e, myFunction);
-          console(e);
-        };
-        
-        function myFunction(a) {
-          var x = a.clientX;
-          var y = a.clientY;
-          var coor = "Coordinates: (" + x + "," + y + ")";
-          document.getElementById("demo").innerHTML = coor;
-        }
-      </script>
+    <div class="line"></div>
+    <div class="content">
+      Vào năm 2043, Infinite Dendrogram – game thực tế ảo online thành công
+      đầu tiên trên thế giới – đã được ra mắt. Bên cạnh khả năng mô phỏng 5
+      giác quan một cách hoàn hảo, cùng với những tính năng đặc sắc, game hứa
+      hẹn sẽ mang lại cho người chơi một thế giới với những khả năng bất tận.
+      Gần 2 năm sau, cậu học sinh Reiji Mukudori, nay đã sắp thành sinh viên
+      đại học, đã có thể mua game về chơi. Với sự giúp đỡ của anh trai mình là
+      Shu và người bạn Embryo, Reiji bắt đầu chuyến phiêu lưu vào thế giới
+      Infinite Dendrogram
     </div>
-    <div>action</div>
-    <div>adventure</div>
-    <div>tragedy</div>
-    <div>history</div>
-    <div>horror</div>
-    <div>mystery</div>
-    <div>spsychology</div>
-  </body>
+    <div class="rate-view">
+      <div class="star">
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </div>
+      <div class="view">
+        <i class="fa fa-eye" aria-hidden="true"></i><span>2000</span>
+      </div>
+    </div>
+  </div>
+  <style>
+    .demo1 div {
+      width: 200px;
+      height: 100px;
+      border: 1px solid black;
+    }
+  </style>
+  <div class="demo1">
+    <p>
+      This example uses the HTML DOM to assign an "onmousemove" event to a div
+      element.
+    </p>
+
+    <div id="myDIV"></div>
+
+    <p>
+      Mouse over the rectangle above, and get the coordinates of your mouse
+      pointer.
+    </p>
+
+    <p id="demo"></p>
+
+    <script>
+      const myevent = function (a, callback) {
+        callback(a);
+      };
+      document.getElementById("myDIV").onmousemove = function (e) {
+        myevent(e, myFunction);
+        console(e);
+      };
+
+      function myFunction(a) {
+        var x = a.clientX;
+        var y = a.clientY;
+        var coor = "Coordinates: (" + x + "," + y + ")";
+        document.getElementById("demo").innerHTML = coor;
+      }
+    </script>
+    <br>
+
+  </div>
+  <style>
+    span.span {
+      position: relative;
+      display: block;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+    }
+
+    span.span::before {
+      content: "";
+      position: absolute;
+      left: 25%;
+      width: 10px;
+      height: 50%;
+      top: 0px;
+      background-color: white;
+      transform-origin: bottom right;
+      transform: rotate(-30deg);
+      z-index: -2;
+    }
+
+    span.span::after {
+      content: "";
+      position: absolute;
+      left: 25%;
+      width: 10px;
+      height: 50%;
+      background-color: white;
+      transform-origin: top right;
+      transform: rotate(30deg);
+      bottom: 0px;
+      z-index: -1;
+    }
+
+    .demodiv {
+      width: max-content;
+      margin-left: 100px;
+      position: relative;
+      z-index: 0;
+      padding: 20px;
+    }
+
+    .demodiv::before {
+      content: "";
+      position: absolute;
+      background-color: red;
+      border-radius: 50%;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      transform: translateX(-25%);
+    }
+  </style>
+  <div class="demodiv">
+    <span class="span"></span>
+  </div>
+  <style>
+    path {
+      fill: red;
+      box-shadow: rgba(255, 255, 255, 1) 10px 10px 20px;
+    }
+  </style>
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+    y="0px" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819"
+    style="enable-background:new 0 0 444.819 444.819;" xml:space="preserve">
+    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
+		L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416
+		C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848
+		c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693
+		C444.819,130.287,441.295,121.629,434.252,114.203z" />
+  </svg>
+
 </html>

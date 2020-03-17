@@ -21,51 +21,234 @@
     height: map-get($dix_box, "h1")
     width: map-get($dix_box, ""w1"")
     +mixin_if(5,__div, $background_sideshow, img)
-
+    z-index: 0
+    &:hover
+        .sideshow-primary__arrow
+            span
+                &::before
+                    background-color: map-get($colorBackground, "arrowActive")
+                &::after
+                    background-color: map-get($colorBackground, "arrowActive")
+        .sideshow-primary__line
+            &::before
+                width: 100%
+        .sideshow-primary__mark
+            div.active
+                &::before
+                    background-color: map-get($colorBackground, "effect")
     &__div
         +position_absolute(0px, 0px, 0px, 0px)
         +background-image(false)
+        opacity: 1
+        z-index: -2
+        transition: opacity 0.5s ease, visibility 0.5s ease
+        visibility: hidden
+        &.middle
+            visibility: visible
+            opacity: 0
+            z-index: 0
+        &.active
+            visibility: visible
+            z-index: -1
+    &__arrow
+        position: absolute
+        top: 50%
+        height: 40px
+        width: 40px
+        z-index: 0
+        &.div-arrow
+            &__left
+                left: 10px
+                &::before
+                    transform: translateX(25%)
+            &__right
+                right: 10px
+                &::before
+                    transform: translateX(-25%)
+        &:hover
+            cursor: pointer
+            &::before
+                opacity: 1
+                border: 1px solid map-get($colorBoder, 'arrow')
+                box-shadow: rgba(cyan, 0.7) 1px 1px 4px, rgba(cyan, 0.7) -1px -1px 4px
+            span
+                &::before
+                    background-color: map-get($colorBackground, "arrowActive")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "arrowActive")
+                    transform: rotate(45deg)
+        &::before
+            opacity: 0
+            content: ""
+            border-radius: 5px
+            +absolute_customize(-5px, -5px, -5px, -5px)
+            transform: translate(0px, -50%)
+            transition: all 0.3s ease
+    &__span
+        @extend %__Arrow-span
+        &.span-arrow__left
+            transform: rotate(180deg)
+    &__content
+        +absolute_customize(false, 10%, 10%, false)
+        z-index: 0
+        width: 25%
+        h3,p
+            margin: 0px
+        h3
+            font-size: map-get($fontsize, "medium")
+            color: map-get($colorText, "default_title")
+            cursor: pointer
+            span
+                background-color: rgba(map-get($colorBackground, "default_b"), 0.6)
+                padding: map-get($padding, "px1")
+        p
+            font-size: map-get($fontsize, "normal")
+            color: map-get($colorText, "word")
+            text-align: justify
+            background-color: rgba(map-get($colorBackground, "default_b"), 0.6)
+            +padding_even_2(map-get($padding, "px1"), similar, all)
+    &__line
+        +margin_even_2(map-get($margin, "mg2"), false, tb)
+        height: 3px
+        border-radius: 1.5px
+        width: 100%
+        box-shadow: rgba(white, 0.5) -1px -1px 1.5px inset, rgba(black, 0.5) 1px 1px 1.5px inset
+        position: relative
+        z-index: 1
+        &::before
+            content: ""
+            +absolute_customize(0px, 0px, 0px ,false)
+            width: 0px
+            background-color: rgba(map-get($colorBackground, "effect"), 0.6)
+            transition: width 0.3s ease
+            box-shadow: rgba(white, 0.5) -1px -1px 1.5px inset, rgba(black, 0.5) 1px 1px 1.5px inset
+            border-radius: 1.5px
+    &__mark
+        +absolute_customize(false, 0px, 0px, 0px)
+        display: flex
+        align-items: center
+        justify-content: center
+        & > div
+            height: 10px
+            width: 25px
+            border-radius: 5px
+            background-color: rgba(white, 0.5)
+            margin: map-get($margin, "mg2")
+            z-index: 0
+            position: relative
+            overflow: hidden
+            &.active
+                &::before
+                    content: ""
+                    +absolute_default()
+                    border-radius: 5px
+                    transition: all 0.3 ease
+                    background-color: white
 
 //modify css for #.list-primary
 
 .list-primary
     +flex-format()
     +margin_even(map-get($margin, "mg4"), map-get($margin, "mg2"), all)
-
     &__div
         width: 100%
         text-align: center
-        border: 2px solid white
         +padding_even(map-get($padding, "px3"), false, tb)
         +margin_even(false, map-get($margin, "mg2"), rl)
+        position: relative
+        z-index: 0
+        cursor: pointer
+        &::before
+            content: ""
+            +absolute_default()
+            border: 4px solid silver
+            box-shadow: rgba(white, 0.5) -1px -1px 2px, rgba(black, 0.5) 1px 1px 2px, rgba(white, 0.5) -1px -1px 2px inset, rgba(black, 0.5) 1px 1px 2px inset
+            z-index: -2
+            transition: background-color 0.3s ease
+        &::after
+            content: ""
+            +absolute_customize(8px, 8px, 8px, 8px)
+            background-color: map-get($colorBackground, "div")
+            z-index: -1
+            box-shadow: rgba(white, 0.5) -1px -1px 2px, rgba(black, 0.5) 1px 1px 2px
+        &:hover
+            &::before
+                background-color: map-get($colorBackground, "effect")
         p
-            color: map-get($colorText, "word")
-            display: block
             line-height: 1
             +margin_customizer(map-get($margin, "mg1"), false, map-get($margin, "mg1"), false)
-
     &__title
         text-transform: uppercase
         font-size: map-get($fontsize, "large")
-
+        color: map-get($colorText, "default_title")
+        font-weight: bold
     &__caption
         text-transform: capitalize
         font-size: map-get($fontsize, "normal")
 
-//modify css for #.sideshow-popular
+//modify css for #.panel-list__panel-list
 
+.panel-list
+    figure
+        position: relative
+    &__vendor
+        +absolute_default()
+        font-size: map-get($fontsize, "normal")
+        text-transform: capitalize
+        transition: background-image 0.3s ease
+        background-image: linear-gradient(to top, transparent 0%, transparent 20%, transparent 80%, transparent)
+        i.fa
+            margin-right: map-get($margin, "mg1")
+        &:hover
+            background-image: linear-gradient(to top, rgba(white, 0.8) 0%, transparent 20%, transparent 80%, rgba(white, 0.8) 100%)
+            .panel-list__status, .panel-list__tag
+                visibility: visible
+                opacity: 1
+    &__status
+        visibility: hidden
+        opacity: 0
+        +flex_customize_2(row nowrap, space-between, center, false)
+        +absolute_customize(10px, 10px, false, 10px)
+        transition: opacity 0.3 ease
+    &__tag
+        visibility: hidden
+        opacity: 0
+        display: flex
+        +absolute_customize(false, 10px, 10px, 10px)
+        white-space: nowrap
+        transition: opacity 0.3s ease
+    &__play
+        +absolute_customize(50%, 50%, false, false)
+        cursor: pointer
+        width: 70px
+        height: 70px
+        transform: translate(-50%, -50%)
+        border: 3px solid white
+        border-radius: 50%
+        z-index: 0
+        box-shadow: rgba(white, 0.5) 2px 2px 6px, rgba(white, 0.5) -2px -2px 6px
+        &::before
+            content: ""
+            +absolute_customize(15px, 20px, 15px, 10px)
+            background-color: white
+            clip-path: polygon(100% 50%, 0 0, 0 100%)
+            filter: drop-shadow(0 0 0.75rem crimson)
+
+
+//modify css for #.sideshow-popular
 
 .sideshow-popular
     +padding_even(map-get($padding, "px6"), map-get($padding, "px6"), all)
     background-color: map-get($colorBackground, "div")
     position: relative
-    
+
     &__boxParent
         @extend %__divPrimary
-        
+
     &__div
         @extend %__divChild
-        
+
     &__figure
         @extend %__figure
 
