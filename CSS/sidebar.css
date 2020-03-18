@@ -5,9 +5,9 @@
   width: 220px;
   z-index: 0;
   opacity: 0;
-  display: none;
-  -webkit-transition: opacity 0.3 ease;
-  transition: opacity 0.3 ease;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .hoverJs-panel-slider .panel-sliderJS {

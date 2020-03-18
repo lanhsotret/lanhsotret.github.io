@@ -98,14 +98,14 @@ const event = (function(){
     let eleTarget = document.querySelector(ele);
     let eleTitle = eleTarget.getElementsByClassName(`${eleTarget.children[0].className}__title-p`)[0];
     eleTitle.innerHTML = title.getElementsByTagName("img")[0].alt;
-    eleTarget.style.display = "block";
+    eleTarget.style.visibility = "visible";
     eleTarget.style.top = `${y + 30}px`;
     eleTarget.style.left = `${x + 30}px`;
     eleTarget.style.opacity = 1;
   }
   function clear(ele) {
     let eleTarget = document.querySelector(ele);
-    eleTarget.style.display = "none";
+    eleTarget.style.visibility = "hidden";
     eleTarget.style.opacity = 0;
   }
   return {mousemove: mousemove}
