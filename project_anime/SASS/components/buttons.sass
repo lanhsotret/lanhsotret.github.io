@@ -11,7 +11,42 @@
 
     &__button
         @extend %__button
-
+        .span-next
+            @extend %__button-span_next
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+        .span-previous
+            @extend %__button-span_previous
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+        &.div-button__bt3
+            +flex_customize_2(column nowrap, center, center, false)
+            span
+                display: block
+                width: 15px
+                height: 3px
+                border-radius: 2px
+                +margin_even_2(1px, similar, all)
+                background-color: map-get($colorBackground, "default_b")
+                transition: all 0.3s ease
+            &:hover
+                span
+                    background-color: map-get($colorBackground, "effect")
+                    &:first-of-type
+                        transform: translateY(-1px)
+                    &:last-of-type
+                        transform: translateY(1px)
+                
 //modify css for #.sideshow-favourite
 
 .sideshow-favourite
@@ -20,7 +55,42 @@
         
     &__button
         @extend %__button
-
+        .span-next
+            @extend %__button-span_next
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+        .span-previous
+            @extend %__button-span_previous
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+        &.div-button__bt3
+            +flex_customize_2(column nowrap, center, center, false)
+            span
+                display: block
+                width: 15px
+                height: 3px
+                border-radius: 2px
+                +margin_even_2(1px, similar, all)
+                background-color: map-get($colorBackground, "default_b")
+                transition: transform 0.3s ease
+            &:hover
+                span
+                    background-color: map-get($colorBackground, "effect")
+                    &:first-of-type
+                        transform: translateY(-1px)
+                    &:last-of-type
+                        transform: translateY(1px)
+                        
 //modify edit css for #.sideshow-latest
 
 .sideshow-latest
@@ -29,6 +99,24 @@
         
     &__button
         @extend %__button
+        .span-next
+            @extend %__button-span_next
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+        .span-previous
+            @extend %__button-span_previous
+            &:hover
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
 
 //modify edit css for #.sideshow-editorChoice
 
@@ -38,6 +126,25 @@
 
     &__button
         @extend %__button
+        .span-next
+            @extend %__button-span_next
+        .span-previous
+            @extend %__button-span_previous
+        &:hover
+            .span-next
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+            .span-previous
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
         
 //modify edit css for #.sideshow-filmSoon
 
@@ -47,3 +154,22 @@
 
     &__button
         @extend %__button
+        .span-next
+            @extend %__button-span_next
+        .span-previous
+            @extend %__button-span_previous
+        &:hover
+            .span-next
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+            .span-previous
+                &::before
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(-45deg)
+                &::after
+                    background-color: map-get($colorBackground, "effect")
+                    transform: rotate(45deg)

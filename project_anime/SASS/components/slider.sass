@@ -287,6 +287,8 @@
                     &::after
                         transform: rotate(-45deg)
                         background-color: map-get($colorBackground, "arrowActive")
+            &.active
+                box-shadow: rgba(white, 0.5) -1px -1px 1px inset, rgba(black, 0.5) 1px 2px 1px, rgba(cyan, 0.5) -1px 2px 1px
         &-name
             font-size: map-get($fontsize, "normal")
             font-weight: bold

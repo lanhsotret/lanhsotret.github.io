@@ -26,7 +26,6 @@ const translate_css = (function() {
     let btn2_forward = document.querySelector(btn_backward);
     let nameEle = document.querySelectorAll(ele);
     let count = 1;
-    console.log(btn1_forward);
     btn1_forward.addEventListener("click", () => {
       count++;
       count > index ? (count = 1) : "";
@@ -35,7 +34,6 @@ const translate_css = (function() {
           `${nameclass}-${count == 1 ? index : count - 1}`
         );
         particle.classList.add(`${nameclass}-${count}`);
-        console.log(1);
       });
     });
     btn2_forward.addEventListener("click", () => {
@@ -46,7 +44,6 @@ const translate_css = (function() {
           `${nameclass}-${count == index ? 1 : count + 1}`
         );
         particle.classList.add(`${nameclass}-${count}`);
-        console.log(1);
       });
     });
   }
@@ -56,6 +53,14 @@ translate_css.change(
   ".sideshow-popular__div",
   ".sideshow-popular__button.div-button__bt1",
   ".sideshow-popular__button.div-button__bt2",
+  "translate-JS",
+  3
+);
+
+translate_css.change(
+  ".sideshow-favourite__div",
+  ".sideshow-favourite__button.div-button__bt1",
+  ".sideshow-favourite__button.div-button__bt2",
   "translate-JS",
   3
 );
@@ -231,35 +236,38 @@ const ApplyContent = (function() {
         <div></div><div></div><div></div><div></div><div></div>
       </div>`;
     ele2.appendChild(ele1);
-  };
+  }
   function arrowLeft(ele1, ele2) {
     ele1.innerHTML = `<span class="sideshow-primary__span span-arrow__left"></span>`;
     ele2.appendChild(ele1);
-  };
+  }
   function arrowRight(ele1, ele2) {
     ele1.innerHTML = `<span class="sideshow-primary__span span-arrow__right"></span>`;
     ele2.appendChild(ele1);
-  };
+  }
   function ContentSideShow(ele1, ele2, index) {
     let key = Object.keys(contentSideshow)[index];
-    ele1.innerHTML = `<h3 class="sideshow-primary__h3"><span>${contentSideshow[key].name}</span></h3>
+    ele1.innerHTML = `<h3 class="sideshow-primary__h3"><span>${
+      contentSideshow[key].name
+    }</span></h3>
     <div class="sideshow-primary__line"></div>
-    <p class="sideshow-primary__p">${contentSideshow[key].content.substring(0, 130) + "..."}</p>`;
+    <p class="sideshow-primary__p">${contentSideshow[key].content.substring(
+      0,
+      130
+    ) + "..."}</p>`;
     ele2.appendChild(ele1);
-  };
+  }
   function containMark(ele1, ele2) {
     let key = Object.keys(contentSideshow).length;
-    for(let i = 0; i < key; i++) {
-      if(i === 0)
-        ele1.innerHTML += `<div class="active"></div>`;
-      else
-        ele1.innerHTML += `<div></div>`;
+    for (let i = 0; i < key; i++) {
+      if (i === 0) ele1.innerHTML += `<div class="active"></div>`;
+      else ele1.innerHTML += `<div></div>`;
     }
     ele2.appendChild(ele1);
-  };
+  }
   function vendor(ele1, ele2) {
     ele1.innerHTML = `<div class="panel-list__status">
-          <i class="fa fa-heart" aria-hidden="true"></i>
+          <abbr title="add favourites"><i class="fa fa-heart" aria-hidden="true"></i></abbr>
           <span class="panel-list__ep">12/12</span>
         </div>
         <div class="panel-list__tag">
@@ -289,7 +297,12 @@ let genre = new appendHTML(
   ApplyContent.genre
 );
 genre.apply();
-appendHTML.prototype.event = function(callback1, callback2, eleDisplay, eleTarget) {
+appendHTML.prototype.event = function(
+  callback1,
+  callback2,
+  eleDisplay,
+  eleTarget
+) {
   callback1(eleDisplay, eleTarget);
   callback2(eleDisplay, eleTarget);
 };
@@ -324,37 +337,129 @@ const eventCallback = (function() {
   function clicksideShow(btn1Target, btn2Target) {
     let btn1 = document.querySelector(btn1Target);
     let btn2 = document.querySelector(btn2Target);
-    let eleTarget1 = document.querySelectorAll(arguments[2])
+    let eleTarget1 = document.querySelectorAll(arguments[2]);
     let eleTarget2 = document.querySelectorAll(arguments[3]);
+    [...eleTarget1[0].children[0].children].forEach((eleChild, order) => {
+      eleChild.classList.add("active");
+    });
     let count = 0;
-    btn1.addEventListener("click", ()=>{
+    btn1.addEventListener("click", (e) => {
+      e.currentTarget.disabled = true;
       eleTarget1[count].classList.add("middle");
       count++;
-      count >= eleTarget1.length? count = 0: "";
-      eleTarget1.forEach((particle,index)=>{
-        index === count? particle.classList.add("active"): particle.classList.remove("active");
+      count >= eleTarget1.length ? (count = 0) : "";
+      eleTarget1.forEach((particle, index) => {
+        index === count
+          ? particle.classList.add("active")
+          : particle.classList.remove("active");
+        if (/active/g.test(particle.className)) {
+          [...particle.children[0].children].forEach((eleChild, order) => {
+            eleChild.classList.add("active");
+          });
+        } else {
+          [...particle.children[0].children].forEach((eleChild, order) => {
+            eleChild.classList.remove("active");
+          });
+        }
       });
-      eleTarget1[count].addEventListener("transitionend", function observer(){
-        eleTarget1[count - 1 < 0? eleTarget1.length - 1: count - 1].classList.remove("middle");
+      eleTarget1[count].addEventListener("transitionend", function observer() {
+        eleTarget1[
+          count - 1 < 0 ? eleTarget1.length - 1 : count - 1
+        ].classList.remove("middle");
+        eleTarget2[
+          count - 1 < 0 ? eleTarget1.length - 1 : count - 1
+        ].classList.remove("activeEnd");
+        btn1.disabled = false;
         eleTarget1[count].removeEventListener("transitionend", observer);
       });
-      eleTarget2.forEach((particle,index)=>{
-        index === count? particle.classList.add("active"): particle.classList.remove("active");
+      eleTarget2.forEach((particle, index) => {
+        if (index === (count - 1 < 0 ? eleTarget1.length - 1 : count - 1)) {
+          particle.classList.remove("active2");
+          particle.classList.add("activeEnd");
+        }
+        index === count
+          ? particle.classList.add("active")
+          : particle.classList.remove("active");
       });
     });
-    btn2.addEventListener("click", ()=>{
+    btn2.addEventListener("click", (e) => {
+      e.currentTarget.disabled = true;
       eleTarget1[count].classList.add("middle");
       count--;
-      count < 0 ? count = eleTarget1.length - 1: "";
-      eleTarget1.forEach((particle,index)=>{
-        index === count? particle.classList.add("active"): particle.classList.remove("active");
+      count < 0 ? (count = eleTarget1.length - 1) : "";
+      eleTarget1.forEach((particle, index) => {
+        index === count
+          ? particle.classList.add("active")
+          : particle.classList.remove("active");
+        if (/active/g.test(particle.className)) {
+          [...particle.children[0].children].forEach((eleChild, order) => {
+            eleChild.classList.add("active");
+          });
+        } else {
+          [...particle.children[0].children].forEach((eleChild, order) => {
+            eleChild.classList.remove("active");
+          });
+        }
       });
-      eleTarget1[count].addEventListener("transitionend", function observer(){
-        eleTarget1[count + 1 > eleTarget1.length - 1? 0 : count + 1].classList.remove("middle");
+      eleTarget1[count].addEventListener("transitionend", function observer() {
+        eleTarget1[
+          count + 1 > eleTarget1.length - 1 ? 0 : count + 1
+        ].classList.remove("middle");
+        eleTarget2[
+          count + 1 > eleTarget1.length - 1 ? 0 : count + 1
+        ].classList.remove("activeEnd2");
+        btn2.disabled = false;
         eleTarget1[count].removeEventListener("transitionend", observer);
       });
-      eleTarget2.forEach((particle,index)=>{
-        index === count? particle.classList.add("active"): particle.classList.remove("active");
+      eleTarget2.forEach((particle, index) => {
+        if (index === (count + 1 > eleTarget1.length - 1 ? 0 : count + 1)) {
+          particle.classList.remove("active");
+          particle.classList.add("activeEnd2");
+        }
+        index === count
+          ? particle.classList.add("active2")
+          : particle.classList.remove("active2");
+      });
+    });
+    eleTarget2.forEach((particle, index) => {
+      particle.addEventListener("click", e => {
+        count = index;
+        eleTarget2.forEach((particle2, index2) => {
+          particle2.classList.replace("active2", "active");
+          if (/active/g.test(particle2.className)) {
+            particle2.className = particle2.className.replace(
+              /active/g,
+              "activeEnd"
+            );
+            eleTarget1[index2].classList.add("middle");
+            eleTarget1[index2].addEventListener(
+              "transitionend",
+              function observer(event) {
+                event.currentTarget.classList.remove("middle");
+                particle2.classList.remove("activeEnd");
+                eleTarget1[index2].removeEventListener(
+                  "transitionend",
+                  observer
+                );
+              }
+            );
+          }
+        });
+        eleTarget1.forEach((particle1, index1) => {
+          index1 === index
+            ? particle1.classList.add("active")
+            : particle1.classList.remove("active");
+          if (/active/g.test(particle1.className)) {
+            [...particle1.children[0].children].forEach((eleChild, order) => {
+              eleChild.classList.add("active");
+            });
+          } else {
+            [...particle1.children[0].children].forEach((eleChild, order) => {
+              eleChild.classList.remove("active");
+            });
+          }
+        });
+        e.currentTarget.classList.add("active");
       });
     });
   }
@@ -437,7 +542,7 @@ const moveStyle = (function() {
     let btnTarget = document.querySelector(btn);
     let css = getComputedStyle(eleTarget[0]);
     let transMove = eleTarget[0].offsetHeight + parseInt(css.marginTop) * 2;
-    console.log(transMove);
+    transMove;
     eleTarget.forEach((particle, index) => {
       particle.style.zIndex = 2 - index;
       if (index !== 0)
@@ -468,10 +573,93 @@ const moveStyle = (function() {
       });
     });
   }
-  return { translate: translate, translate2: translate2 };
+  function transcountinue(btn1Target, btn2Target, ele) {
+    let btn1 = document.querySelector(btn1Target);
+    let btn2 = document.querySelector(btn2Target);
+    let eleTarget = document.querySelectorAll(ele);
+    let css = getComputedStyle(eleTarget[0]);
+    let transMove = eleTarget[0].offsetWidth + parseFloat(css.marginRight) * 2;
+    eleTarget.forEach((particle, index) => {
+      if (eleTarget.length - 2 <= index && index < eleTarget.length) {
+        particle.style.transform = `translateX(-${transMove *
+          eleTarget.length}px)`;
+      } else {
+        particle.style.transform = `translateX(0px)`;
+      }
+    });
+    let totalTime = Date.now();
+    let count = eleTarget.length - 2;
+    let i = 500;
+    btn1.addEventListener("click", () => {
+      count += 2;
+      count > eleTarget.length ? (count -= eleTarget.length) : "";
+      let num = 2;
+      eleTarget.forEach((particle, index) => {
+        if (count - 2 <= index && index < count) {
+          particle.style.transition = "none";
+          particle.style.visibility = "hidden";
+          particle.style.transform =
+            index >= eleTarget.length - 2
+              ? `translateX(-${transMove *
+                  Math.abs(index - (eleTarget.length - 2) + num--)}px)`
+              : `translateX(${transMove *
+                  Math.abs(index - (eleTarget.length - 2) + num--)}px)`;
+        } else {
+          particle.style.transition = "transform 0.5s ease";
+          particle.style.transform = `translate(${parseFloat(
+            particle.style.transform.split("(")[1]
+          ) -
+            transMove * 2}px)`;
+        }
+      });
+      eleTarget[0].addEventListener("transitionstart", function observer() {
+        eleTarget.forEach((particle, index) => {
+          if (count - 2 <= index && index < count)
+            particle.style.visibility = "visible";
+        });
+        eleTarget[0].removeEventListener("transitionstart", observer);
+      });
+    });
+    btn2.addEventListener("click", () => {
+      count -= 2;
+      count < 0 ? (count = eleTarget.length - 2) : "";
+      let num = 2;
+      eleTarget.forEach((particle, index) => {
+        if (count <= index && index < count + 2) {
+          particle.style.transition = "none";
+          particle.style.visibility = "hidden";
+          particle.style.transform = `translateX(-${transMove *
+            (index + num--)}px)`;
+        } else {
+          particle.style.transition = "transform 0.5s ease";
+          particle.style.transform = `translate(${parseFloat(
+            particle.style.transform.split("(")[1]
+          ) +
+            transMove * 2}px)`;
+        }
+      });
+      eleTarget[0].addEventListener("transitionstart", function observer() {
+        eleTarget.forEach((particle, index) => {
+          if (count <= index && index < count + 2)
+            particle.style.visibility = "visible";
+        });
+        eleTarget[0].removeEventListener("transitionstart", observer);
+      });
+    });
+  }
+  return {
+    translate: translate,
+    translate2: translate2,
+    transcountinue: transcountinue
+  };
 })();
 
-news.event(eventCallback.click, eventCallback.clickOut, ".nav__news-primary", ".nav__div.nav__news");
+news.event(
+  eventCallback.click,
+  eventCallback.clickOut,
+  ".nav__news-primary",
+  ".nav__div.nav__news"
+);
 moveStyle.translate2(
   ".section-anime .nav__news-Abox",
   ".section-anime .arrowDown-div"
@@ -486,16 +674,16 @@ moveStyle.translate2(
 );
 
 let sideshowArrowLeft = new appendHTML(
-  "div",
+  "button",
   ".sideshow-primary",
-  "sideshow-primary__arrow div-arrow__left",
+  "sideshow-primary__arrow button-arrow__left",
   ApplyContent.arrowLeft
 );
 sideshowArrowLeft.apply();
 let sideshowArrowRight = new appendHTML(
-  "div",
+  "button",
   ".sideshow-primary",
-  "sideshow-primary__arrow div-arrow__right",
+  "sideshow-primary__arrow button-arrow__right",
   ApplyContent.arrowRight
 );
 sideshowArrowRight.apply();
@@ -508,10 +696,41 @@ let ContentSideShow = new appendHTML(
 );
 ContentSideShow.apply();
 
-let containMark = new appendHTML ("div", ".sideshow-primary", "sideshow-primary__mark",ApplyContent.containMark);
-containMark.apply()
+let containMark = new appendHTML(
+  "div",
+  ".sideshow-primary",
+  "sideshow-primary__mark",
+  ApplyContent.containMark
+);
+containMark.apply();
 
-eventCallback.clicksideShow(".sideshow-primary__arrow.div-arrow__left", ".sideshow-primary__arrow.div-arrow__right", ".sideshow-primary__div", ".sideshow-primary__mark > div");
+eventCallback.clicksideShow(
+  ".sideshow-primary__arrow.button-arrow__left",
+  ".sideshow-primary__arrow.button-arrow__right",
+  ".sideshow-primary__div",
+  ".sideshow-primary__mark > div"
+);
 
-let hoverPlay = new appendHTML("div", ".sideshow-popular__figure, .sideshow-favourite__figure, .sideshow-latest__figure, .sideshow-editorChoice__figure, .sideshow-filmSoon__figure", "panel-list__vendor", ApplyContent.vendor);
+let hoverPlay = new appendHTML(
+  "div",
+  ".sideshow-popular__figure, .sideshow-favourite__figure, .sideshow-latest__figure, .sideshow-editorChoice__figure, .sideshow-filmSoon__figure",
+  "panel-list__vendor",
+  ApplyContent.vendor
+);
 hoverPlay.apply();
+
+moveStyle.transcountinue(
+  ".sideshow-editorChoice__button.div-button__bt1",
+  ".sideshow-editorChoice__button.div-button__bt2",
+  ".sideshow-editorChoice__div"
+);
+moveStyle.transcountinue(
+  ".sideshow-filmSoon__button.div-button__bt1",
+  ".sideshow-filmSoon__button.div-button__bt2",
+  ".sideshow-filmSoon__div"
+);
+moveStyle.transcountinue(
+  ".sideshow-latest__button.div-button__bt1",
+  ".sideshow-latest__button.div-button__bt2",
+  ".sideshow-latest__div"
+);

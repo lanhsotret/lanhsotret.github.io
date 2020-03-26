@@ -95,17 +95,21 @@ const event = (function(){
     let x = e.pageX;
     let y = e.pageY;
     let title = e.currentTarget;
+    let total = (document.body.offsetWidth - document.body.children[1].offsetWidth) / 2 + document.body.children[1].offsetWidth;
     let eleTarget = document.querySelector(ele);
     let eleTitle = eleTarget.getElementsByClassName(`${eleTarget.children[0].className}__title-p`)[0];
     eleTitle.innerHTML = title.getElementsByTagName("img")[0].alt;
-    eleTarget.style.display = "block";
+    eleTarget.style.visibility = "visible";
     eleTarget.style.top = `${y + 30}px`;
-    eleTarget.style.left = `${x + 30}px`;
     eleTarget.style.opacity = 1;
+    if(eleTarget.offsetWidth + x + 30 > total)
+      eleTarget.style.left = `${x - 30 - eleTarget.offsetWidth}px`;
+    else
+      eleTarget.style.left = `${x + 30}px`;
   }
   function clear(ele) {
     let eleTarget = document.querySelector(ele);
-    eleTarget.style.display = "none";
+    eleTarget.style.visibility = "hidden";
     eleTarget.style.opacity = 0;
   }
   return {mousemove: mousemove}

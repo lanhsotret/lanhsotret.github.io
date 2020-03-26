@@ -36,12 +36,13 @@
     min-width: $width_div
     +margin_even(false, map-get($margin, "mg2"), rl)
     overflow: hidden
-
     &:first-of-type
         margin-left: 0px
-
     &:last-of-type
         margin-right: 0px
+    &:hover
+        .circle-bottom-js__div
+            background-color: rgba(map-get($colorBackground, "effect"), 0.6)
 
 %__figure
     display: flex
@@ -58,9 +59,7 @@
     +margin_even(map-get($margin, "mg2"), false, tb)
 
 %__button
-    display: flex
-    align-items: center
-    justify-content: center
+    position: relative
     border: none
     +padding_even(3px, 3px, all)
     +margin_customizer(0px, 3px, map-get($margin, "mg2"), 3px)
@@ -70,16 +69,63 @@
     height: 30px
     width: 30px
     line-height: 1
+    transition: box-shadow 0.05s ease
     box-shadow: -2px -2px 5px rgba(255, 255, 255, 1), 3px 3px 5px rgba(0, 0, 0, 0.1)
-
+    &.active
+        box-shadow: 2px 2px 5px rgba(255, 255, 255, 1), -3px -3px 5px rgba(0, 0, 0, 0.1)
     .fa
         font-size: map-get($fontsize, "normal")
-
     &:last-of-type
         margin-right: 0px
-
     &:first-of-type
         margin-left: 0px
+%__button-span_next
+    +absolute_customize(5px, 5px, 5px, 5px)
+    z-index: 0
+    &::before
+        content: ""
+        +absolute_customize(0px, 20%, false, false)
+        height: 50%
+        width: 4px
+        border-radius: 2px
+        transform-origin: bottom left
+        transform: rotate(30deg)
+        background-color: map-get($colorBackground, "default_b")
+        transition: all 0.3s ease
+    &::after
+        content: ""
+        +absolute_customize(false, 20%, 0px, false)
+        height: 50%
+        width: 4px
+        border-radius: 2px
+        transform-origin: top left
+        transform: rotate(-30deg)
+        background-color: map-get($colorBackground, "default_b")
+        transition: all 0.3s ease
+
+%__button-span_previous
+    +absolute_customize(5px, 5px, 5px, 5px)
+    z-index: 0
+    &::before
+        content: ""
+        +absolute_customize(0px, false, false, 20%)
+        height: 50%
+        width: 4px
+        border-radius: 2px
+        transform-origin: bottom right
+        transform: rotate(-30deg)
+        background-color: map-get($colorBackground, "default_b")
+        transition: all 0.3s ease
+    &::after
+        content: ""
+        +absolute_customize(false, false, 0px, 20%)
+        height: 50%
+        width: 4px
+        border-radius: 1px
+        transform-origin: top right
+        transform: rotate(30deg)
+        background-color: map-get($colorBackground, "default_b")
+        transition: all 0.3s ease
 
 %__i-boostrap
     i

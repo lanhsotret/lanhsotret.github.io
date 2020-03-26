@@ -12,7 +12,8 @@
             border-radius: 50%
             height: 10px
             width: 10px
-            box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.5)
+            box-shadow: inset 2px 2px 3px rgba(225, 225, 225, 0.9), inset -2px -2px 3px rgba(1, 1, 1, 0.6)
+            transition: background-color 0.3s ease
 
 //modify css for .sideshow-primary
 
@@ -36,6 +37,9 @@
             div.active
                 &::before
                     background-color: map-get($colorBackground, "effect")
+            div.active2
+                &::after
+                    background-color: map-get($colorBackground, "effect")
     &__div
         +position_absolute(0px, 0px, 0px, 0px)
         +background-image(false)
@@ -51,20 +55,36 @@
             visibility: visible
             z-index: -1
     &__arrow
+        background-color: transparent
+        border: none
+        outline: none
+        padding: 0px
         position: absolute
         top: 50%
         height: 40px
         width: 40px
         z-index: 0
-        &.div-arrow
+        transition: box-shadow 0.05s ease
+        &.button-arrow
             &__left
                 left: 10px
                 &::before
+                    transform: translateX(25%)
+                &::after
                     transform: translateX(25%)
             &__right
                 right: 10px
                 &::before
                     transform: translateX(-25%)
+                &::after
+                    transform: translateX(-25%)
+        &.active
+            &::after
+                opacity: 1
+                content: ""
+                border-radius: 5px
+                +absolute_customize(-2px, -2px, -2px, -2px)
+                box-shadow: rgba(white, 0.5) 2px 2px 3px, rgba(black, 0.5) -2px -2px 3px
         &:hover
             cursor: pointer
             &::before
@@ -83,8 +103,7 @@
             content: ""
             border-radius: 5px
             +absolute_customize(-5px, -5px, -5px, -5px)
-            transform: translate(0px, -50%)
-            transition: all 0.3s ease
+            transition: all 0.5s ease
     &__span
         @extend %__Arrow-span
         &.span-arrow__left
@@ -99,15 +118,27 @@
             font-size: map-get($fontsize, "medium")
             color: map-get($colorText, "default_title")
             cursor: pointer
+            opacity: 0
+            transition: all 0.5s ease
+            transform: translateY(-25px)
             span
                 background-color: rgba(map-get($colorBackground, "default_b"), 0.6)
                 padding: map-get($padding, "px1")
+            &.active
+                opacity: 1
+                transform: translateY(0)
         p
             font-size: map-get($fontsize, "normal")
             color: map-get($colorText, "word")
             text-align: justify
             background-color: rgba(map-get($colorBackground, "default_b"), 0.6)
             +padding_even_2(map-get($padding, "px1"), similar, all)
+            opacity: 0
+            transition: all 0.5s ease
+            transform: translateY(20px)
+            &.active
+                opacity: 1
+                transform: translateY(0)
     &__line
         +margin_even_2(map-get($margin, "mg2"), false, tb)
         height: 3px
@@ -116,20 +147,28 @@
         box-shadow: rgba(white, 0.5) -1px -1px 1.5px inset, rgba(black, 0.5) 1px 1px 1.5px inset
         position: relative
         z-index: 1
+        transform-origin: center center
+        opacity: 0
+        transform: scaleX(0)
+        transition: all 0.5s ease
         &::before
             content: ""
             +absolute_customize(0px, 0px, 0px ,false)
             width: 0px
             background-color: rgba(map-get($colorBackground, "effect"), 0.6)
-            transition: width 0.3s ease
+            transition: width 0.5s ease
             box-shadow: rgba(white, 0.5) -1px -1px 1.5px inset, rgba(black, 0.5) 1px 1px 1.5px inset
             border-radius: 1.5px
+        &.active
+            transform: scaleX(1)
+            opacity: 1
     &__mark
         +absolute_customize(false, 0px, 0px, 0px)
         display: flex
         align-items: center
         justify-content: center
         & > div
+            cursor: pointer
             height: 10px
             width: 25px
             border-radius: 5px
@@ -138,13 +177,44 @@
             z-index: 0
             position: relative
             overflow: hidden
+            &::before
+                visibility: hidden
+                content: ""
+                +absolute_default()
+                border-radius: 5px
+                background-color: white
+                transform: translateX(-100%)
+                transition: transform 0.5s ease
+            &::after
+                visibility: hidden
+                content: ""
+                +absolute_default()
+                border-radius: 5px
+                background-color: white
+                transform: translateX(100%)
+                transition: transform 0.5s ease
             &.active
                 &::before
-                    content: ""
-                    +absolute_default()
-                    border-radius: 5px
-                    transition: all 0.3 ease
-                    background-color: white
+                    visibility: visible
+                    transition: transform 0.5s ease
+                    transform: translateX(0%)
+            &.active2
+                &::after
+                    visibility: visible
+                    transition: transform 0.5s ease
+                    transform: translateX(0%)
+            &.activeEnd
+                &::before
+                    visibility: visible
+                    transition: transform 0.5s ease
+                    transform: translateX(100%)
+                    background-color: map-get($colorBackground, "effect")
+            &.activeEnd2
+                &::after
+                    visibility: visible
+                    transition: transform 0.5s ease
+                    transform: translateX(-100%)
+                    background-color: map-get($colorBackground, "effect")
 
 //modify css for #.list-primary
 
@@ -192,49 +262,83 @@
 .panel-list
     figure
         position: relative
+        img
+            transition: transform 0.3s ease
+        &:hover
+            img
+                transform: scale(1.1)
     &__vendor
+        color: map-get($colorText, "word")
         +absolute_default()
         font-size: map-get($fontsize, "normal")
         text-transform: capitalize
         transition: background-image 0.3s ease
-        background-image: linear-gradient(to top, transparent 0%, transparent 20%, transparent 80%, transparent)
-        i.fa
-            margin-right: map-get($margin, "mg1")
+        z-index: 0
+        &::before
+            content: ""
+            opacity: 0
+            +absolute_customize(0px, 0px, 80%, 0px)
+            background-image: linear-gradient(to top, transparent, rgba(black, 0.8))
+            transition: opacity 0.3s ease
+            z-index: -1
+        &::after
+            content: ""
+            opacity: 0
+            +absolute_customize(80%, 0px, 0px, 0px)
+            background-image: linear-gradient(to bottom, transparent, rgba(black, 0.8))
+            transition: opacity 0.3s ease
+            z-index: 0
         &:hover
-            background-image: linear-gradient(to top, rgba(white, 0.8) 0%, transparent 20%, transparent 80%, rgba(white, 0.8) 100%)
+            &::before
+                opacity: 1
+            &::after
+                opacity: 1
             .panel-list__status, .panel-list__tag
                 visibility: visible
                 opacity: 1
+            .panel-list__play
+                box-shadow: rgba(white, 0.5) 3px 3px 9px, rgba(white, 0.5) -3px -3px 9px
+                transform: translate(-50%, -50%) scale(1)
+                border: 3px solid white
+                &::before
+                    background-color: map-get($colorBackground, "default_w")
+        i.fa
+            margin-right: map-get($margin, "mg1")
+            &::before
+                position: relative
+                top: 2px
     &__status
         visibility: hidden
         opacity: 0
         +flex_customize_2(row nowrap, space-between, center, false)
         +absolute_customize(10px, 10px, false, 10px)
-        transition: opacity 0.3 ease
+        transition: opacity 0.3s ease
+        z-index: 1
     &__tag
         visibility: hidden
         opacity: 0
         display: flex
+        align-items: center
         +absolute_customize(false, 10px, 10px, 10px)
         white-space: nowrap
         transition: opacity 0.3s ease
+        z-index: 2
     &__play
         +absolute_customize(50%, 50%, false, false)
         cursor: pointer
         width: 70px
         height: 70px
-        transform: translate(-50%, -50%)
-        border: 3px solid white
+        transform: translate(-50%, -50%) scale(0.9)
+        border: 3px solid rgba(white, 0.7)
         border-radius: 50%
         z-index: 0
-        box-shadow: rgba(white, 0.5) 2px 2px 6px, rgba(white, 0.5) -2px -2px 6px
+        transition: all 0.3s ease
         &::before
             content: ""
             +absolute_customize(15px, 20px, 15px, 10px)
-            background-color: white
+            background-color: rgba(white, 0.7)
             clip-path: polygon(100% 50%, 0 0, 0 100%)
-            filter: drop-shadow(0 0 0.75rem crimson)
-
+            transition: background-color 0.3s ease
 
 //modify css for #.sideshow-popular
 

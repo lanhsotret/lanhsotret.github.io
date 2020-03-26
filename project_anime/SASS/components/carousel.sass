@@ -2,10 +2,10 @@
 @import ../abstracts/variables
 @import ../abstracts/mixins
     
-.sideshow-popular
+.panel-list
     +translate_animation(forward, 8, 2, 4, translate-JS, $width_translate, $wisth_mainDiv, $width_scrollbar)
 
-    .sideshow-popular__div
+    .sideshow-popular__div, .sideshow-favourite__div
         transition: transform 0.5s ease
 
 .nav__section
@@ -18,5 +18,9 @@
                 background-color: cyan
                 right: 0px
                 left: 0px
+    & + div
+        &:hover
+            color: white
+        
             
 
