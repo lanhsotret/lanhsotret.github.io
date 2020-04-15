@@ -145,6 +145,19 @@ header > main .nav {
           box-shadow: -1px -1px 1px rgba(225, 225, 225, 0.3), 0px 1px 3px black;
 }
 
+header > main .nav.tabletDevice {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  header > main .nav.desktopDevice {
+    display: none;
+  }
+  header > main .nav.tabletDevice {
+    display: block;
+  }
+}
+
 header > main .nav__section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3737,6 +3750,11 @@ footer > main hr {
   transition: transform 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
 }
 
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   margin: 0px;
   background-color: gray;
@@ -3749,11 +3767,14 @@ body > main {
   background-attachment: fixed;
 }
 
-main {
+body main {
   width: 1000px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   margin: auto;
   background-color: #161616;
 }
-/*# sourceMappingURL=main.css.map */
+
+@media screen and (max-width: 1000px) {
+  body main {
+    width: 100%;
+  }
+}

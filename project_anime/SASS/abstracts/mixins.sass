@@ -224,3 +224,12 @@
             margin-left: 0px
         &:last-of-type
             margin-right: 0px
+=mobileDevice()
+    @media screen and ( max-width: map-get($responsive, 'mobile_width') )
+        @content
+=tabletDevice()
+    @media screen and ( max-width: map-get($responsive, 'tablet_width') )
+        @content
+=destopDevice()
+    @media screen and ( max-width: map-get($responsive, 'desktop_width') )
+        @content
