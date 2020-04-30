@@ -66,6 +66,13 @@ header > main
             width: 100%
             
     .nav
+        &.tabletDevice
+            display: none
+        +tabletDevice()
+            &.desktopDevice
+                display: none
+            &.tabletDevice
+                display: block
         +flex_default()
         background-color: map-get($colorBackground, "nav")
         box-shadow: -1px -1px 1px rgba(225, 225, 225, 0.3),  0px 1px 3px black

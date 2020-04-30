@@ -10,13 +10,17 @@
 @import components/slider
 
 
+*
+    box-sizing: border-box
 body
     margin: 0px
     background-color: map-get($colorBackground, "body")
     &>main
         +pattern_simple(black, #232323)
-main
-    width: map-get($width_max, "max_pixel")
-    box-sizing: border-box
-    margin: auto
-    background-color: map-get($colorBackground, "nav")
+    main
+        width: map-get($width_max, "max_pixel")
+        margin: auto
+        background-color: map-get($colorBackground, "nav")
+    +destopDevice()
+        main
+            width: 100%
