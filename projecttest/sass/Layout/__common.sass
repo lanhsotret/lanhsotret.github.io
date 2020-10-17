@@ -1,0 +1,88 @@
+@charset "UTF-8"
+*
+    box-sizing: border-box
+    margin: 0px
+    padding: 0px
+html 
+    font-size: 10px
+    line-height: 1
+    color: #000000
+    a 
+        outline: none !important
+        text-decoration: none
+        display: block
+        color: inherit
+body
+    font-weight: 300
+    font-size: 1.5rem
+    // color: #262741
+    color: black
+    margin: 0px
+    letter-spacing: 0.05rem
+    // +m()
+    //     font-size: 1.4rem
+    
++CSSIE()
+    body 
+        overflow: hidden
+html 
+    overflow-x: hidden
+    img 
+        max-width: 100% 
+        display: block
+body 
+    font-family: 'Noto Sans JP', YuGothic, "游ゴシック", "ヒラギノ角ゴ Pro W3", "HiraKakuPro-W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", sans-serif
+    +m()
+        overflow: hidden
+.font-b
+    font-weight: bold
+.container
+    max-width: 1170px 
+    padding: 0px 20px
+    width: 100%
+    margin: auto
+.style-h2
+    font-family: 'PT Serif', sans-serif
+    color: #7351FF
+    font-size: 2rem
+    font-weight: 400
+.style-title
+    color: white 
+    background-image: linear-gradient(to left, #239fee, #2fc490)
+    padding: 70px 0px 60px
+    +m()
+        padding: 30px 0px
+    &>span 
+        display: block 
+        text-align: center
+    .text-big 
+        font-family: $fontM
+        font-size: 8rem 
+        letter-spacing: 0.3rem
+        font-weight: 700
+        +m()
+            font-size: 4rem
+    .text-small 
+        margin-top: 15px
+        +m()
+            margin-top: 5px
+
+
+.font60 
+    font-size: 6rem
+    line-height: 1.15
+    font-family: 'Lato', sans-serif
+    font-weight: 300
+    color: black
+    +t()
+        font-size: 5.2vw
+    +m()
+        font-size: 3rem
+.font34 
+    font-size: 2rem
+    letter-spacing: 0.1rem
+    color: white
+    +m()
+        font-size: 2rem
+.font16
+    font-size: 1.6rem

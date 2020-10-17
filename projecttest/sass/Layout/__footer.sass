@@ -1,0 +1,77 @@
+.footer 
+    background-color: #23242F
+    height: 90px
+    padding: 0px 60px
+    position: relative
+    display: flex 
+    align-items: center 
+    justify-content: flex-start
+    +m()
+        height: 80px
+        padding: 0px 40px
+    .copyright
+        color: #777777
+        font-size: 1.2rem
+        line-height: 1 
+        display: inline-block
+        padding-bottom: 3px
+        padding-left: 15px
+    .monopo_logo
+        display: inline-block 
+        padding-right: 15px
+        border-right: 1px solid white
+    img 
+        width: 60px
+.btn_top 
+    position: absolute
+    display: block 
+    width: 66px 
+    height: 66px
+    background-color: white
+    // background-image: radial-gradient(white 40%, #7351FF 50%)
+    top: 0px 
+    right: 60px 
+    transform: translateY(-50%)
+    border-radius: 50%
+    border: 1px solid #DDDDDD
+    +m()
+        right: 40px
+.btn 
+    transition: all 0.3s ease 
+    cursor: pointer
+    &:hover
+        opacity: 0.8
+.bar-nav
+    position: absolute
+    display: none
+    height: 30px
+    width: 30px
+    // position: relative
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    top: 50% 
+    right: 20px 
+    transform: translateY(-50%)
+    +m()
+        display: flex
+    span
+        position: absolute
+        width: 100%
+        height: 3px
+        background-color: black
+        transform-origin: center center
+        transition: all 0.3s ease
+        &:first-of-type
+            transform: translateY(-20px)
+            +m()
+                transform: translateY(-13px)
+        &:last-of-type
+            transform: translateY(20px)
+            +m()
+                transform: translateY(13px)
+    &.active
+        span
+            transform: rotate(45deg)
+            &:last-of-type
+                transform: rotate(135deg)

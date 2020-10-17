@@ -1,0 +1,96 @@
+@import ../Abstract/__variables
+@import ../Abstract/__extend
+@import ../Abstract/__mixin
+@import ../Abstract/__function
+@import ../Components/__libraryCustom
+@import ../Components/__carousel
+@import ../Components/__button
+@import ../Layout/__common
+@import ../Layout/__footer
+@import ../Layout/__header
+@import ../Layout/__parimary
+
+.blockWhite
+    position: relative
+    width: max-content
+    &::before
+        +psuedoDefault(0px)
+        background-color: white
+        z-index: 1
+        transition: transform 3s cubic-bezier(0.19, 1, 0.22, 1)
+        transform-origin: center right
+        transform: scaleX(0)
+    &.active 
+        &::before
+            transform: scaleX(1)
+.blockColor
+    width: max-content
+    position: relative
+    padding-right: 10px
+    &::before
+        position: absolute
+        content: ''
+        top: 0px
+        left: 0px 
+        bottom: 0px 
+        width: calc( 100% - 10px )
+        transform-origin: center right
+        transform: translateX(10px) scaleX(0)
+        transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1)
+        z-index: 1
+        background-color: #7351FF
+    &.active
+        &::before
+            transform: translateX(0px) scaleX(1)
+.blockSlick
+    width: max-content
+    position: relative
+    // transition: all 1s ease
+    padding-right: 20px
+    animation-duration: 1s 
+    animation-delay: 3.5s
+    animation-fill-mode: forwards
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1)
+    &::before
+        position: absolute
+        content: ''
+        top: 0px
+        left: 0px 
+        bottom: 0px 
+        width: calc( 100% - 20px )
+        transform-origin: center right
+        transform: translateX(0px) scaleX(1)
+        animation-duration: 1s 
+        animation-fill-mode: forwards
+        animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1)
+        // transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1)
+        z-index: 1
+        background-color: #7351FF
+.slick-active
+    .blockSlick
+        &::before
+            animation-name: blockSlick
+            // transform: translateX(20px) scaleX(0)
+// .slick-efEnd 
+//     .blockSlick
+//         transform: translateX(20px)
+//         opacity: 1
+    //     animation-name: fadeOut
+.fadeRight
+    transform: translate(-100px, 0px)
+    opacity: 0 !important
+.delay1
+    transition-delay: 0.5s
+.transfade 
+    transform: translate(-50%, 100%) !important
+    opacity: 0
+.slick-ef
+    transition-property: all
+    transition-duration: 1s 
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1)
+    opacity: 1
+
+.slick-dotted.slick-slider
+    margin-bottom: 0px !important
+
+

@@ -1,0 +1,16 @@
+.Zoom
+    transform: scale(0)
+    // opacity 2s cubic-bezier(0.19, 1, 0.22, 1), transform 2s cubic-bezier(0.19, 1, 0.22, 1)
+.inview 
+    transition-property: all
+    transition-duration: 1s 
+    // transition-timing-function: cubic-bezier(0,.46,.14,1.26)
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1)
+    opacity: 1
+.fadeUP 
+    transform: translate(0px, 100px)
+    opacity: 0
+.fadeLeft 
+    transform: translate(100px, 0px)
+    opacity: 0
+    
