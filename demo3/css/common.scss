@@ -1,0 +1,427 @@
+@charset "UTF-8";
+@import 'functionsAndresponsive';
+
+body{
+	font-family: "游ゴシック", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Kaku 　Gothic Pro", "メイリオ", "ＭＳ ゴシック", sans-serif;
+	font-size: 16px;
+}
+
+body>main{
+	-ms-overflow-x: hidden;
+}
+.param{
+	&__list{
+		@include flexDisplay(space-between, center);
+		&__child{
+			max-width: 320px;
+			&--title{
+				h3{
+					@include modifyTitle(3rem);
+				}
+			}
+			&:first-child{
+				.param__list__child--title{
+					h3{
+						letter-spacing: 13px;
+					}
+				}
+			}
+			&--odometer{
+				display: flex;
+				justify-content: center;
+				p{
+					@include modifyTextOdometer(3rem, 'Yu Gothic');
+					display: flex;
+					align-items: baseline;
+				}
+				span{
+					@include modifyTextOdometer(14rem, 'Roboto');
+				}
+			}
+			&--description{
+				text-align: left;
+				font-size: 1.5rem;
+				color: #1f1f1f;
+			}
+		}
+	}
+	@include tablet{
+		&__list{
+			flex-flow: column wrap;
+			&__child{
+				width: 100%;
+				margin-bottom: 30px;
+				&--odometer{
+					p{
+						font-size: 1.4rem;
+					}
+					span{
+						font-size: 7rem;
+					}
+				}
+			}
+		}
+	}
+	@include mobile{
+		padding: 0 20px;
+		&__list{
+			&__child{
+				&:first-child{
+					.param__list__child--title{
+						h3{
+								letter-spacing: 2px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.partner{
+	margin-top: 60px;
+	&__title{
+		margin-bottom: 50px;
+		h3{
+			@include modifyTitle(2rem);
+		}
+	}
+	&__listPartner{
+		@include flexDisplay(flex-start, center);
+		flex-flow: row wrap;
+		&__child{
+			width: calc((100% - 80px)/ 5);
+			margin-right: 20px;
+			border: 2px solid #ccc;
+			margin-bottom: 20px;
+			position: relative;
+			img{
+				width: 100%;
+			}
+			a{
+				@include fillPos;
+			}
+			&:hover{
+				box-shadow: #333333 1px 1px 10px;
+			}
+			&.mgr0{
+				margin-right: 0;
+			}
+		}
+	}
+	@include tablet{
+		padding: 0 20px;
+		margin-top: 20px;
+	}
+}
+.recruit{
+	margin-top: 50px;
+	&__title{
+		position: relative;
+		top: 55px;
+		h2{
+			@include modifyTitleRecruit;
+		}
+	}
+	&__orange{
+		background-color: #ffd429;
+		padding:  110px 0;
+		&__description{
+			text-align: center;
+			margin-bottom: 60px;
+			p{
+				font-size: 2rem;
+				color: #1f1f1f;
+			}
+		}
+		&__content{
+			position: relative;
+			z-index: 0;
+			figure{
+				max-width: calc(100% - 320px);
+				width: 100%;
+				margin: 0;
+				position: relative;
+				z-index: 0;
+				img{
+					width: 100%;
+				}
+				span{
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: 5.7rem;
+					color: #ffd429;
+					font-weight: bold;
+					width: 100%;
+					text-align: center;
+					z-index: 1;
+				}
+				&::before{
+					content: '';
+					@include fillPos;
+					background-image: url('../images/img_boxShadow.png');
+					z-index: 0;
+				}
+				&::after{
+					content: '';
+					@include fillPos;
+					background: linear-gradient(45deg, transparent 50%, #ffffff 85%);
+				}
+			}
+			@include atag(#1f1f1f, 1.8rem){
+				position: absolute;
+				max-width: 400px;
+				width: 100%;
+				z-index: 1;
+				right: 0;
+				bottom: 85px;
+				background-color: #000;
+				padding: 30px;
+				font-weight: bold;
+				box-shadow: #333333 1px 1px 10px;
+				@include flexDisplay(space-between, center);
+				span{
+					width: 40px;
+					height: 2px;
+					background-color: #333;
+					position: absolute;
+					right: 30px;
+					transition: all 0.3s ease;
+					&::before{
+						content: '';
+						position: absolute;
+						top: 50%;
+						right: 0;
+						background-color: #333;
+						width: 10px;
+						height: 2px;
+						transition: all 0.5s ease;
+						transform-origin: right center;
+						transform: translateY(-50%) rotate(45deg);
+					}
+					&::after{
+						content: '';
+						position: absolute;
+						top: 50%;
+						right: 0;
+						background-color: #333;
+						width: 10px;
+						height: 2px;
+						transition: all 0.5s ease;
+						transform-origin: right center;
+						transform: translateY(-50%) rotate(-45deg);
+					}
+				}
+				&::after{
+					content: '';
+					@include fillPos;
+					background-image: radial-gradient(transparent 20%, #ffffff 50%);
+					background-size: 4000px 4000px;
+					background-position: -15% 50%;
+					z-index: -1;
+					transition: background-position 0.5s ease;
+				}
+				&:hover{
+					color: #fff;
+					span{
+						background-color: #fff;
+						transform: translateX(5px);
+						&::before{
+							background-color: #fff;
+						}
+						&::after{
+							background-color: #fff;
+						}
+					}
+					&::after{
+						background-position: -70% 50%;
+					}
+				}
+			}
+		}
+	}
+	@include tablet{
+		&__orange{
+			figure{
+				max-width: 100%;
+			}
+			&__content{
+				padding: 0 20px;
+				@include atag(#1f1f1f, 1.8rem){
+					position: relative;
+					max-width: unset;
+					width: 90%;
+					margin: auto;
+					margin-top: 30px;
+					bottom: 0;
+					padding: 15px 30px;
+				}
+			}
+		}
+	}
+	@include mobile{
+		margin-top: 10px;
+		&__title{
+			top: 15px;
+		}
+		&__orange{
+			padding: 30px 20px 30px;
+			&__description{
+				margin-bottom: 30px;
+				p{
+					font-size: 1.4rem;
+				}
+			}
+			&__content{
+				figure{
+					span{
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+	}
+}
+.contentFooter{
+	@include flexDisplay(space-between, center);
+	padding: 40px 0;
+	&__content{
+		font-size: 2rem;
+		font-weight: bold;
+	}
+	&__btn{
+		border: 2px solid #000;
+		padding: 15px 0;
+		max-width: 320px;
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
+		position: relative;
+		z-index: 0;
+		background-color: #000;
+		&::after{
+			content: '';
+			@include fillPos;
+			background-image: radial-gradient(transparent 20%, #ffffff 50%);
+			background-size: 4000px 4000px;
+			background-position: -15% 50%;
+			z-index: -1;
+			transition: background-position 0.5s ease;
+		}
+		&:hover{
+			color: #fff;
+			&::after{
+				background-position: -70% 50%;
+			}
+		}
+		a{
+			@include fillPos;
+		}
+	}
+
+	@include tablet{
+		flex-flow: column wrap;
+		padding: 40px 20px;
+		&__content{
+			margin-bottom: 20px;
+			font-size: 1.6rem;
+		}
+	}
+}
+.footer{
+	background-color: #000;
+	padding: 10px 0;
+	color: #fff;
+	min-height: 80px;
+	position: relative;
+	z-index: 1;
+	@include flexDisplay(flex-start, center);
+	&__link{
+		padding-left: 40px;
+		@include atag(#fff, 1.2rem){
+			margin-right: 40px;
+		}
+	}
+	&__copyright{
+		font-size: 1.2rem;
+		position: absolute;
+		right: 110px;
+	}
+	&__backtotop{
+		position: fixed;
+		right: 2px;
+		bottom: 2px;
+		background-color: #fff;
+		width: 76px;
+		height: 76px;
+		@include flexDisplay(center, center);
+		transition: all 0.5s ease;
+		span{
+			width: 15px;
+			height: 15px;
+			position: relative;
+			&::before{
+				content: '';
+				position: absolute;
+				background-color: #333;
+				width: 100%;
+				height: 3px;
+				top: 0;
+				left: 50%;
+				transition: all 0.5s ease;
+				transform: rotate(45deg);
+				transform-origin: left top;
+			}
+			&::after{
+				content: '';
+				position: absolute;
+				background-color: #333;
+				width: 100%;
+				height: 3px;
+				top: 0;
+				left: 50%;
+				transition: all 0.5s ease;
+				transform: rotate(130deg);
+				transform-origin: left center;
+			}
+		}
+		a{
+			@include fillPos;
+			cursor: pointer;
+		}
+		&:hover{
+			background-color: #170600;
+			span{
+				&::before{
+					background-color: #fff;
+				}
+				&::after{
+					background-color: #fff;
+				}
+			}
+		}
+	}
+	@include tablet{
+		flex-flow: column wrap;
+		justify-content: center;
+		&__link{
+			padding-left: 0;
+			@include atag(#fff, 1.2rem){
+				margin-right: 20px;
+			}
+		}
+		&__copyright{
+			margin-top: 10px;
+			position: static;
+		}
+		&__backtotop{
+			width: 40px;
+			height: 40px;
+			span{
+				width: 15px;
+				height: 15px;
+			}
+		}
+	}
+}

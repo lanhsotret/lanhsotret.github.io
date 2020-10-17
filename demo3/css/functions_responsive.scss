@@ -1,0 +1,66 @@
+
+@mixin tablet{
+	@media screen and (max-width: 1025px) {
+		@content;
+	}
+}
+@mixin laptop{
+	@media screen and (max-width: 1120px) {
+		@content;
+	}
+}
+@mixin mobile{
+	@media screen and (max-width: 768px) {
+		@content;
+	}
+}
+@mixin mobile1{
+	@media screen and (max-width: 415px) {
+		@content;
+	}
+}
+@mixin mobile2{
+	@media screen and (max-width:850px) {
+		@content;
+	}
+}
+@mixin mobile3{
+	@media screen and (max-width:320px) {
+		@content;
+	}
+}
+@mixin custom{
+	@media screen and (max-width:515px) {
+		@content;
+	}
+}
+@mixin ipadPortrail{
+	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+		@content;
+	}
+}
+@mixin ipadLandscape{
+	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+		@content;
+	}
+}
+@mixin fillPos{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+@mixin flexDisplay($pos1, $pos2){
+	display: flex;
+	justify-content: $pos1;
+	align-items: $pos2;
+}
+@mixin atag($color, $fz){
+	a, a:hover, a:active, a:focus, a:visited{
+		text-decoration: none;
+		color: $color;
+		font-size: $fz;
+		@content;
+	}
+}
