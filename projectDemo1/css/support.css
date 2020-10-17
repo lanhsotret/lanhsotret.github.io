@@ -1,0 +1,150 @@
+h2,
+h3,
+h4 {
+  font-weight: normal; }
+
+.img {
+  margin: auto;
+  width: 100%; }
+  .img img {
+    width: 100%; }
+
+img {
+  display: block; }
+
+.text {
+  font-size: 1.6rem; }
+
+.title-low {
+  font-size: 2.4rem;
+  position: relative;
+  padding-left: 30px;
+  font-family: "yumin";
+  margin-bottom: 28px;
+  margin-top: 74px; }
+  .title-low:before {
+    width: 20px;
+    height: 2px;
+    content: "";
+    position: absolute;
+    background-color: #d7001d;
+    top: 50%;
+    left: 0; }
+
+.educate h2.title {
+  margin: 91px 0 50px 0;
+  font-size: 3rem;
+  text-align: center;
+  font-family: "yumin"; }
+
+.educate .content {
+  max-width: 980px;
+  width: 100%;
+  margin: auto; }
+  .educate .content .text-title {
+    font-size: 2rem; }
+
+.vision {
+  margin-top: 115px; }
+  .vision .img {
+    max-width: 1000px;
+    margin-top: 45px; }
+
+.develop-title {
+  margin-top: 320px;
+  margin-bottom: 15px;
+  font-weight: bold; }
+
+.develop-support-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .develop-support-content .content {
+    width: 22.77%;
+    max-width: 255px;
+    font-weight: bold;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333333;
+    position: relative;
+    transition: 0.3s ease-in-out; }
+    .develop-support-content .content:before {
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      transition: 0.3s ease-in-out;
+      background-color: #d7001d;
+      content: ""; }
+    .develop-support-content .content:hover {
+      border-color: #d7001d;
+      color: white; }
+      .develop-support-content .content:hover:before {
+        width: 100%; }
+
+.support-training .img {
+  margin-top: 35px;
+  max-width: 832px; }
+
+.recruit-support-training .content-img {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .recruit-support-training .content-img .img {
+    max-width: 544px;
+    width: 48.58%;
+    margin: 0; }
+
+.recruit-support-training .content-img:first-of-type {
+  margin-bottom: 55px; }
+
+.recruit-support-training .title-content {
+  font-weight: bold;
+  margin-bottom: 7px; }
+
+.recruit-support-training .text {
+  margin-bottom: 35px; }
+
+.support-aniversary {
+  margin-bottom: 160px; }
+  .support-aniversary .img {
+    max-width: 640px; }
+  .support-aniversary .text {
+    margin-bottom: 35px; }
+
+@media screen and (max-width: 1024px) {
+  .educate {
+    padding: 0 20px; } }
+
+@media screen and (max-width: 576px) {
+  .educate h2.title {
+    font-size: 1.8rem; }
+  .educate .content .text-title {
+    font-size: 1.6rem; }
+  .title-low {
+    font-size: 1.6rem;
+    margin-top: 30px; }
+  .text {
+    font-size: 1.4rem; }
+  .vision {
+    margin-top: 30px; }
+    .vision .img {
+      overflow-x: auto; }
+      .vision .img img {
+        width: 1000px; }
+  .develop-title {
+    margin-top: 30px; }
+  .develop-support-content .content {
+    width: 100%;
+    margin: 10px auto; }
+  .support-training .img {
+    overflow-x: auto; }
+    .support-training .img img {
+      width: 768px; }
+  .recruit-support-training .content-img .img {
+    margin: 10px auto;
+    width: 100%; } }

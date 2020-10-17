@@ -1,0 +1,160 @@
+/**
+ * common css---------------------------
+ */
+.title {
+    display: block;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-family: "yumin", sans-serif;
+}
+
+.text-description {
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box__item {
+    width: calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .box__item {
+        width: 100%;
+    }
+}
+
+/**
+ * welfare content-----------------------------
+ */
+.content {
+    width: 100%;
+}
+
+.content__inner {
+    width: 100%;
+    padding: 0 8rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content__inner {
+        padding: 0;
+    }
+}
+
+.content__inner .title {
+    padding: 5.5rem 0;
+}
+
+.content__inner .text-description span {
+    display: block;
+}
+
+.content__box {
+    margin-bottom: 7rem;
+}
+
+.content__box li {
+    width: 100%;
+}
+
+.content__box .box__item {
+    border: 1px solid #b5b5b5;
+    padding: 5.5rem 0;
+    margin: 2rem 0;
+}
+
+.content__box .box__item .box__name .title {
+    font-size: 2.4rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content__box .box__item .box__name .title {
+        font-size: 2rem;
+    }
+}
+
+.content__box .box__item .box__img {
+    margin-top: 4rem;
+}
+
+.content__box .box__item .box__img img {
+    width: 13rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.content__box .box__item .box__img.other-img {
+    margin: 0;
+    padding-left: 2.5rem;
+    padding-right: 6rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content__box .box__item .box__img.other-img {
+        padding: 0 2rem;
+    }
+}
+
+.content__box .box__item .box__img.other-img img {
+    width: 100%;
+}
+
+.content__box .box__item .box__detail {
+    margin-top: 4.5rem;
+    display: flex;
+    padding: 0 10rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content__box .box__item .box__detail {
+        padding: 0 2rem;
+    }
+}
+
+.content__box .box__item .box__detail figure img {
+    width: 5rem;
+}
+
+.content__box .box__item .box__detail.other-detail {
+    padding-left: 2.5rem;
+    padding-right: 6rem;
+}
+
+@media screen and (max-width: 768px) {
+    .content__box .box__item .box__detail.other-detail {
+        padding: 0 2rem;
+    }
+}
+
+.content__box .box__item .box__detail.other-detail .text-description {
+    margin-left: 1.5rem;
+}
+
+.content__box .box-db {
+    border: 1px solid #b5b5b5;
+    margin: 2rem 0;
+}
+
+.content__box .box-db .box__item {
+    border: 0;
+    margin: 0;
+}
+
+.myFadeIn {
+    opacity: 0;
+    transition: 1s ease;
+}
+
+.myFadeIn.active {
+    opacity: 1;
+}
