@@ -1,0 +1,73 @@
+.btn_style
+    // background-color: #23242F
+    background-image: linear-gradient(to right, #7351FF 40%,  #23242F 60%)
+    background-position: 80% 50%
+    background-size: 400%
+    display: flex
+    align-items: center
+    justify-content: center 
+    height: 112px 
+    max-width: 332px 
+    width: 100%
+    border: 56px
+    position: relative
+    // transition: background-position 0.5s ease
+    &:hover
+        background-position: 15% 50%
+        .arrow 
+            span 
+                &::after
+                    background-color: #23242F
+    .arrow
+        height: 12px 
+        width: 12px
+        right: 8%
+        transform: translateY(-50%)
+        top: 50%
+.btn_style, .btn_top
+    span 
+        display: block
+        box-sizing: border-box
+    .arrow 
+        position: absolute
+        display: flex 
+        flex-direction: column
+        span 
+            position: relative
+            height: 50%
+            z-index: 0
+            overflow: hidden
+            &::after
+                +psuedoDefault(0px)
+                box-sizing: inherit
+                z-index: 1
+                background-color: #7351FF
+                transition: all 0.3s ease
+            &:first-of-type
+                top: 0.5px
+                transform-origin: bottom left
+                transform: skewX(35deg)
+                &::after
+                    transform-origin: bottom left
+                    transform: skewX(61deg)
+            &:last-of-type
+                top: -0.5px
+                transform-origin: top left
+                transform: skewX(-35deg)
+                &::after
+                    transform-origin: top left
+                    transform: skewX(-61deg)
+    
+.btn_top
+    .arrow
+        top: calc(50% - 5px)
+        height: 14px 
+        width: 14px
+        right: 50%
+        transform-origin: center center
+        transform: translate(50%, -50%) rotate(-90deg)
+.contact_btn
+    border-radius: 56px
+.btn-border
+    background-color: transparent
+    border: 2px solid white

@@ -1,0 +1,68 @@
+@import ../Abstract/__mixin
+
+%_style-banner
+    +t()
+        padding-top: 80px
+    +m()
+        padding-top: 60px
+    .banner-primary
+        display: flex 
+        justify-content: flex-end
+        img 
+            +m()
+                max-height: 350px
+                height: 53vw
+                min-height: 200px
+%_relative
+    background-color: white
+    position: relative
+    z-index: 2
+%_sample
+    color: white 
+    font-size: 2.2rem 
+    font-weight: bold
+    text-align: center
+    width: 100%
+    +m()
+        font-size: 1.8rem
+%_line70
+    line-height: 70px
+    +m()
+        line-height: 60px
+%_line80
+    line-height: 80px
+    +m()
+        line-height: 60px
+%_smaple-button 
+    position: relative
+    border: 2px solid #f39800
+    width: 100%
+    text-align: center 
+    font-weight: bold
+    font-size: 2.2rem
+    padding: 0px 20px
+    +m()
+        font-size: 1.8rem
+    .arrow-icon
+        &::before
+            border-left: 8px solid #f39800
+            border-top: 6px solid transparent
+            border-bottom: 6px solid transparent
+
+@keyframes transPrimary
+    0%
+        transform: scale(1) translateX(-70vw)
+    100%
+        transform: scale(1.33) translateX(100vw)
+@keyframes transImg 
+    0%
+        transform: skewX(20deg) translateX(70vw)
+    100%
+        transform: skewX(20deg) translateX(-100vw)
+@keyframes scaleZoom
+    0%
+        transform: scale(1)
+    100%
+        transform: scale(1.3)
+        
+        

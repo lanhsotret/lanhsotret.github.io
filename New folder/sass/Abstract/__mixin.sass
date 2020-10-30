@@ -1,0 +1,61 @@
+
+=t()
+    @media screen and ( max-width: 1023px )
+        @content
+=m()
+    @media screen and ( max-width: 768px )
+        @content
+=mediaCustom($media)
+    @media screen and ( max-width: $media )
+        @content
+=mediaMin($media)
+    @media screen and ( min-width: $media )
+        @content
+=CSSIE()
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+        @content
+@function max($numbers...)
+    @return m#{a}x(#{$numbers})
+@function min($numbers...)
+    @return m#{i}n(#{$numbers})
+
+=psuedoDefault($value)
+    content: ''
+    position: absolute
+    top: $value
+    right: $value
+    bottom: $value
+    left: $value
+=absoluteDefault($value)
+    position: absolute
+    top: $value
+    right: $value
+    bottom: $value
+    left: $value
+
+=fontFn($fontFamily, $fontSize, $color)
+    @if $fontFamily
+        font-family: $fontFamily, sans-serif
+    @if $fontSize
+        font-size: $fontSize
+    @if $color
+        color: $color
+
+=LoopPickColor($color...)
+    @for $var from 0 to length($color)
+        &:nth-of-type(#{$var + 1})
+            a
+                background-color: nth($color, $var + 1)
+=fontSizeMobile($font)
+    +mobile()
+    font-size: $font
+
+=LoopPickColor2($color...)
+    &__container
+        @for $var from 0 to length($color)
+            &:nth-of-type(#{$var + 1})
+                .modal__title
+                    background-color: nth($color, $var + 1)
+                .modal__content
+                    & > span
+                        color: nth($color, $var + 1)

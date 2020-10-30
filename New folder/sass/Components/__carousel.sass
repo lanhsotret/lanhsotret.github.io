@@ -1,0 +1,38 @@
+.Zoom
+    transform: scale(0)
+    // opacity 2s cubic-bezier(0.19, 1, 0.22, 1), transform 2s cubic-bezier(0.19, 1, 0.22, 1)
+.inview
+    transition-property: all
+    transition-duration: 1s
+    // transition-timing-function: cubic-bezier(0,.46,.14,1.26)
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1)
+    opacity: 1
+.fadeUP
+    transform: translate(0px, 100px)
+    opacity: 0
+.fadeLeft
+    transform: translate(100px, 0px)
+    opacity: 0
+
+.banner-Mv-figure
+    width: 100%
+    margin: 0px
+    // overflow: hidden
+    z-index: 2 !important
+    // opacity: 0 !important
+    &.slick-opacity
+        z-index: 1 !important
+        opacity: 1 !important
+    &.slick-scale
+        animation: scaleSlider 20s linear 0s infinite
+    &.slick-active
+        z-index: 3 !important
+    // &.active
+    //     &::after
+    //         animation-name: effectafter1
+    //         animation-delay: 0.5s
+    //     &::before
+    //         animation-name: effectbefore1
+    //         animation-delay: 0.5s
+    //     img
+    //         animation: sildeshowPrimary 20s ease 0s infinite

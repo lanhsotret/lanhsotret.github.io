@@ -1,0 +1,113 @@
+.footer 
+    background-color: #0051e0
+    color: white 
+    font-weight: 500
+    margin-top: 90px
+    padding-bottom: 60px
+    +m()
+        margin-top: 50px
+        padding-bottom: 40px
+    &-Nav 
+        font-size: 1.4rem
+        padding: 20px 0px 5px
+        +m()
+            padding: 0px
+        &_links 
+            text-align: center 
+            +m()
+                display: flex 
+                flex-wrap: wrap
+        &_link 
+            display: inline-block
+            padding: 0px 15px
+            margin-bottom: 15px
+            +m()
+                width: 50%
+                padding: 0px 
+                margin: 0px
+                display: flex 
+                align-items: center 
+                // justify-content: center
+                border-bottom: 1px solid white
+                border-right: 1px solid white
+                a 
+                    padding: 10px 20px 
+                    text-align: left
+                    line-height: 1.5
+                    // line-height: 3rem
+            &:not(:last-of-type)
+                border-right: 1px solid white
+                // +m()
+                //     border: none
+    &-social
+        margin: 50px 0px
+        +m()
+            margin: 40px 0px 30px
+        .social-h3
+            font-size: 1.4rem 
+            margin-bottom: 20px 
+            text-align: center
+        .social-wrap
+            display: flex 
+            margin: 0px auto
+            max-width: 170px 
+            width: 100%
+            justify-content: space-between
+            a 
+                font-size: 2rem
+                height: 40px 
+                width: 40px 
+                border-radius: 50% 
+                border: 1px solid white
+                display: flex 
+                align-items: center 
+                justify-content: center
+    &-logo
+        .logo-svg
+            max-width: 120px
+            margin: 0px auto
+        .svgLogo
+            fill: white
+        .text-smaller
+            font-size: 1rem
+            text-align: center 
+            margin-top: 30px
+            font-weight: bold
+.btn 
+    transition: all 0.3s ease 
+    cursor: pointer
+    &:hover
+        opacity: 0.8
+
+.onlyFirst
+    .sheet-blue
+        visibility: visible
+    .path-ef
+        transform: translate(0px, 306px)
+        // transform: translate(0px, 276px)
+    // .banner_logo
+    //     opacity: 1
+.turnOff-ef
+    .inview 
+        transform: translate(0px, 0px) !important
+        opacity: 1 !important
+        transition: none
+    .sheet-blue
+        display: none
+    .banner_logo
+        transform: translate(0px, 0px) !important
+        opacity: 1
+    .banner_svg
+        .text-big
+            transform: translate(0px, 0px) !important
+
+::-webkit-scrollbar 
+    width: 10px
+ 
+::-webkit-scrollbar-track 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    border-radius: 10px
+ 
+::-webkit-scrollbar-thumb 
+    border-radius: 10px
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5)

@@ -1,0 +1,144 @@
+@charset "UTF-8"
+*
+    box-sizing: border-box
+    margin: 0px
+    padding: 0px
+@font-face
+    font-family: NotoSansCJK-B
+    src: url('../assets/font/fontNotoSansCJKjp-Bold.woff2')
+@font-face
+    font-family: NotoSansCJK-R
+    src: url('../assets/font/NotoSansCJKjp-Regular.woff2')
+@font-face
+    font-family: iconfont
+    src: url('../assets/font/iconfont.woff2')
+
+html
+    font-size: 10px
+    line-height: 1
+    color: #000000
+    a
+        outline: none !important
+        text-decoration: none
+        display: block
+        color: inherit
+        &:hover
+            opacity: 0.8
+    button
+        outline: none !important
+        background-color: transparent
+        color: inherit
+        font-size: inherit
+        font-family: inherit
+        cursor: pointer
+    input
+        outline: none !important
+body
+    font-weight: 400
+    font-size: 1.6rem
+    font-family: 'Noto Sans JP','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo','ＭＳ Ｐゴシック','Osaka',sans-serif
+    color: #111
+    margin: 0px
+    letter-spacing: 0.04rem
+    background-color: #f3f3f3
+    +m()
+        overflow: hidden
+        font-size: 1.4rem
+
+abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video
+    text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+    -moz-text-size-adjust: 100%
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    font-smoothing: antialiased
+    +CSSIE()
+    body
+        overflow: hidden
+html
+    overflow-x: hidden
+    img
+        max-width: 100%
+        display: block
+.font-b
+    font-weight: bold
+.container
+    max-width: 1140px
+    padding: 0px 20px
+    width: 100%
+    margin: auto
+
+.text-color
+    color: $BlueDark
+.style-title
+    display: flex
+    align-items: center
+    margin: 0px auto 35px
+    +m()
+        margin: 0px auto 25px
+        flex-wrap: wrap
+    dt
+        font-size: 3.4rem
+        line-height: 1.4
+        font-weight: bold
+        margin-right: 40px
+        white-space: nowrap
+        +m()
+            font-size: 2.4rem
+            margin-right: 20px
+            line-height: 1.6
+    dd 
+        line-height: 1.5
+    a 
+        font-size: inherit 
+        text-decoration: underline
+        display: inline
+.text-small
+    font-size: 1.2rem
+    color: #888
+    line-height: 1
+.style-button
+    width: 100%
+    // +m()
+    //     padding: 0px 10px
+    a
+        line-height: 5.4rem
+        width: 190px
+        text-align: center
+        border-radius: 10px
+        background-color: $BlueDark
+        font-weight: bold
+        color: white
+        margin: 0px auto
+        +m()
+            max-width: 100%
+            width: 280px
+.icon-blue
+    line-height: 20px
+    font-size: 1.2rem
+    width: 32px
+    background-color: #0051e0
+    border-radius: 4px
+    text-align: center
+    // margin-right: 10px
+    font-weight: bold
+    color: white
+.icon-red
+    line-height: 20px
+    font-size: 1.2rem
+    width: 32px
+    color: white
+    border-radius: 4px
+    text-align: center
+    // margin-right: 10px
+    font-weight: bold
+    background-color: #ef0d0d
+.icon-grey
+    line-height: 20px
+    font-weight: bold
+    color: white
+    font-size: 1.2rem
+    width: 20px
+    border-radius: 50%
+    background-color: #888
+    margin-left: 10px
