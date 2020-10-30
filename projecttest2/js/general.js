@@ -65,7 +65,7 @@ if ($("body").is(".onlyFirst")) {
       (window.innerHeight / 2 -
         ($(".banner_logo").offset().top +
           $(".banner_logo").outerHeight() / 2)) +
-      "px)");
+      "px)").css('opacity', 1);
   $(window).on("load", function () {
     let time = 0;
     $.each($(".banner_svg .text-big"), function (index) {
