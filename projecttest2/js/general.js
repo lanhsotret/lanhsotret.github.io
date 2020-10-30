@@ -19,9 +19,8 @@ function checkCookie() {
   if (session != "") {
     $("body").addClass("turnOff-ef");
   } else {
-    $("body").addClass("onlyFirst");
+    $("body").addClass("onlyFirst fixed");
     document.cookie = "session=threeHour; max-age=10800";
-    // console.log("false");
   }
 }
 checkCookie();
@@ -90,6 +89,7 @@ if ($("body").is(".onlyFirst")) {
         $(this).removeClass("fadeUP");
       });
       showText($(".message-primary"));
+      $('body').removeClass('fixed');
     }, time + 1000);
     $("#silder-first").addClass("slick-opacity slick-scale");
     setTimeout(function () {
