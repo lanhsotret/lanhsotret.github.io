@@ -96,6 +96,7 @@ if ($("body").is(".onlyFirst")) {
     }, time + 2000);
   });
 } else {
+  $(".banner_logo").css('opacity', 1);
   $("#silder-first").addClass("slick-opacity slick-scale");
   setTimeout(function () {
     $(".banner-Mv").slick("slickPlay");
