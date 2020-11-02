@@ -1804,7 +1804,7 @@ main .banner_svg path, main .banner_svg polygon, main .banner_svg rect, main .ba
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
   display: flex;
@@ -1830,12 +1830,22 @@ main .banner_svg path, main .banner_svg polygon, main .banner_svg rect, main .ba
   position: relative;
   transform: translateY(100%);
   transition: transform 0.3s ease; }
-
+  @media screen and (max-width: 768px) {
+    .Modal-container {
+      height: 721px;
+      max-height: 100%;
+    }
+  }
 .Modal-primary {
   width: 100%;
   display: none;
   border-radius: 20px;
   overflow: hidden; }
+  @media screen and (max-width: 768px) {
+    .Modal-primary {
+      height: 100%;
+    }
+  }
   .Modal-primary.ModalFirst .Modal-list_title {
     min-width: 135px; }
   .Modal-primary.ModalFirst .form-Checkbox {
@@ -1902,10 +1912,14 @@ main .banner_svg path, main .banner_svg polygon, main .banner_svg rect, main .ba
   padding: 0px 20px;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 140px);
   background-color: white;
   position: relative; }
-
+  @media screen and (max-width: 768px) {
+    .Modal-wrap {
+      max-height: calc(100% - 80px);
+    }
+  }
 .Modal-list {
   max-width: 920px;
   margin: 0px auto;
