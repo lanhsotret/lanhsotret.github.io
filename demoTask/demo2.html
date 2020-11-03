@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      /* background-color: black; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <canvas id="mycanvas" width="578" height="400"></canvas> -->
+  <div id="svgid"></div>
+  <div id="svg2"></div>
+  <div id="svg3"></div>
+  <div id="svg4"></div>
+  <!-- <svg height="210" width="400">
+    <path d="M150 0 L75 200 L225 200 Z" />
+  </svg> -->
+  <!-- <script src="./fabric.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.1/gsap.min.js"></script>
+d="m 95.653249,134.67735 l -1.823861,0.002 l -0.0035,-7.02345 l 1.823862,-0.001 l 0.0035,7.0231" -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script>
+      // let svg = d3.select('#svgid').append('svg').attr('width', '62.035622mm').attr('height', '71.766998mm').attr('viewBox', '0 0 500 500').attr('xmlns',"http://www.w3.org/2000/svg").append('g').attr('transform', 'translate(250, 250)');
+    //   console.log(svg);
+    //   let path1 = d3.path();
+    //     path1.moveTo(150, 0);
+    //     path1.lineTo(75, 200);
+    //     path1.lineTo(225, 200);
+    //     path1.closePath();
+    // svg.append('path').attr('d', path1).attr('stroke', 'black').attr('fill', 'red');
+    // d3.select('#svgid').data([1,2]).enter();
+    // d3.csv('vn.csv', function(data) {
+    //   console.log(data);
+    // });
+
+    let myDay = [
+      {day: "Mon", value: 90},
+      {day: "Tue", value: 20},
+      {day: "Wed", value: 75},
+      {day: "Thu", value: 45},
+      {day: "Fri", value: 30}
+    ];
+    var svg = d3.select('#svgid').append('svg').attr('width', 700).attr('height', 240).append('g').attr('transform', 'translate(100, 0)');
+    var bandScale = d3.scaleBand()
+      .domain(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'])
+      .range([0, 200])
+      .paddingInner(0.05);
+    svg.selectAll('rect')
+      .data(myDay)
+      .enter()
+      .append('rect')
+      .attr('x', function(d) {
+        // console.log(bandScale.bandwidth());
+        // console.log(bandScale);
+        return bandScale(d.day);
+      })
+      .attr('y', function(d) {
+        return 240 - d.value;
+      })
+      .attr('width', bandScale.bandwidth())
+      .attr('height', function(d) {
+        return d.value;
+      })
+      .style('fill', 'red');
+  </script>
+  <script>
+    let mykm = [
+      {name: '10 miles', km: 12},
+      {name: 'half marathon', km: 21},
+      {name: 'marathon', km: 42}
+    ]
+    var svg2 = d3.select('#svg2').append('svg').attr('width', 600).attr('height', 100).append('g');
+    var run2pixels = d3.scaleLinear()
+      .domain([0, 42])
+      .range([0, 600])
+    var bandScaleY = d3.scaleBand()
+      .domain(['10 miles', 'half marathon', 'marathon'])
+      .range([0, 100])
+      .paddingInner(0.05)
+    console.log(run2pixels(42));
+    svg2.selectAll('rect')
+      .data(mykm)
+      .enter()
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', function(d) {
+        return bandScaleY(d.name);
+      }).attr('height', bandScaleY.bandwidth())
+      .attr('width', function(d){
+        return run2pixels(d.km);
+      }).style('fill', 'red');
+    svg2.selectAll('text')
+      .data(mykm)
+      .enter()
+      .append('text')
+      // .attr('text-anchor', 'middle')
+      .attr('x', 5)
+      .attr('y', function(d) {
+        // console.log(bandScaleY.step());
+        return Math.abs(bandScaleY(d.name) + bandScaleY.step() - bandScaleY.bandwidth()/2);
+      }).text(function(d) {
+        return d.name;
+      }).attr('dy', '0.2em');
+      y = d3.scaleLinear()
+        .domain(d3.extent((mykm, d) => {
+          d.km;
+          }))
+        .range([0, 100])
+      console.log(y(12));
+  </script>
+  <script>
+      var linearScale2 = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 700]);
+      var sqrtScale = d3.scaleSqrt()
+        .domain([0, 100])
+        .range([0, 30]);
+      var data2 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+      var addChild = d3.select('#svg3').append('svg').attr('width', 800).attr('height', 100).append('g').attr('transform', 'translate(0, 50)');
+      addChild.selectAll('circle')
+        .data(data2)
+        .enter()
+        .append('circle')
+        .attr('r', function(d){
+          return sqrtScale(d);
+        }).attr('cx', function(d){
+          return linearScale2(d);
+        }).attr('cy', 0);
+        var chartdata = [40, 60, 80, 100, 70, 120, 100, 60, 70, 150, 120, 140];
+        var height = 200,
+            width = 720;
+        var svg4 = d3.select('#svg4').append('svg').attr('width', width).attr('height', height).append('g');
+        svg4.selectAll('rect')
+          .data(chartdata)
+          .enter()
+          .append('rect')
+          .style('fill', '#3c763d')
+          .style('stroke', '#d6e9c6')
+          .style('stroke-width', 5)
+          .attr('width', 40)
+          .attr('height', function(d) {return d;})
+          .attr('x', function(d,i) {
+            return i*(40 + 20);
+          })
+          .attr('y', function(d){
+            return height - d;
+          })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      /* background-color: black; */
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="mycanvas" width="578" height="400"></canvas>
+  <img src="./demo.jpg" id="my-image">
+  <!-- <svg height="210" , width="400">
+    <path d="M150 0 L75 200 L225 200 Z"></path>
+  </svg> -->
+  <script src="./fabric.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.1/gsap.min.js"></script> -->
+  <script>
+    var canvas = new fabric.Canvas('mycanvas');
+    var img = document.getElementById('my-image');
+    var imgsvg = new fabric.Image(img, {
+        left: 100,
+        top: 100,
+        height: 200,
+        width: 100
+      });
+      canvas.add(imgsvg);
+    // console.log(imgsvg);
+    var imgsvg2 = new fabric.Image(img, {
+        left: 200,
+        top: 100,
+        height: 200,
+        width: 200
+      });
+      setTimeout(function() {
+        canvas.clearContext(ctx);
+        canvas.add(imgsvg2);
+      }, 1000)
+  </script>
+</body>
+
+</html>

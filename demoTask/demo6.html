@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+    <script src="./paper-full.min.js"></script>
+    <script>
+        paper.install(window);
+        window.onload = function() {
+            var canvas = document.getElementById('myCanvas');
+            paper.setup(canvas);
+            var path = new Path();
+            path.strokeColor = 'black';
+            var start = new Point(100, 100)
+            path.moveTo(start);
+            path.lineTo(start.add([ 200, -50 ]));
+            var mySize = new Size();
+            mySize.to = 100; 
+            path.lineTo([mySize.to, mySize.to * 2]);
+            var rect = new Rectangle();
+            rect.size = new Size(100, 200);
+            rect.center = new Point(100, 100);
+            var drawRect = new Path.Rectangle(rect)
+            drawRect.strokeColor = 'red';
+            // path.rect;
+            view.draw();
+        }
+        
+        
+    </script>
+</body>
+</html>

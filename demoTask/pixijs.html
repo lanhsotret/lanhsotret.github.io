@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            /* background-color: black; */
+        }
+
+        #pixiJs {
+            margin: 0px;
+            padding: 0px;
+            /* min-height: 600px; */
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="" id="pixiJs"></div>
+    <script src="./pixi.min.js"></script>
+    <script src="./charm.js"></script>
+    <!-- <script src="./pixi-particles.min.js"></script> -->
+    <script>
+        // let type = "WebGL"
+        // if (!PIXI.utils.isWebGLSupported()) {
+        //     type = "canvas"
+        // }
+        // PIXI.utils.sayHello(type);
+
+        let pixi_ele = document.getElementById('pixiJs'), BgHeight, BgWidth, logoHeight, logoWidth;
+
+        let Application = PIXI.Application,
+            Container = PIXI.Container,
+            loader = PIXI.Loader.shared,
+            resources = PIXI.Loader.shared.resources,
+            TextureCache = PIXI.utils.TextureCache,
+            Sprite = PIXI.Sprite,
+            Rectangle = PIXI.Rectangle;
+
+        let app = new Application({
+            width: 256,
+            height: 256,
+            resolution: 1,
+            transparent: false,
+            antialias: false,
+            forceCanvas: true,
+            resizeTo: pixi_ele
+        });
+        pixi_ele.appendChild(app.view);
+        app.renderer.backgroundColor = 0x061639;
+        loader
+            .add({
+                name: 'img2',
+                url: 'images/photo_mark.png',
+                onComplete: function (e) {
+                    logoHeight = e.texture.orig.height;
+                    logoWidth = e.texture.orig.width;
+                }
+            })
+            .add({
+                name: 'img1',
+                url: 'images/topimg03.jpg',
+                onComplete: function (e) {
+                    BgHeight = e.texture.orig.height;
+                    BgWidth = e.texture.orig.width;
+                }
+            })
+            // .on('progress', loadProgressHandler)
+            .load(setup);
+        function resize(rate, ele) {
+            ele.width = window.innerWidth;
+            ele.height = window.innerWidth / rate;
+            ele.x = 0;
+            ele.y = (app.screen.height - ele.height)/2
+            if (ele.height <= window.innerHeight) {
+                ele.height = window.innerHeight;
+                ele.width = ele.height * rate;
+                ele.y = 0;
+                ele.x = (app.screen.width - ele.width)/2
+            }
+        }
+        function resizeImg(img) {
+            
+        }
+        function setup() {
+            // let texture = PIXI.utils.TextureCache['images/pawan-sharma-m41i9RcGcAo-unsplash.jpg'];
+            let imgBG = new Sprite(
+                resources['img1'].texture
+            );
+            // console.log(imgBG);
+            imgBG.blendMode = PIXI.BLEND_MODES.ADD;
+            // app.stage.addChild(sprite);
+            // sprite.visible = false;
+            // imgBG.texture = PIXI.utils.TextureCache['images/pawan-sharma-m41i9RcGcAo-unsplash.jpg'];
+            // imgBG.scale.set(0.2, 0.2);
+            let rateImgBg = BgWidth / BgHeight;
+            resize(rateImgBg, imgBG)
+            // sprite2.scale.set(0.4, 0.4);
+            app.stage.addChild(imgBG);
+            app.stage.addChild(meteorGroup1);
+            let imgLogo = new Sprite(
+                resources['img2'].texture
+            );
+            imgLogo.width = app.screen.width/3;
+            if(window.innerWidth <= 600) {
+                    imgLogo.width = app.screen.width*2/3;
+                }
+            imgLogo.height = imgLogo.width/(logoWidth/logoHeight);
+            imgLogo.x = (app.screen.width - imgLogo.width)/2
+            imgLogo.y = (app.screen.height - imgLogo.height)/2
+            console.log(imgLogo);
+            app.stage.addChild(imgLogo);
+            window.addEventListener('resize', function () {
+                resize(rateImgBg, imgBG)
+                if(window.innerWidth <= 600) {
+                    imgLogo.width = app.screen.width*2/3;
+                }else{
+                    imgLogo.width = app.screen.width/3;
+                }
+                imgLogo.height = imgLogo.width/(logoWidth/logoHeight);
+                imgLogo.x = (app.screen.width - imgLogo.width)/2
+                imgLogo.y = (app.screen.height - imgLogo.height)/2
+            });
+            app.stage.addChild(meteorGroup2);
+        }
+        let meteorGroup1 = new PIXI.Container();
+        let meteorGroup2 = new PIXI.Container();
+        createMeteor(meteorGroup1, app.screen.width, app.screen.height);
+        createMeteor(meteorGroup2, app.screen.width, -app.screen.height);
+        function createMeteor(container, appearX, appearY) {
+            for (let j = 0; j < 50; ++j) {
+                let meteor = new PIXI.Container();
+                for (let i = 0; i < 100; ++i) {
+                    let circle = new PIXI.Graphics();
+                    circle.beginFill(0xFFFFFF);
+                    circle.drawCircle(0, 0, 7 - (0.06 * (i)));
+                    circle.endFill();
+                    circle.y = 130;
+                    circle.x = 130 - (i * 1.5);
+                    circle.alpha = 1 - 0.01 * i;
+                    // app.ticker.add(delta => motion.update());
+                    meteor.addChild(circle);
+                }
+                meteor.x = appearX*Math.random();
+                meteor.y = appearY*Math.random();
+                meteor.rotation = 45;
+                meteor.alpha = 0.1;
+                let valueS = Math.random();
+                valueS < 0.4 ? valueS = 0.4 : null;
+                let v = 1;
+                if (valueS >= 0.9) {
+                    v = Math.max(3 * Math.random(), 3);
+                    meteor.alpha = Math.max(0.3 * Math.random(), 0.2);
+                }
+                if (0.9 < valueS >= 0.8) {
+                    v = Math.max(2.6 * Math.random(), 2.6);
+                    meteor.alpha = Math.max(0.28 * Math.random(), 0.18);
+                }
+                if (0.8 < valueS >= 0.7) {
+                    meteor.alpha = Math.max(0.26 * Math.random(), 0.16);
+                    v = Math.max(2.2 * Math.random(), 2.2);
+                }
+                if (0.7 < valueS >= 0.6) {
+                    meteor.alpha = Math.max(0.24 * Math.random(), 0.14);
+                    v = Math.max(1.8 * Math.random(), 1.8);
+                }
+                if (0.6 < valueS >= 0.5) {
+                    meteor.alpha = Math.max(0.22 * Math.random(), 0.12);
+                    v = Math.max(1.4 * Math.random(), 1.4);
+                }
+                meteor.scale.set(valueS, valueS);
+                container.addChild(meteor);
+                app.ticker.add(delta => {
+                    meteor.x += v;
+                    meteor.y += v;
+                    if (meteor.y - 200 > app.screen.height) {
+                        meteor.y = 0 - app.screen.height * 2 * Math.random();
+                        meteor.x = app.screen.width / 2 - app.screen.width * Math.random();
+                    }
+                });
+            }
+        };
+
+    </script>
+</body>
+
+</html>
