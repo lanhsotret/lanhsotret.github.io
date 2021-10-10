@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+a:not(.default) {
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+a:not(.default):hover {
+    opacity: .75;
+}
+
+.isColor {
+    background-color: #7b7871;
+}
+
+.work-articles-area .container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 192px;
+}
+
+.work-articles-area .art__content {
+    width: 100%;
+}
+
+.work-articles-area .art__content.art-information {
+    max-width: calc(100% - 290px - 6.034%);
+}
+
+.work-articles-area .art__content.art-all {
+    min-width: 270px;
+    max-width: 270px;
+}
+
+.work-articles-area .art__content.art-all .art__item {
+    padding: 0;
+    margin-top: 57px;
+    border: 0 !important;
+}
+
+.work-articles-area .art__content .art-heading {
+    font-size: 3rem;
+    font-weight: 200;
+    font-family: "Noto Serif JP", serif;
+    margin-bottom: 23px;
+}
+
+.work-articles-area .art__content .art__item {
+    display: block;
+    border-bottom: 1px solid #333;
+    padding: 35px 40px 32px 40px;
+}
+
+.work-articles-area .art__content .art__item:first-child {
+    border-top: 1px solid #333;
+}
+
+.work-articles-area .art__content .art__title {
+    font-weight: 200;
+    font-size: 2.2rem;
+}
+
+.work-articles-area .art__content .art__date,
+.work-articles-area .art__content .art__detail {
+    color: #333;
+    font-weight: 200;
+    letter-spacing: .05em;
+}
+
+.work-articles-area .art__content .art__date {
+    margin-bottom: 9px;
+    line-height: 1.2;
+}
+
+.work-articles-area .art__content .art__detail {
+    line-height: 1.9;
+}
+
+.work-articles-area .art__content .art__more {
+    border-top: 2px solid #333;
+    margin-top: 12px;
+}
+
+.work-articles-area .art__content .art-link {
+    color: #333;
+    font-weight: 400;
+    display: block;
+    margin-top: 12px;
+}
+
+.work-articles-area .art__content .art-link::before {
+    content: '‒';
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.work-articles-area .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.work-articles-area .pagination .pag-btn {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    border: 2px solid #333;
+    border-radius: 2px;
+    margin: 0 4px;
+    background-color: transparent;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.work-articles-area .pagination .pag-btn.none {
+    display: none;
+}
+
+.work-articles-area .pagination .pag-btn:not(.none)::after {
+    content: attr(data-page);
+    font-weight: 500;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.work-articles-area .pagination .pag-btn.pag--prev::after,
+.work-articles-area .pagination .pag-btn.pag--next::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    display: block;
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 2px);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.work-articles-area .pagination .pag-btn.pag--next::after {
+    left: calc(50% - 2px);
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.work-articles-area .pagination .pag-btn:hover,
+.work-articles-area .pagination .pag-btn.active {
+    background-color: #333;
+}
+
+.work-articles-area .pagination .pag-btn:hover::after,
+.work-articles-area .pagination .pag-btn.active::after {
+    color: #fff;
+    border-color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+    .work-articles-area .container {
+        display: block;
+        padding-top: 60px;
+    }
+
+    .work-articles-area .art__content {
+        width: 100%;
+    }
+
+    .work-articles-area .art__content.art-information {
+        max-width: 100%;
+    }
+
+    .work-articles-area .art__content.art-all {
+        max-width: 100%;
+    }
+
+    .work-articles-area .art__content .art-heading {
+        font-size: 2.5rem;
+    }
+
+    .work-articles-area .art__content .art__item {
+        padding: 30px 0px;
+    }
+
+    .work-articles-area .art__content .art__title {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,205 @@
+@charset "utf-8";
+
+a:not(.default) {
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+a:not(.default):hover {
+    opacity: .75;
+}
+
+.isColor {
+    background-color: #7b7871;
+}
+
+.main {
+    background-color: #ece8de;
+}
+
+.c-box01 {
+    background-color: #775c41;
+    color: #fff;
+}
+
+.booking-room {
+    width: 280px;
+    height: 50px;
+    padding: 0 70px;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 2px solid #333;
+    color: #333;
+    letter-spacing: 0.05em;
+}
+
+.booking-room::after {
+    content: '';
+    width: 50px;
+    height: 12px;
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translate(0, -50%) skewX(45deg);
+    transition: all .3s ease;
+}
+
+.booking-room:hover::after {
+    transform: translate(5px, -50%) skewX(45deg);
+}
+
+.group-inline {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.intro-room {
+    width: 100%;
+    margin-top: 200px;
+}
+
+.intro-room .int-decore {
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+.intro-room .int-decore::after {
+    content: '';
+    height: 100%;
+    border-left: 1px solid #333;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+}
+
+.intro-room .title {
+    font-family: "Noto Serif JP", serif;
+    font-weight: 200;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.intro-room .title.tt {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.intro-box {
+    margin-bottom: 170px;
+}
+
+.intro-box:last-child {
+    margin-bottom: 0;
+}
+
+.intro-box .image {
+    width: 100%;
+}
+
+.intro-box .content {
+    margin-top: 50px;
+}
+
+.intro-box .content .title {
+    width: 260px;
+    min-width: 260px;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    text-align: left;
+    line-height: 2.2;
+}
+
+.intro-box .content .detail {
+    width: 100%;
+    max-width: calc(100% - 260px);
+    line-height: 3;
+    padding-left: 70px;
+    letter-spacing: 0.05;
+    position: relative;
+    font-weight: 300;
+}
+
+.intro-box .content .detail::before {
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 1px solid #333;
+}
+
+.intro-box .booking-room {
+    margin-top: 60px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .intro-room {
+        margin-top: 100px;
+    }
+
+    .intro-box {
+        margin-bottom: 120px;
+    }
+
+    .intro-box .content .detail {
+        padding-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .booking-room {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .booking-room::after {
+        width: 25px;
+        height: 12px;
+    }
+
+    .group-inline {
+        display: block;
+    }
+
+    .intro-room .title {
+        font-size: 6vw;
+    }
+
+    .intro-room .title.tt {
+        margin-bottom: 30px;
+    }
+
+    .intro-box {
+        margin-bottom: 80px;
+    }
+
+    .intro-box .content {
+        margin-top: 20px;
+    }
+
+    .intro-box .content .title {
+        width: 100%;
+        font-size: 5.5vw;
+        line-height: 1.8;
+    }
+
+    .intro-box .content .detail {
+        max-width: 100%;
+        line-height: 1.8;
+        padding-left: 10px;
+        margin-top: 20px;
+    }
+
+    .intro-box .booking-room {
+        margin-top: 40px;
+    }
+}

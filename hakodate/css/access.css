@@ -1,0 +1,225 @@
+.access-content .headline {
+    font-size: 2.2rem;
+}
+
+.isColor {
+    background-color: #7b7871;
+}
+
+.c-box01 {
+    background-color: #7b7871;
+}
+
+.c-title01 {
+    font-weight: 200;
+}
+
+.btn-googleMap {
+    height: 70px;
+    max-width: 350px;
+    margin-top: 70px;
+    font-weight: 300;
+    letter-spacing: .05em;
+    line-height: 1;
+}
+
+.btn-googleMap span {
+    height: 14px;
+    width: 14px;
+    display: block;
+    position: relative;
+    margin-left: 10px;
+}
+
+.btn-googleMap span::after, .btn-googleMap span::before {
+    content: "";
+    height: 11px;
+    width: 11px;
+    border: 1px solid #333;
+    position: absolute;
+    z-index: 1;
+    -webkit-transition: border .3s ease;
+            transition: border .3s ease;
+}
+
+.btn-googleMap span::after {
+    left: 0;
+    bottom: 0;
+}
+
+.btn-googleMap span::before {
+    right: 0;
+    top: 0;
+}
+
+.btn-googleMap:hover {
+    border: 1px solid #eee;
+    color: #eee;
+    background-color: #333;
+}
+
+.btn-googleMap:hover span::after, .btn-googleMap:hover span::before {
+    border: 1px solid #eee;
+}
+
+.access-body {
+    margin-top: 100px;
+}
+
+.access-body .googleMap img {
+    width: 100%;
+}
+
+.access-card {
+    margin-top: 182px;
+    padding: 0 20px;
+    background-color: #7b7871;
+    color: #ccc;
+}
+
+.access-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px 0 20px;
+    max-width: 530px;
+}
+
+.access-content .headline {
+    font-family: "Yu Gothic", sans-serif;
+    font-weight: bold;
+    letter-spacing: .05em;
+    line-height: 1.4;
+    margin-bottom: 13px;
+}
+
+.access-content .subline, .access-content .tel, .access-content .p-passage {
+    letter-spacing: .05em;
+    line-height: 2.25;
+}
+
+.access-content .p-passage {
+    margin-top: 20px;
+}
+
+.access-info {
+    max-width: 1060px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 60px 0;
+}
+
+.access-info figure {
+    max-width: 480px;
+}
+
+.access-info > * {
+    width: calc(50% - 15px);
+}
+
+.access-direct {
+    margin-top: 184px;
+    padding-bottom: 180px;
+}
+
+.access-direct .direct2 {
+    margin-top: 166px;
+    padding-top: 120px;
+}
+
+@media screen and (max-width: 1023px) {
+    .access-body .googleMap img {
+        height: 320px;
+        -o-object-fit: cover;
+           object-fit: cover;
+        -o-object-position: center center;
+           object-position: center center;
+    }
+    .access-card {
+        margin-right: -20px;
+        margin-left: -20px;
+    }
+    .access-content {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .access-content .headline {
+        font-size: 1.8rem;
+    }
+    .btn-googleMap {
+        height: 55px;
+    }
+    .access-body {
+        margin-top: 50px;
+    }
+    .access-card {
+        margin-top: 90px;
+    }
+    .access-content {
+        display: block;
+    }
+    .access-content .headline {
+        margin-bottom: 5px;
+    }
+    .access-content .p-passage {
+        margin-top: 15px;
+    }
+    .access-info {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+        grid-gap: 25px;
+        gap: 25px;
+        padding: 40px 0;
+    }
+    .access-info > * {
+        max-width: 100% !important;
+        width: 100%;
+    }
+
+    .access-info > * img {
+        width: 100%;
+    }
+    .access-direct {
+        padding-bottom: 80px;
+        margin-top: 90px;
+    }
+
+    .access-direct figure {
+        min-width: 700px;
+    }
+
+    .access-direct .wrap-overflow {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+    .access-direct h3 {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+    .access-direct .direct2 {
+        margin-top: 70px;
+        padding-top: 60px;
+    }
+}

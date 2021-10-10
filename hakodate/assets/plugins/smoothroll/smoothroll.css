@@ -1,0 +1,5 @@
+.smoothRoll, .fromWhere{
+	opacity: 0;
+	transition: all 1s ease;
+	transform: translate3d(0, 150px, 0);
+}

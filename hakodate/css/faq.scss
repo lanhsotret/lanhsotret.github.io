@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+.main{
+	margin-top: 100px;
+}
+
+.isColor {
+    background-color: #ece8de;
+}
+
+.c-box01--brown{
+	background-color: #7a7361;
+	margin-bottom: 200px;
+}
+.faq{
+	&-internal-links{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 247px;
+		li{
+			max-width: calc(100% / 4);
+			width: 100%;
+			border-left: 1px solid #333;
+			text-align: center;
+			&:last-child{
+				border-right: 1px solid #333;
+			}
+			a{
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #000;
+				font-size: 2.2rem;
+				line-height: 4;
+				letter-spacing: 0.095em;
+				span{
+					display: inline-block;
+					width: 7px;
+					height: 7px;
+					border-bottom: 1px solid #000;
+					border-right: 1px solid #000;
+					transform: translateY(-1px) rotate(45deg);
+					margin-left: 25px;
+					transition: all 0.5s ease;
+				}
+				&:hover, &:focus, &:active, &:visited{
+					outline: none;
+					text-decoration: none;
+				}
+				&:hover span{
+					transform: translateY(2px) rotate(45deg);
+				}
+			}
+		}
+	}
+	&-box{
+		&:not(:last-of-type){
+			margin-bottom: 260px;
+		}
+		/*h2{
+			text-align: center;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px;
+			color: #333;
+			font-size: 3rem;
+			letter-spacing: 0.07em;
+			margin-bottom: 10px;
+			span{
+				display: block;
+				width: 1px;
+				height: 100px;
+				background-color: #000;
+				margin-bottom: 24px;
+			}
+		}*/
+		&__block-qa{
+			overflow: hidden;
+			transition: all 0.5s ease;
+			padding: 30px;
+			border-bottom: 2px solid #ccc;
+			cursor: pointer;
+			p{
+				display: flex;
+				align-items: flex-start;
+				span{
+					margin-right: 15px;
+					font-size: 2.6rem;
+					font-weight: 500;
+					transform: translateY(-11px);
+				}
+				&:first-child{
+					position: relative;
+					z-index: 0;
+					font-size: 1.6rem;
+					font-weight: 400;
+					letter-spacing: 0.075em;
+					&::before{
+						content: "";
+						position: absolute;
+						z-index: 1;
+						top: 50%;
+						right: 0;
+						transform: translateY(-50%);
+						width: 30px;
+						height: 2px;
+						background-color: #fff;
+						transition: all 0.5s ease;
+					}
+					&::after{
+						content: "";
+						position: absolute;
+						z-index: 1;
+						top: 50%;
+						right: 0;
+						transform: translateY(-50%) rotate(90deg);
+						width: 30px;
+						height: 2px;
+						background-color: #fff;
+						transition: all 0.5s ease;
+					}
+				}
+				&.ans{
+					margin-top: 25px;
+					padding: 10px 0 15px 30px;
+					background-color: #d9d6cd;
+					letter-spacing: 0.065em;
+				}
+			}
+			&.expand p:first-child{
+				&::before{
+					background-color: #333;
+				}
+				&::after{
+					background-color: #333;
+					transform: translateY(-50%) rotate(180deg);
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 1023px) {
+	.c-box01--brown {
+		margin-bottom: 100px;
+	}
+	.main{
+		margin-top: 70px;
+	}
+	.faq{
+		&-internal-links{
+			flex-flow: row wrap;
+			margin-bottom: 90px;
+			li{
+				max-width: calc(100% / 2);
+				margin-bottom: 20px;
+				&:nth-of-type(2){
+					border-right: 1px solid #000;
+				}
+			}
+		}
+		&-box:not(:last-of-type){
+			margin-bottom: 180px;
+		}
+	}
+}
+@media screen and (max-width: 767px) {
+	.c-box01--brown {
+		margin-bottom: 70px;
+	}
+	.main{
+		margin-top: 60px;
+	}
+	.faq{
+		&-internal-links{
+			flex-flow: row wrap;
+			margin-bottom: 40px;
+			li{
+				max-width: 100%;
+				margin-bottom: 20px;
+				border-right: 1px solid #000;
+				a{
+					line-height: 2;
+					font-size: 1.8rem;
+				}
+			}
+		}
+		&-box{
+			&:not(:last-of-type){
+				margin-bottom: 120px;
+			}
+			/*h2{
+				font-size: 2.2rem;
+				span{
+					height: 60px;
+				}
+			}*/
+			&__block-qa{
+				padding: 30px 0;
+				p{
+					span{
+						font-size: 2rem;
+						margin-right: 10px;
+						transform: translateY(-7px);
+					}
+					&:first-child{
+						font-size: 1.4rem;
+						padding-right: 15px;
+						&::before{
+							width: 15px;
+						}
+						&::after{
+							width: 15px;
+						}
+					}
+					&.ans{
+						padding: 15px 5px;
+					}
+				}
+			}
+		}
+	}
+}

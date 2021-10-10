@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+.main {
+  margin-top: 100px;
+}
+
+.isColor {
+    background-color: #ece8de;
+}
+
+.contact {
+  margin-top: 175px;
+}
+
+.contact label {
+  margin-right: 10px;
+}
+
+.contact label.lb-right {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.contact input {
+  background: none;
+  border: 1px solid #000;
+  max-width: 300px;
+  width: 100%;
+  height: 40px;
+  padding-left: 17px;
+}
+
+.contact input.small {
+  max-width: 140px;
+  margin-right: 25px;
+}
+
+.contact input[type="checkbox"] {
+  width: 10px;
+  height: 10px;
+}
+
+.contact textarea {
+  width: 660px;
+  height: 140px;
+  background: none;
+  padding: 10px 0 0 30px;
+}
+
+.contact dl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: inherit;
+  padding: 25px 25px 30px;
+}
+
+.contact dl:not(:last-of-type) {
+  border-bottom: 1px solid #000;
+}
+
+.contact dl.diff {
+  align-items: flex-start;
+}
+
+.contact dl dt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: calc(50% - 315px);
+  width: 100%;
+}
+
+.contact dl dt p {
+  letter-spacing: 0.2em;
+}
+
+.contact dl dt p.label {
+  display: table;
+  width: max-content;
+  background-color: #b4484b;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 2.2;
+  padding: 0 13px;
+  transform: translateY(2px);
+  letter-spacing: 0.05em;
+}
+
+.contact dl dd {
+  max-width: calc(50% + 245px);
+  width: 100%;
+  display: flex;
+}
+
+.contact .rules {
+  margin-top: 28px;
+  border: 1px solid #000;
+  padding: 30px 15px 15px 30px;
+}
+
+.contact .rules p {
+  line-height: 2;
+}
+
+.contact .rules p.title {
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.contact .rules p a {
+  text-decoration: underline;
+  color: #b4484b;
+}
+
+.contact .rules__checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 23px 0 20px;
+}
+
+.contact .rules__checkbox input[type="checkbox"] {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.contact .rules__checkbox input[type="checkbox"]:checked+label::before {
+  background-color: #fff;
+}
+
+.contact .rules__checkbox input[type="checkbox"]:checked+label::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 15px;
+  height: 17px;
+  background-image: url(../images/contact/icon_checked.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact .rules__checkbox label {
+  font-weight: 400;
+  font-size: 2rem;
+  position: relative;
+  cursor: pointer;
+  margin-right: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact .rules__checkbox label::before {
+  content: '';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  transform: translate(-14px, -3px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact .receive-news {
+  border: 1px solid #000;
+  max-width: 360px;
+  width: 100%;
+  margin: 58px auto;
+  text-align: center;
+}
+
+.contact .receive-news input[type="checkbox"] {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.contact .receive-news input[type="checkbox"]:checked+label::before {
+  background-color: #fff;
+}
+
+.contact .receive-news input[type="checkbox"]:checked+label::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 15px;
+  height: 17px;
+  background-image: url(../images/contact/icon_checked.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact .receive-news label {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 3.9;
+  letter-spacing: normal;
+  margin: 0 0 0 7px;
+  position: relative;
+  cursor: pointer;
+  margin-right: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact .receive-news label::before {
+  content: '';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  transform: translate(-14px, -3px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact button[type="submit"] {
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
+  background-color: #333;
+  color: #fff;
+  display: block;
+  line-height: 3.8;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+.contact button[type="submit"] span {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transition: all 0.5s ease;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.contact button[type="submit"]:hover span {
+  transform: translate(5px, -50%) rotate(45deg);
+}
+
+@media screen and (max-width: 1023px) {
+  .main {
+    margin-top: 70px;
+  }
+  .contact {
+    margin-top: 75px;
+  }
+  .contact dl {
+    padding: 25px 15px 30px;
+  }
+  .contact dl dt {
+    max-width: calc(50% - 130px);
+  }
+  .contact dl dd {
+    max-width: calc(50% + 100px);
+  }
+  .contact dl.box-revert dd {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: column-reverse;
+  }
+  .contact dl.box-revert dd label {
+    margin-bottom: 15px;
+    margin-left: 0;
+  }
+  .contact textarea {
+    width: 100%;
+    padding: 10px 0 0 17px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main {
+    margin-top: 60px;
+  }
+  .contact {
+    margin-top: 50px;
+  }
+  .contact dl {
+    padding: 20px 0px;
+    flex-flow: column nowrap;
+  }
+  .contact dl dt {
+    max-width: 100%;
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+  }
+  .contact dl dd {
+    max-width: 100%;
+    margin-top: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: column;
+  }
+  .contact dl dd div {
+    width: 100%;
+  }
+  .contact dl dd div:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+  .contact dl dd input.small {
+    max-width: calc(100% - 80px);
+  }
+}
