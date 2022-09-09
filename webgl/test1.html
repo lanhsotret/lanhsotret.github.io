@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        position: relative;
+        z-index: 0;
+    }
+    canvas {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        pointer-events: none;
+        height: 100%;
+        width: 100%;
+    }
+    #test {
+        padding-top: 200px;
+    }
+    img {
+        max-width: 100%;
+    }
+    figure {
+        display: table;
+        max-width: 640px;
+    }
+    figcaption {
+        font-size: 20px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="test">
+        <figure>
+            <img src="imgs/cat01.jpg" alt="test">
+            <figcaption>demo demo demo</figcaption>
+        </figure>
+    </div>
+        <canvas id="canvas"></canvas>
+    <script id="shader" type="shader">
+        precision mediump float;
+        varying vec2 vTextureCoord;
+        uniform sampler2D uSampler;
+        uniform float time;
+        uniform float frequency;
+        uniform float amplitude;
+        uniform float amplitudeY;
+        uniform float speed;
+        void main() {
+        vec2 position = vTextureCoord;
+        float distortion = sin(position.y * frequency + time * speed) * amplitude;
+        float distortion2 = sin(position.y * frequency + time * speed) * amplitudeY;
+        gl_FragColor = texture2D(uSampler, vec2(position.x + distortion, position.y + distortion2));
+        }
+    </script>
+    <script src="./pixi.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script defer>
+        var shaderFrag = document.querySelector("#shader").textContent;
+        const app = new PIXI.Application({
+            view: document.querySelector("#canvas"),
+            antialias: true,
+            backgroundAlpha: 0, // default: false
+            resolution: 1
+        });
+        app.renderer.resize(document.body.clientWidth, document.body.clientHeight);
+        var filter = new PIXI.Filter(null, shaderFrag);
+        filter.uniforms.frequency = 15.0;
+        filter.uniforms.amplitude = 0.0;
+        filter.uniforms.amplitudeY = 0.0;
+        filter.uniforms.amplitudeX = 0.0;
+        filter.uniforms.speed = 1.0;
+        filter.uniforms.time = 0.0;
+
+        app.loader.add('cat01', './imgs/cat01.jpg');
+        app.loader.load(setup);
+        function setup(loader, resources) {
+            var position_img = document.querySelector("img").getBoundingClientRect();
+            const sprite = new PIXI.Sprite(resources.cat01.texture);
+            sprite.filters = [filter];
+            app.stage.addChild(sprite);
+            sprite.width = position_img.width;
+            sprite.height = position_img.height;
+            sprite.alpha = 0;
+            sprite.y = $("img").offset().top;
+            app.ticker.add(function (delta) {
+                filter.uniforms.time += 0.05 * delta;
+            });
+            console.log(sprite);
+            document.querySelector("img").addEventListener('mouseover', function(e){
+                sprite.alpha = 1;
+                gsap.to(filter.uniforms, {amplitude: 0.009, amplitudeY: 0.019, amplitudeX : 0.009, duration: 0.3});
+                e.target.style.opacity = 0;
+            });
+            document.querySelector("img").addEventListener('mouseout', function(e){
+                gsap.to(filter.uniforms, {amplitude: 0, amplitudeY: 0, amplitudeX : 0, duration: 0.3, onComplete: () => {
+                    console.log(e.target);
+                    e.target.style.opacity = 1;
+                    sprite.alpha = 0;
+                }});
+            })
+        }
+    </script>
+</body>
+
+</html>
