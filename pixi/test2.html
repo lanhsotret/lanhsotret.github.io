@@ -51,7 +51,7 @@
 
 <body>
     <div id="pixi"></div>
-    <div class="test">hover me</div>
+    <div class="test">please wait...</div>
     <script src="./pixi.js"></script>
     <script src="./gsap.min.js"></script>
     <script>
@@ -91,6 +91,7 @@
         square.drawRect(0, 0, widthItem, app.renderer.screen.height);
         square.endFill();
         function setup(e) {
+            document.querySelector('.test').innerHTML = 'hover me';
             Object.entries(e.resources).forEach(([_, { texture }], index) => {
                 const Mvshow = new PIXI.Container();
                 const _sprite = new PIXI.Sprite(texture);
@@ -146,7 +147,7 @@
                         }else {
                             direct = 0;
                         }
-                        console.log(point, window.innerWidth);
+                        // console.log(point, window.innerWidth);
                         point = e.clientX;
                         gsap.killTweensOf(t);
                         gsap.delayedCall(1, t)
