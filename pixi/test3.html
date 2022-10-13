@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #pixi {
+            width: 100%;
+            height: 330vh;
+            position: relative;
+        }
+
+        canvas {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pixi"></div>
+    <script src="./pixi.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script>
+        PIXI.utils.sayHello("I'm PIXI");
+        const ele = document.getElementById("pixi");
+        const app = new PIXI.Application({
+            antialias: true,
+            autoDensity: true,
+            resolution: 1,
+            backgroundAlpha: 0,
+        });
+        app.renderer.view.style.position = "absolute";
+        app.renderer.view.style.display = "block";
+        app.renderer.resize(ele.clientWidth, ele.clientHeight);
+        ele.appendChild(app.view);
+        function fitImg(obj, tex) {
+            let _w = app.renderer.screen.width;
+            let _h = app.renderer.screen.height;
+            let wImg = tex.width;
+            let hImg = tex.height;
+            // obj.pivot.x = wImg / 2;
+            obj.pivot.y = hImg / 2;
+            // obj.x = _w / 2;
+            obj.y = 400 / 2;
+            obj.scale.set((_w - 100) / wImg);
+        }
+        let imgs = Array.from({ length: 6 }, (_, index) => ({
+            name: "img" + (index + 1),
+            url: `./bg/cat${index + 1}.jpg`,
+        }));
+        function drawshape(graphic, wShape, cuver) {
+            graphic.clear();
+            graphic.beginFill(0x660000);
+            graphic.moveTo(0 + (cuver > 0 ? cuver : 0), 0);
+            graphic.quadraticCurveTo(wShape / 2, cuver * 1.3, wShape - (cuver > 0 ? cuver : 0), 0)
+            graphic.quadraticCurveTo(wShape - Math.abs(cuver), 200, wShape + (cuver < 0 ? cuver : 0), 400)
+            graphic.quadraticCurveTo(wShape / 2, 400 + cuver * 1.3, 0 - (cuver < 0 ? cuver : 0), 400)
+            graphic.quadraticCurveTo(Math.abs(cuver), 200, 0 + (cuver > 0 ? cuver : 0), 0)
+            graphic.endFill();
+        }
+        
+        const shaderFrag = `
+        precision mediump float;
+
+        varying vec2 vTextureCoord;
+
+        uniform sampler2D uSampler;
+        uniform sampler2D uDis;
+        uniform float power;
+
+        void main() {
+            vec4 dis = texture2D(uDis, vTextureCoord);
+            vec4 color = texture2D(uSampler, vec2(vTextureCoord.x, vTextureCoord.y -  dis.r * 0.001 * power));
+            gl_FragColor = color;
+        }
+        `;
+        let displacementSprite = PIXI.Sprite.from('./blend.png', {wrapMode: PIXI.WRAP_MODES.REPEAT});
+        PIXI.Loader.shared.add(imgs).load(setup);
+        function setup(e) {
+            let animation = {
+                cuver: 0,
+                direction: 0,
+                anchor: 0,
+                run: false,
+                scroll: 0,
+            }
+            const view = new PIXI.Container();
+            const filter = new PIXI.Filter(null, shaderFrag, {
+                    uDis: displacementSprite.texture,
+                    power: animation.cuver
+                });
+            Object.entries(e.resources).forEach(([_, { texture }], index) => {
+                const square = new PIXI.Graphics();
+                drawshape(square, app.renderer.screen.width - 100, animation.cuver * animation.direction)
+                const Mvshow = new PIXI.Container();
+                const img = new PIXI.Container();
+                const _sprite = new PIXI.Sprite(texture);
+                fitImg(_sprite, texture);
+                _sprite.filters = [filter];
+                img.addChild(_sprite)
+                Mvshow.addChild(img);
+                Mvshow.addChild(square);
+                img.mask = square;
+                Mvshow.y = index * 500;
+                Mvshow.pivot.x = (app.renderer.screen.width - 100) / 2
+                Mvshow.x = app.renderer.screen.width / 2;
+                view.addChild(Mvshow);
+            })
+            console.log(view)
+            view.y = 100;
+            app.stage.addChild(view)
+            window.addEventListener('scroll', function (e) {
+                animation.direction = -Math.sign(window.scrollY - animation.scroll)
+                animation.scroll = window.scrollY;
+                gsap.to(animation, {
+                    cuver: Math.min(Math.abs(window.scrollY - animation.anchor), 100) * animation.direction, duration: 0.2, overwrite: true, onUpdate: () => {
+                        filter.uniforms.power = animation.cuver;
+                        view.children.forEach(({ children }) => {
+                            drawshape(children[0].mask, app.renderer.screen.width - 100, animation.cuver);
+                        })
+                    },
+                    onStart: () => {
+                        animation.run = false;
+                    },
+                    onComplete: () => {
+                        animation.run = true;
+                        animation.anchor = window.scrollY
+                    }
+                })
+            })
+            gsap.ticker.add(animate);
+            function animate(time, deltaTime, frame) {
+                if (animation.run) {
+                    if (Math.abs(animation.cuver) - 5 > 0) {
+                        animation.cuver = animation.cuver - 5 * animation.direction;
+                    } else {
+                        animation.cuver = 0;
+                        animation.run = false;
+                    }
+                    filter.uniforms.power = animation.cuver;
+                    view.children.forEach(({ children }) => {
+                        drawshape(children[0].mask, app.renderer.screen.width - 100, animation.cuver)
+                    })
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
