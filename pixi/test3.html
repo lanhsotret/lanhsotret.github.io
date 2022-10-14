@@ -98,15 +98,18 @@
                     uDis: displacementSprite.texture,
                     power: animation.cuver
                 });
-            Object.entries(e.resources).forEach(([_, { texture }], index) => {
-                const square = new PIXI.Graphics();
-                drawshape(square, app.renderer.screen.width - 100, animation.cuver * animation.direction)
-                const Mvshow = new PIXI.Container();
+            let imgs = Object.entries(e.resources).map(([_, {texture}]) => {
                 const img = new PIXI.Container();
                 const _sprite = new PIXI.Sprite(texture);
                 fitImg(_sprite, texture);
                 _sprite.filters = [filter];
-                img.addChild(_sprite)
+                img.addChild(_sprite);
+                return img;
+            })
+            imgs.forEach((img, index) => {
+                const Mvshow = new PIXI.Container();
+                const square = new PIXI.Graphics();
+                drawshape(square, app.renderer.screen.width - 100, animation.cuver * animation.direction)
                 Mvshow.addChild(img);
                 Mvshow.addChild(square);
                 img.mask = square;
@@ -115,7 +118,7 @@
                 Mvshow.x = app.renderer.screen.width / 2;
                 view.addChild(Mvshow);
             })
-            console.log(view)
+            console.log(imgs)
             view.y = 100;
             app.stage.addChild(view)
             window.addEventListener('scroll', function (e) {
@@ -124,8 +127,9 @@
                 gsap.to(animation, {
                     cuver: Math.min(Math.abs(window.scrollY - animation.anchor), 100) * animation.direction, duration: 0.2, overwrite: true, onUpdate: () => {
                         filter.uniforms.power = animation.cuver;
-                        view.children.forEach(({ children }) => {
-                            drawshape(children[0].mask, app.renderer.screen.width - 100, animation.cuver);
+                        imgs.forEach((attr) => {
+                            drawshape(attr.mask, app.renderer.screen.width - 100, animation.cuver);
+                            attr.y = - animation.scroll / (document.body.clientWidth / 100);
                         })
                     },
                     onStart: () => {
@@ -147,8 +151,8 @@
                         animation.run = false;
                     }
                     filter.uniforms.power = animation.cuver;
-                    view.children.forEach(({ children }) => {
-                        drawshape(children[0].mask, app.renderer.screen.width - 100, animation.cuver)
+                    imgs.forEach(({ mask }) => {
+                        drawshape(mask, app.renderer.screen.width - 100, animation.cuver)
                     })
                 }
             }
