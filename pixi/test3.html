@@ -22,11 +22,35 @@
         canvas {
             pointer-events: none;
         }
+        #load {
+            position: fixed;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: black;
+            pointer-events: none;
+        }
+        #scroll {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            bottom: 0px;
+            right: 0px;
+            text-transform: uppercase;
+            font-size: 50px;
+        }
     </style>
 </head>
 
 <body>
     <div id="pixi"></div>
+    <div id="load">please waiting...</div>
+    <div id="scroll"> let's scroll</div>
     <script src="./pixi.js"></script>
     <script src="./gsap.min.js"></script>
     <script>
@@ -86,6 +110,8 @@
         let displacementSprite = PIXI.Sprite.from('./blend.png', {wrapMode: PIXI.WRAP_MODES.REPEAT});
         PIXI.Loader.shared.add(imgs).load(setup);
         function setup(e) {
+            document.querySelector("#load").style.display = "none";
+            document.querySelector("#scroll").style.display = "table";
             let animation = {
                 cuver: 0,
                 direction: 0,
