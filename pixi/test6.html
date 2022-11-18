@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #pixi {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+        }
+
+        #loadding {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* pointer-events: none; */
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: black;
+            font-size: 3rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #loadding a {
+            font-size: 2rem;
+            color: inherit;
+        }
+
+        #content {
+            padding-top: 100vh;
+            position: relative;
+            z-index: 70;
+            pointer-events: none;
+        }
+
+        #guide {
+            font-size: 1.5rem;
+            font-weight: bold;
+            pointer-events: none;
+            text-transform: uppercase;
+            position: fixed;
+            z-index: 60;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pixi"></div>
+    <div id="content">
+
+    </div>
+    <div id="loadding">
+        please wait loadding...
+        <a href="https://css-tricks.com/building-an-images-gallery-using-pixijs-and-webgl/#top-of-site" target="_blank"
+            rel="noopener noreferrer"> REFER: building an images gallery using pixijs</a>
+    </div>
+    <div id="guide">try drag mouse</div>
+    <script src="./pixi.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script>
+        const shaderFrag = `
+        precision mediump float;
+        uniform vec2 uResolution;
+        
+        uniform float uPointerDown;
+        uniform vec2 uPointerDiff;
+
+        varying vec2 vTextureCoord;
+        uniform sampler2D uSampler;
+
+        vec2 computeUV (vec2 uv, float k, float kcube) {
+        vec2 t = uv - 0.5;
+        float r2 = t.x * t.x + t.y * t.y;
+        float f = 0.0;
+        if (kcube == 0.0) {
+            f = 1.0 + r2 * k;
+        } else {
+            f = 1.0 + r2 * (k + kcube * sqrt(r2));
+        }
+
+        vec2 nUv = f * t + 0.5;
+        nUv.y = 1.0 - nUv.y;
+        return nUv;
+        }
+
+        void main () {
+        vec2 uv = gl_FragCoord.xy / uResolution.xy;
+        float k = -1.0 * uPointerDown;
+        float kcube = 0.5 * uPointerDown;
+        float offset = 0.02 * uPointerDown;
+        float red = texture2D(uSampler, computeUV(uv, k + offset, kcube)).r;
+        float green = texture2D(uSampler, computeUV(uv, k, kcube)).g;
+        float blue = texture2D(uSampler, computeUV(uv, k - offset, kcube)).b;
+        float alpha = texture2D(uSampler, computeUV(uv, k - offset, kcube*1.12)).a;
+        gl_FragColor = vec4(red, green, blue, alpha);
+        }
+        `;
+    </script>
+    <script>
+        const status = {
+            pointerDownTarget: 0,
+            dragging: false,
+            anchorX: 0,
+            anChorY: 0,
+            scale: 0,
+        }
+        function draggingEvent(e, target) {
+            // let pointX = e.data.global.x;
+            if (status.dragging) {
+                gsap.to(target, {
+                    x: function (_, obj) {
+                        let positionx = obj.x + (e.data.global.x - status.anchorX) * 5;
+                        if (positionx <= window.innerWidth - obj.width / 2 + 100) {
+                            positionx = window.innerWidth - obj.width / 2 + 100;
+                        }
+                        if (positionx >= obj.width / 2 - 100) {
+                            positionx = obj.width / 2 - 100
+                        }
+                        return positionx;
+                    },
+                    y: function (_, obj) {
+
+                        let positiony = obj.y + (e.data.global.y - status.anchorY) * 5;
+                        if (positiony <= window.innerHeight - obj.height / 2 + 200) {
+                            positiony = window.innerHeight - obj.height / 2 + 200;
+                        }
+                        if (positiony >= obj.height / 2 - 200) {
+                            positiony = obj.height / 2 - 200;
+                        }
+                        return positiony;
+                    },
+                    onUpdate: function () {
+                        status.anchorY = e.data.global.y;
+                        status.anchorX = e.data.global.x;
+                    },
+                    overwrite: true, duration: 0.5
+                });
+            };
+
+        }
+        function dragStartEvent(e, filter) {
+            status.dragging = true;
+            status.anchorX = e.data.global.x;
+            status.anchorY = e.data.global.y;
+            gsap.to(filter.uniforms, {
+                uPointerDown: 0.8, overwrite: true, duration: 0.5
+            });
+            document.getElementById('guide').style.display = "none";
+        }
+        function dragEndEvent(e, filter) {
+            status.dragging = false;
+            status.anchorX = e.data.global.x;
+            status.anchorY = e.data.global.y;
+            gsap.to(filter.uniforms, {
+                uPointerDown: 0, overwrite: true, duration: 0.5
+            });
+            document.getElementById('guide').style.display = "block";
+        }
+    </script>
+    <script>
+        PIXI.utils.sayHello("I'm PIXI");
+        const ele = document.getElementById("pixi");
+        const app = new PIXI.Application({
+            antialias: true,
+            autoDensity: true,
+            resolution: 1,
+            backgroundAlpha: 0,
+        });
+        app.renderer.view.style.position = "absolute";
+        app.renderer.view.style.display = "block";
+        app.renderer.resize(ele.clientWidth, ele.clientHeight);
+        ele.appendChild(app.view);
+        const Shape = {
+            r: 220,
+            angle: (2 * Math.PI) / 6,
+            x: 220,
+            y: 220 * Math.sin((2 * Math.PI) / 6)
+        }
+        function fitImg(obj, tex) {
+            let wShape = Shape.r * 2;
+            let hShape = Shape.y * 2;
+            let _h = app.renderer.screen.height;
+            let _w = app.renderer.screen.width;
+            let wImg = tex.width;
+            let hImg = tex.height;
+            obj.pivot.x = wImg / 2;
+            obj.pivot.y = hImg / 2;
+            obj.x = Shape.r;
+            obj.y = Shape.y;
+            obj.scaleSmall = Math.max(wShape / wImg, hShape / hImg);
+            obj.scaleOrigin = Math.max(_w / wImg, _h / hImg);
+            obj.scale.set(Math.max(wShape / wImg, hShape / hImg));
+        }
+        let imgs = Array.from({ length: 7 }, (_, index) => ({
+            name: "img" + (index + 1),
+            url: `./bg/cat${index + 1}.jpg`,
+        }));
+        function hexagon({ x, y, r, angle }, containBox, tex, positionX, positionY) {
+            const scene = new PIXI.Container();
+            const _sprite = new PIXI.Sprite(tex);
+            let points = Array.from({ length: 6 }, (_, index) => {
+                return [
+                    x + r * Math.cos(angle * index),
+                    y + r * Math.sin(angle * index),
+                ];
+            });
+            let g = new PIXI.Graphics();
+            g.beginFill(0x3500fa, 1);
+            g.drawPolygon(points.flat());
+            g.endFill();
+            g.pivot.x = x;
+            g.pivot.y = y;
+            g.x = x;
+            g.y = y;
+            _sprite.mask = g;
+            _sprite.interactive = true;
+            // _sprite.on("mouseover", console.log)
+            // _sprite.on("mouseout", console.log)
+            fitImg(_sprite, tex);
+            scene.addChild(g);
+            scene.addChild(_sprite);
+            scene.pivot.x = x;
+            scene.pivot.y = r * Math.sin(angle);
+            scene.x = positionX + r;
+            scene.y = positionY + r * Math.sin(angle);
+            scene.scaleAnimate = 0;
+            containBox.addChild(scene);
+        }
+        function draw(containBox, texs) {
+            let x = 0;
+            let y = 0;
+            let gWidth = window.innerWidth;
+            let gHeight = window.innerHeight;
+            let maxCol = Math.ceil(gWidth * 3 / (Shape.x * 2 + 10));
+            let maxRow = Math.ceil(gHeight * 3 / (Shape.y * 2 + 10));
+            let i = 0;
+            let j = 0;
+            while (j <= maxRow) {
+                while (i <= maxCol) {
+                    x = (Shape.r + Shape.r * Math.cos(Shape.angle)) * i + 20 * i;
+                    y = Shape.y * j * 2 + (i % 2 ? Shape.r * Math.sin(Shape.angle) + 20 * Math.cos(Shape.angle) : 0) + 20 * j;
+                    hexagon(Shape, containBox, texs[Math.floor(texs.length * Math.random())], x, y);
+                    ++i;
+                }
+                i = 0;
+                ++j;
+            }
+        }
+        PIXI.Loader.shared.add(imgs).load(setup);
+
+        function setup(e) {
+            document.getElementById("loadding").style.display = 'none';
+            const stageMain = new PIXI.Container();
+            const view = new PIXI.Container();
+            let imgs = Object.entries(e.resources).map(([_, { texture }]) => texture);
+            draw(view, imgs)
+            view.pivot.x = view.width / 2;
+            view.pivot.y = view.height / 2;
+            view.x = app.renderer.screen.width / 2;
+            view.y = app.renderer.screen.height / 2;
+            stageMain.addChild(view);
+            const filter = new PIXI.Filter(null, shaderFrag, {
+                uResolution: new PIXI.Point(app.renderer.screen.width, app.renderer.screen.height),
+                uPointerDown: status.pointerDownTarget
+            });
+            stageMain.filters = [filter]
+            stageMain.interactive = true;
+            app.stage.addChild(stageMain);
+            stageMain
+                .on('mousedown', (e) => dragStartEvent(e, filter))
+                .on('mouseup', (e) => dragEndEvent(e, filter))
+                .on('mouseupoutside', (e) => dragEndEvent(e, filter))
+                .on('mousemove', (e) => draggingEvent(e, view))
+            // console.log(view.children);
+            gsap.to(status, {
+                scale: 1,
+                overwrite: true,
+                duration: 1,
+                onUpdate: () => {
+                    view.children.forEach((ele) => {
+                        ele.scale.x = status.scale;
+                        ele.scale.y = status.scale;
+                    })
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
