@@ -64,13 +64,29 @@
             padding: 10px;
             background-color: white;
         }
+        #more {
+            position: fixed;
+            z-index: 200;
+            font-size: 1.2rem;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            /* color: white; */
+            border-radius: 5px;
+            background-color: white;
+            border: none;
+            display: table;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <div id="pixi"></div>
     <div id="content">
-
     </div>
     <div id="loadding">
         please wait loadding...
@@ -78,6 +94,9 @@
             rel="noopener noreferrer"> REFER: building an images gallery using pixijs</a>
     </div>
     <div id="guide">try drag mouse</div>
+    <button id="more">
+        CLICK ME
+    </button>
     <script src="./pixi.js"></script>
     <script src="./gsap.min.js"></script>
     <script>
@@ -179,6 +198,12 @@
             });
             document.getElementById('guide').style.display = "block";
         }
+        function spriteMore(e, screen) {
+            console.log(screen.x, e.data.global);
+            console.log()
+            document.getElementById('more').style.visibility = "visible"; //pointer-events
+            document.getElementById('more').style.pointerEvents = "all";
+        }
     </script>
     <script>
         PIXI.utils.sayHello("I'm PIXI");
@@ -193,6 +218,8 @@
         app.renderer.view.style.display = "block";
         app.renderer.resize(ele.clientWidth, ele.clientHeight);
         ele.appendChild(app.view);
+        const stageMain = new PIXI.Container();
+        const view = new PIXI.Container();
         const Shape = {
             r: 220,
             angle: (2 * Math.PI) / 6,
@@ -218,7 +245,8 @@
             name: "img" + (index + 1),
             url: `./bg/cat${index + 1}.jpg`,
         }));
-        function hexagon({ x, y, r, angle }, containBox, tex, positionX, positionY) {
+        function hexagon({ x, y, r, angle }, containBox, tex, positionX, positionY, index) {
+            // scene.index
             const scene = new PIXI.Container();
             const _sprite = new PIXI.Sprite(tex);
             let points = Array.from({ length: 6 }, (_, index) => {
@@ -237,7 +265,8 @@
             g.y = y;
             _sprite.mask = g;
             _sprite.interactive = true;
-            // _sprite.on("mouseover", console.log)
+            _sprite.on("mouseover", (e) => spriteMore(e, view))
+            _sprite.indexParent = index;
             // _sprite.on("mouseout", console.log)
             fitImg(_sprite, tex);
             scene.addChild(g);
@@ -262,7 +291,7 @@
                 while (i <= maxCol) {
                     x = (Shape.r + Shape.r * Math.cos(Shape.angle)) * i + 20 * i;
                     y = Shape.y * j * 2 + (i % 2 ? Shape.r * Math.sin(Shape.angle) + 20 * Math.cos(Shape.angle) : 0) + 20 * j;
-                    hexagon(Shape, containBox, texs[Math.floor(texs.length * Math.random())], x, y);
+                    hexagon(Shape, containBox, texs[Math.floor(texs.length * Math.random())], x, y, i + j + j * maxCol);
                     ++i;
                 }
                 i = 0;
@@ -273,8 +302,6 @@
 
         function setup(e) {
             document.getElementById("loadding").style.display = 'none';
-            const stageMain = new PIXI.Container();
-            const view = new PIXI.Container();
             let imgs = Object.entries(e.resources).map(([_, { texture }]) => texture);
             draw(view, imgs)
             view.pivot.x = view.width / 2;
@@ -294,7 +321,7 @@
                 .on('mouseup', (e) => dragEndEvent(e, filter))
                 .on('mouseupoutside', (e) => dragEndEvent(e, filter))
                 .on('mousemove', (e) => draggingEvent(e, view))
-            // console.log(view.children);
+            console.log(view.children);
             gsap.to(status, {
                 scale: 1,
                 overwrite: true,

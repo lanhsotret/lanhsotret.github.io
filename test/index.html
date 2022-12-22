@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            font-size: 50px;
+            background-color: black;
+            padding-bottom: 100vh;
+            color: #1D2830;
+            position: relative;
+            z-index: 11;
+            padding-top: 1px;
+        }
+
+        .bg {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            height: 100%;
+            width: 100%;
+            background-color: #313B48;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .bg.active {
+            opacity: 1 !important;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 100px auto 0;
+            font-weight: bold;
+        }
+
+        .head {
+            font-size: 120px;
+        }
+
+        .flex {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        .rock {
+            position: relative;
+            width: 146px;
+            flex-shrink: 0;
+        }
+
+        .content {
+            margin-top: 100px;
+        }
+
+        .img {
+            position: fixed;
+            z-index: 100;
+            top: 290px;
+            left: 43vw;
+            width: 146px;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img.active .img_shine {
+            transform: scale(2) !important;
+            opacity: 1 !important;
+        }
+
+        .img.active .img_mix {
+            opacity: 1;
+        }
+
+        .img.active .img_rock {
+            opacity: 0;
+        }
+
+        .img_shine {
+            opacity: 0;
+            transition: all 0.3s ease;
+            mix-blend-mode: color-burn;
+        }
+
+        .img_shine {
+            position: absolute;
+            z-index: -1;
+            mix-blend-mode: color-dodge;
+        }
+
+        .img_mix {
+            opacity: 0;
+            mix-blend-mode: color-dodge;
+            transition: opacity 0.3s ease;
+        }
+
+        .stop_here {
+            margin-top: 50px;
+        }
+        .img_rock {
+            position: absolute;
+            z-index: 100;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <span class="bg"></span>
+        <div class="container">
+            <div class="head">
+                照らし出す。
+                <div class="flex">
+                    わたし<div class="rock">
+                        <figure class="img">
+                            <img class="img_rock" src="./rock.png" alt="">
+                            <img class="img_mix" src="./rock.png" alt="">
+                            <img class="img_shine" src="./shine2.png" alt="">
+                        </figure>
+                    </div>も
+                </div>
+                世界も美しく
+            </div>
+            <div class="content">
+                今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+                どう のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br>
+                あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+                今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+                どう のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br>
+                あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+                今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+                どう のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br>
+                あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br>
+            </div>
+            <div class="stop_here"></div>
+
+        </div>
+    </div>
+    <script src="./gsap.min.js"></script>
+    <script>
+        let stop = document.querySelector(".stop_here");
+        let img = document.querySelector(".img");
+        let shine = document.querySelector(".img_shine");
+        let bg = document.querySelector(".bg");
+        let transition = true;
+        let state = true;
+        let point = {
+            circle: 100,
+        }
+        function ani() {
+            gsap.fromTo(shine, {opacity: 0}, {
+                opacity: 1, duration: 1.2, onUpdate: () => {
+                },
+                repeatDelay: 0.5,
+                repeat: -1,
+                yoyo: true,
+            })
+            gsap.fromTo(bg, {opacity: 0}, {
+                opacity: 1, duration: 1.2, onUpdate: () => {
+                },
+                repeatDelay: 0.5,
+                repeat: -1,
+                yoyo: true,
+            })
+        }
+        ani();
+        window.addEventListener("scroll", function () {
+            if (stop.getBoundingClientRect().top <= window.innerHeight / 4) {
+                img.classList.add("active");
+                bg.classList.add("active");
+            }  else {
+                img.classList.remove("active");
+                bg.classList.remove("active");
+            }
+        })
+    </script>
+</body>
+
+</html>
