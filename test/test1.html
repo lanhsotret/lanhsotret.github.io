@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .wrapper {
+        font-size: 50px;
+        background-color: black;
+        padding-bottom: 100vh;
+        color: #1d2830;
+        position: relative;
+        z-index: 11;
+        padding-top: 1px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 100px auto 0;
+        font-weight: bold;
+      }
+
+      .head {
+        font-size: 120px;
+      }
+
+      .flex {
+        display: flex;
+        /* align-items: flex-start; */
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      .rock {
+        width: 146px;
+        flex-shrink: 0;
+      }
+
+      .content {
+        margin-top: 100px;
+      }
+
+      .stop_here {
+        margin-top: 50px;
+      }
+      #canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 100;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="canvas"></div>
+      <span class="bg"></span>
+      <div class="container">
+        <div class="head">
+          照らし出す。
+          <div class="flex">
+            わたし
+            <div class="rock"></div>
+            も
+          </div>
+          世界も美しく
+        </div>
+        <div class="content">
+          今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+          どう
+          のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br />
+          あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+          今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+          どう
+          のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br />
+          あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+          今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+          どう
+          のか。これから、どうしようと思っているのか。教えてほしい。口に出してほしい。<br />
+          あなたの言葉が、聞きたい。今まで口にされずに眠ってきた、数多くの言葉たちのためにも。あなたが今、なにを考えているのか。<br />
+        </div>
+        <div class="stop_here"></div>
+      </div>
+    </div>
+    <script src="./pixi.js"></script>
+    <script src="./pixi-filters.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script type="shader">
+              // Updated from https://www.shadertoy.com/view/XdBSDh#
+
+      #define SPEED       (1.0 / 80.0)
+      #define SMOOTH_DIST 0.6
+
+      #define PI 3.14159265359
+
+      void mainImage( out vec4 fragColor, in vec2 fragCoord )
+      {
+          // set up our coordinate system
+          float aspectRatio = iResolution.x / iResolution.y;
+          vec2 uv = ((fragCoord.xy / iResolution.xy) - vec2(0.5,0.5));
+          uv.x *= aspectRatio;
+
+      	// get our distance and angle
+          float dist = length(uv);
+          float angle = (atan(uv.y, uv.x) + PI) / (2.0 * PI);
+
+         	// texture lookup
+          vec3 textureDist;
+          textureDist  = texture(iChannel0, vec2(iTime * SPEED, angle)).xyz;
+
+          vec3 normal = texture(iChannel0, uv).xyz;
+
+          // manipulate distance
+          textureDist *= 0.4;
+          textureDist += 0.5;
+
+          // set RGB
+      	vec3 color = vec3(0.0,0.0,0.0);
+
+          if (dist < textureDist.x)
+              color.x += smoothstep(0.0,SMOOTH_DIST, textureDist.x - dist);
+
+          if (dist < textureDist.y)
+              color.y += smoothstep(0.0,SMOOTH_DIST, textureDist.y - dist);
+
+          if (dist < textureDist.z)
+              color.z += smoothstep(0.0,SMOOTH_DIST, textureDist.z - dist);
+
+          // add a background grid
+          //if (fract(mod(uv.x,0.1)) < 0.005 || fract(mod(uv.y,0.1)) < 0.005)
+          //    color.y += 0.5;
+          //else
+          //    color.y += 0.1;
+
+          // set final color
+      	fragColor = vec4(color + normal,1.0);
+      }
+    </script>
+    <script id="vertex-shader" type="shader">
+      #version 300 es
+      precision mediump float;
+      in vec2 a_Position;
+      uniform mat3 translationMatrix;
+      uniform mat3 projectionMatrix;
+      void main() {
+      gl_Position = vec4((projectionMatrix * translationMatrix * vec3(a_Position, 1.0)).xy, 1.0, 1.0);
+      }
+    </script>
+    <script id="fragment-shader" type="shader">
+      #version 300 es
+      precision mediump float;
+      out vec4 fragColor;
+      uniform vec2 u_resolution;
+
+      vec3 rgb(float r, float g, float b) {
+        return vec3(r / 255.0, g / 255.0, b / 255.0);
+      }
+
+      vec4 circle(vec2 uv, vec2 pos, float rad, vec3 color) {
+          float t = length(uv - pos)/320.0;
+
+          if (t > 0.0 && t < 1.0) {
+              float v = 2.0 * t * t * t - 3.0 * t * t + 1.0;
+              return vec4(v, v, v, v);
+          } else {
+              return vec4(0, 0, 0, 0.0);
+          }
+      }
+
+      void main() {
+
+        vec2 uv = gl_FragCoord.xy;
+        vec2 center = u_resolution.xy * 0.5;
+        float radius = 0.25 * u_resolution.y;
+
+        vec3 red = rgb(225.0, 95.0, 60.0);
+        vec4 layer2 = circle(uv, center, radius, red);
+
+        fragColor = layer2;
+      }
+    </script>
+    <script>
+      let test = `
+#define TAU 6.2831852
+#define MOD3 vec3(.1031,.11369,.13787)
+uniform vec2 iResolution;
+uniform float iTime;
+uniform vec2 center;
+uniform float scale;
+
+vec3 hash33(vec3 p3)
+{
+	p3 = fract(p3 * MOD3);
+    p3 += dot(p3, p3.yxz+19.19);
+    return -1.0 + 2.0 * fract(vec3((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y, (p3.y+p3.z)*p3.x));
+}
+
+float simplex_noise(vec3 p)
+{
+    const float K1 = 0.33333333;
+    const float K2 = 0.166666667;
+    
+    vec3 i = floor(p + (p.x + p.y + p.z) * K1);
+    vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
+        
+    vec3 e = step(vec3(0.0), d0 - d0.yzx);
+	vec3 i1 = e * (1.0 - e.zxy);
+	vec3 i2 = 1.0 - e.zxy * (1.0 - e);
+    
+    vec3 d1 = d0 - (i1 - 1.0 * K2);
+    vec3 d2 = d0 - (i2 - 2.0 * K2);
+    vec3 d3 = d0 - (1.0 - 3.0 * K2);
+    
+    vec4 h = max(0.6 - vec4(dot(d0, d0), dot(d1, d1), dot(d2, d2), dot(d3, d3)), 0.0);
+    vec4 n = h * h * h * h * vec4(dot(d0, hash33(i)), dot(d1, hash33(i + i1)), dot(d2, hash33(i + i2)), dot(d3, hash33(i + 1.0)));
+    
+    //return dot(vec4(31.316), n);
+    return dot(vec4(31.316), h * h * h * h * h);
+}
+
+void main()
+{
+  vec2 fragCoord = gl_FragCoord.xy;
+    vec2 uv = (fragCoord.xy-iResolution.xy*center)/iResolution.y;
+    float a = sin(atan(uv.y, uv.x));
+    float am = abs(a-.5)/4.;
+    float l = length(uv)* scale;                     
+    float m1 = clamp(.1/smoothstep(.0, 1.75, l), .0, 1.);
+    float m2 = clamp(.1/smoothstep(.42, 0., l), .0, 1.);
+    float s1 = (simplex_noise(vec3(uv*2., 1. + iTime*.525))*(max(1.0 - l*1.75, 0.)) + .9);
+    float s2 = (simplex_noise(vec3(uv*0., 15. + iTime*.525))*(max(.0 + l*0.3, .025)) + 1.25);
+    float s3 = (simplex_noise(vec3(vec2(am, am*100. + iTime*1.)*.15, 30. + iTime*.525))*(max(.0 + l*1., .025)) + 1.25);
+    s3 *= smoothstep(0.0, .3345, l);    
+    
+    float sh = smoothstep(0.15, .35, l);
+    float sh2 = smoothstep(0.75, .3, l);    
+    
+    float m = m1*m2 * ((s1*s2*s3) * (1.-l)) * sh * sh2;
+    m = m;
+    vec4 color = vec4(1.0);
+    if(l >= 0.33) {
+      color = vec4(m);
+    }
+    if(color.a > 0.0) {
+              gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0 - color.a);
+            }else {
+              gl_FragColor = vec4(0.0, 0.0, 0.0 , 1.0);
+            }
+    
+}
+`;
+    </script>
+    <script>
+      const shaderFrag = `
+        precision mediump float;
+        varying vec2 vTextureCoord;
+        uniform sampler2D uSampler;
+        void main() {
+            vec4 color = texture2D(uSampler, vTextureCoord);
+            //vec3 final = mix(color.rgb, vec3(1.0));
+            gl_FragColor = vec4(vec3(1.0), color.a);
+        }
+        `;
+    </script>
+    <script>
+      let imgs = [
+        {
+          name: "rock",
+          url: `./rock.png`,
+        },
+        {
+          name: "shine",
+          url: "./shine2.png",
+        },
+      ];
+      PIXI.utils.sayHello("I'm PIXI");
+      const ele = document.getElementById("canvas");
+      const app = new PIXI.Application({
+        antialias: true,
+        autoDensity: true,
+        resolution: 1,
+        backgroundAlpha: 0,
+      });
+      app.renderer.view.style.display = "block";
+      app.renderer.resize(ele.clientWidth, ele.clientHeight);
+      ele.appendChild(app.view);
+      let Mvshow = new PIXI.Container();
+      PIXI.Loader.shared.add(imgs).load(setup);
+      let elePosition = document.querySelector(".rock").getBoundingClientRect();
+      function setup(e) {
+        console.log(e);
+        let _canvasW = app.renderer.screen.width,
+          _canvasH = app.renderer.screen.height;
+        const geometry = new PIXI.Geometry();
+        geometry.addAttribute(
+          "a_Position", // the attribute name
+          [0, 0, _canvasW, 0, _canvasW, _canvasH, 0, _canvasH],
+          2
+        ); // x, y
+
+        geometry.addIndex([0, 1, 2, 0, 2, 3]);
+        const shader = PIXI.Shader.from(
+          document.getElementById("vertex-shader").innerHTML.trim(),
+          document.getElementById("fragment-shader").innerHTML.trim(),
+          {
+            u_resolution: new PIXI.Point(window.innerWidth, window.innerHeight),
+          }
+        );
+        let colorFilter = new PIXI.Filter(undefined, shaderFrag)
+        const mesh = new PIXI.Mesh(geometry, shader);
+        let shine = new PIXI.Sprite(e.resources.shine.texture);
+        let rock = new PIXI.Sprite(e.resources.rock.texture);
+        let backgroundFilter;
+        function initBackground() {
+          let background = new PIXI.Sprite();
+          background.width = window.innerWidth;
+          background.height = window.innerHeight;
+          // background.pivot.x = window.innerWidth;
+          // background.pivot.y = window.innerHeight;
+          // background.alpha = 0;
+          
+          backgroundFilter = new PIXI.Filter(undefined, test, {
+            iResolution: new PIXI.Point(window.innerWidth, window.innerHeight),
+            iTime: 0,
+            scale: 2,
+            center: new PIXI.Point(
+              (elePosition.left + elePosition.width / 2) / window.innerWidth,
+              (elePosition.top + window.scrollY - elePosition.height / 2) /
+                window.innerHeight
+            ),
+          });
+          backgroundFilter.height = window.innerWidth;
+          background.filters = [backgroundFilter];
+          Mvshow.addChild(background);
+        }
+        // shine.filters = [colorFilter];
+        Mvshow.addChild(shine);
+
+        shine.pivot.x = e.resources.shine.texture.orig.width / 2;
+        shine.pivot.y = e.resources.shine.texture.orig.height / 2;
+        shine.x = elePosition.left + elePosition.width / 2;
+        shine.y = elePosition.top + window.scrollY + elePosition.height / 2;
+        rock.pivot.x = e.resources.rock.texture.orig.width / 2;
+        rock.pivot.y = e.resources.rock.texture.orig.height / 2;
+        rock.x = elePosition.left + elePosition.width / 2;
+        rock.y = elePosition.top + window.scrollY + elePosition.height / 2;
+        let color = new PIXI.filters.AdjustmentFilter();
+        rock.filters = [color];
+        initBackground();
+        Mvshow.addChild(rock);
+        app.stage.addChild(Mvshow);
+        console.log(Mvshow);
+
+        // function floatAction(dom, limit) {
+
+        //   let duration = gsap.utils.random(4, 6, 2);
+        //   let tl = gsap.timeline({ onComplete: () => floatAction(dom, limit) });
+        //   tl.to(dom, {
+        //     x: function () {
+        //       let value = Math.random() * 120;
+        //       return `random(-${value}, ${value})`;
+        //     },
+        //     y: function () {
+        //       let value = Math.random() * 80;
+        //       return `random(-${value}, ${value})`;
+        //     },
+        //     opacity: `random(${limit || "0.8, 1"})`,
+        //     scale: `random(0.8, 1)`,
+        //     duration: duration,
+        //     ease: "sine.inOut",
+        //     repeat: 1,
+        //     yoyo: true,
+        //   });
+        // }
+
+        gsap.ticker.add(animate);
+        let ani = {
+          time: 0,
+          dir: 0,
+          delay: 1,
+          num: 0.006,
+          scale: 0,
+        };
+        function animate(t, e, f) {
+          if (
+            document.querySelector(".stop_here").getBoundingClientRect()
+              .bottom <=
+            window.innerHeight / 2
+          ) {
+            ani.time += 0.008;
+            if (ani.time >= 1) ani.time = 1;
+            ani.scale += 0.008;
+            if (ani.scale >= 1) ani.scale = 1;
+            // rock.blendMode = 1;
+          } else {
+            // rock.blendMode = 0;
+            ani.scale -= 0.008;
+            if (ani.scale <= 0) ani.scale = 0;
+            if (ani.time >= 1) {
+              ani.dir = 1;
+            }
+            if (ani.time <= 0) {
+              ani.dir = 0;
+            }
+            if (!ani.dir) {
+              ani.time += 0.008;
+              if (ani.time > 1) ani.time = 1;
+            } else {
+              ani.time -= 0.003;
+              if (ani.tim < 0) ani.time = 0;
+            }
+          }
+          shine.alpha = ani.time;
+          // backgroundFilter.uniforms.scale = 1;
+          backgroundFilter.uniforms.scale = 2 - (ani.time + ani.scale);
+          shine.scale.set(1 + ani.scale);
+          backgroundFilter.uniforms.iTime = t;
+          color.blue = 1 + ani.scale;
+          color.gamma = 1 + ani.scale;
+          color.green = 1 + ani.scale * 3;
+        }
+      }
+    </script>
+  </body>
+</html>

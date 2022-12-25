@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+          background-color: red;
+        }
+
+        #pixi {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        canvas {
+            pointer-events: none;
+        }
+
+        #load {
+            position: fixed;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: black;
+            pointer-events: none;
+        }
+
+        #scroll {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            bottom: 0px;
+            right: 0px;
+            text-transform: uppercase;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pixi"></div>
+    <!-- <div id="load">please waiting...</div> -->
+    <script src="./pixi.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script>
+        let test1 = `
+        uniform vec2 iResolution;
+        uniform float iTime;
+        uniform float color;
+    void main()
+    {
+        vec2 fragCoord = gl_FragCoord.xy;
+        gl_FragColor *= 0.;
+        for (float i=1.;i<5e1; i++){
+            gl_FragColor+=(i*cos(i+vec4(color,2,4,0))+i)/1e4 / length(fract(fragCoord/iResolution.y*2e1/i+iTime*.2+cos(i*vec2(9,7)))-.5);
+	}
+    gl_FragColor *= gl_FragColor;
+}`;
+
+const shaderFrag = `
+        precision mediump float;
+        varying vec2 vTextureCoord;
+        uniform sampler2D uSampler;
+        void main() {
+            vec4 color = texture2D(uSampler, vTextureCoord);
+            if(color.a > 0.0) {
+              gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0 - color.a);
+            }else {
+              gl_FragColor = vec4(0.0, 0.0, 0.0 , 1.0);
+            }
+            
+        }
+        `;
+
+let test = `
+#define TAU 1.2831852
+#define MOD3 vec3(.1031,.11369,.13787)
+uniform vec2 iResolution;
+uniform float iTime;
+
+vec3 hash33(vec3 p3)
+{
+	p3 = fract(p3 * MOD3);
+    p3 += dot(p3, p3.yxz+19.19);
+    return -1.0 + 2.0 * fract(vec3((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y, (p3.y+p3.z)*p3.x));
+}
+
+float simplex_noise(vec3 p)
+{
+    const float K1 = 0.33333333;
+    const float K2 = 0.166666667;
+    
+    vec3 i = floor(p + (p.x + p.y + p.z) * K1);
+    vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
+        
+    vec3 e = step(vec3(0.0), d0 - d0.yzx);
+	vec3 i1 = e * (1.0 - e.zxy);
+	vec3 i2 = 1.0 - e.zxy * (1.0 - e);
+    
+    vec3 d1 = d0 - (i1 - 1.0 * K2);
+    vec3 d2 = d0 - (i2 - 2.0 * K2);
+    vec3 d3 = d0 - (1.0 - 3.0 * K2);
+    
+    vec4 h = max(0.6 - vec4(dot(d0, d0), dot(d1, d1), dot(d2, d2), dot(d3, d3)), 0.0);
+    vec4 n = h * h * h * h * vec4(dot(d0, hash33(i)), dot(d1, hash33(i + i1)), dot(d2, hash33(i + i2)), dot(d3, hash33(i + 1.0)));
+    
+    //return dot(vec4(31.316), n);
+    return dot(vec4(31.316), h * h * h * h * h);
+}
+
+void main()
+{
+  vec2 fragCoord = gl_FragCoord.xy;
+    vec2 uv = (fragCoord.xy-iResolution.xy*vec2(0.0, 0.5))/iResolution.y;
+    //float a = fract(atan(uv.y, uv.x)/TAU);
+    float a = sin(atan(uv.y, uv.x));
+    float am = abs(a-.5)/6.;
+    float l = length(uv)* 1.0;                     
+    float m1 = clamp(1.0/smoothstep(.0, 1.75, l*.5), 1.0, 1.);
+    float m2 = clamp(.1/smoothstep(.42, 0., l), .1, 1.);
+    float s1 = (simplex_noise(vec3(uv*1., 1. + iTime*.525))*(max(1.0 - l*1.75, 0.)) + .9);
+    float s2 = (simplex_noise(vec3(uv*0., 15. + iTime*.525))*(max(.0 + l*0.2, .025)) + 1.25);
+    float s3 = (simplex_noise(vec3(vec2(am, am*100. + iTime*1.)*.15, 10. + iTime*.525))*(max(.0 + l*1., .025)) + 1.25);
+    s3 *= smoothstep(0.0, .3345, l);    
+    
+    float sh = smoothstep(0.15, .35, l);
+    float sh2 = smoothstep(0.75, .3, l);    
+    
+    float m = m1*m2 * ((s1*s2) * (1.-l)) * sh * sh2;
+    m = m;
+    vec4 color = vec4(0.3, 1.0, 1.0, 1.0);
+    //if(l >= 0.33) {
+      color = vec4(0.3, m, m, m);
+    //}
+    gl_FragColor = vec4(color);
+    
+}
+`;
+        PIXI.utils.sayHello("I'm PIXI");
+        const ele = document.getElementById("pixi");
+        const app = new PIXI.Application({
+            antialias: true,
+            autoDensity: true,
+            resolution: 1,
+            backgroundAlpha: 0,
+        });
+        app.renderer.view.style.position = "absolute";
+        app.renderer.view.style.display = "block";
+        app.renderer.resize(ele.clientWidth, ele.clientHeight);
+        ele.appendChild(app.view);
+
+        let backgroundFilter;
+        function initBackground() {
+            // Create a new empty Sprite and define its size
+            let Mvshow = new PIXI.Container();
+            let background = new PIXI.Sprite()
+            background.width = window.innerWidth;
+            background.height = window.innerHeight;
+            // background.pivot.x = window.innerWidth/;
+            // We don't need a custom vertex shader, so we set it as `undefined`
+            backgroundFilter = new PIXI.Filter(undefined, test, {
+                iResolution: new PIXI.Point(window.innerWidth,  window.innerHeight),
+                iTime: 0,
+                color: 0
+            })
+            console.log(background);
+            backgroundFilter.height = window.innerWidth;
+            console.log(PIXI.Point(0,2,4,0));
+            // Assign the filter to the background Sprite
+            background.filters = [backgroundFilter]
+            // Add the background to the stage
+            Mvshow.addChild(background);
+            // Mvshow.filters = [new PIXI.Filter( null, shaderFrag)];
+            console.log()
+            app.stage.addChild(Mvshow);
+        }
+        initBackground();
+        gsap.ticker.add(animate);
+        function animate(t,e,f) {
+            // console.log(e, f);
+            backgroundFilter.uniforms.iTime = t;
+        }
+        // app.ticker.add((e) => {
+        //     backgroundFilter.uniforms.color = e;
+        // })
+    </script>
+</body>
+
+</html>
