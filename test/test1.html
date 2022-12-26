@@ -59,12 +59,21 @@
         z-index: 100;
         pointer-events: none;
       }
+      .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
     <div class="wrapper">
+      <div class="bg"></div>
       <div id="canvas"></div>
-      <span class="bg"></span>
       <div class="container">
         <div class="head">
           照らし出す。
@@ -298,7 +307,8 @@ void main()
       PIXI.Loader.shared.add(imgs).load(setup);
       let elePosition = document.querySelector(".rock").getBoundingClientRect();
       function setup(e) {
-        console.log(e);
+        console.log(document.querySelector(".bg"))
+        document.querySelector(".bg").style.display = "none";
         let _canvasW = app.renderer.screen.width,
           _canvasH = app.renderer.screen.height;
         const geometry = new PIXI.Geometry();
@@ -335,7 +345,7 @@ void main()
             scale: 2,
             center: new PIXI.Point(
               (elePosition.left + elePosition.width / 2) / window.innerWidth,
-              (elePosition.top + window.scrollY - elePosition.height / 2) /
+              1 - (elePosition.top + window.scrollY + elePosition.height / 2) /
                 window.innerHeight
             ),
           });
@@ -390,6 +400,7 @@ void main()
           delay: 1,
           num: 0.006,
           scale: 0,
+          blend: 0,
         };
         function animate(t, e, f) {
           if (
@@ -401,9 +412,7 @@ void main()
             if (ani.time >= 1) ani.time = 1;
             ani.scale += 0.008;
             if (ani.scale >= 1) ani.scale = 1;
-            // rock.blendMode = 1;
           } else {
-            // rock.blendMode = 0;
             ani.scale -= 0.008;
             if (ani.scale <= 0) ani.scale = 0;
             if (ani.time >= 1) {
@@ -421,9 +430,8 @@ void main()
             }
           }
           shine.alpha = ani.time;
-          // backgroundFilter.uniforms.scale = 1;
           backgroundFilter.uniforms.scale = 2 - (ani.time + ani.scale);
-          shine.scale.set(1 + ani.scale);
+          shine.scale.set(1.2 + ani.scale);
           backgroundFilter.uniforms.iTime = t;
           color.blue = 1 + ani.scale;
           color.gamma = 1 + ani.scale;
