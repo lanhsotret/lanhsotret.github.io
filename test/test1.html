@@ -370,6 +370,7 @@ void main()
         Mvshow.addChild(rock);
         app.stage.addChild(Mvshow);
         console.log(Mvshow);
+        console.log(rock);
 
         // function floatAction(dom, limit) {
 
@@ -412,6 +413,8 @@ void main()
             if (ani.time >= 1) ani.time = 1;
             ani.scale += 0.008;
             if (ani.scale >= 1) ani.scale = 1;
+            ani.blend -= 0.008;
+            if(ani.blend <= 0) ani.blend = 0;
           } else {
             ani.scale -= 0.008;
             if (ani.scale <= 0) ani.scale = 0;
@@ -424,9 +427,13 @@ void main()
             if (!ani.dir) {
               ani.time += 0.008;
               if (ani.time > 1) ani.time = 1;
+              ani.blend += 0.0005; 
+              if(ani.blend >= 0.1) ani.blend = 0.1;
             } else {
               ani.time -= 0.003;
               if (ani.tim < 0) ani.time = 0;
+              ani.blend -= 0.0005;
+              if(ani.blend <= 0) ani.blend = 0;
             }
           }
           shine.alpha = ani.time;
@@ -436,6 +443,7 @@ void main()
           color.blue = 1 + ani.scale;
           color.gamma = 1 + ani.scale;
           color.green = 1 + ani.scale * 3;
+          color.bright = 1 + ani.blend;
         }
       }
     </script>
