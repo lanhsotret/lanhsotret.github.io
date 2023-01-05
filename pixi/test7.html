@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #pixi {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        canvas {
+            pointer-events: none;
+        }
+
+        #load {
+            position: fixed;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: black;
+            pointer-events: none;
+        }
+
+        #scroll {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            bottom: 0px;
+            right: 0px;
+            text-transform: uppercase;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pixi"></div>
+    <!-- <div id="load">please waiting...</div> -->
+    <script src="./pixi.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script>
+        let shader = `precision mediump float;
+
+        varying vec2 vTextureCoord;
+        uniform sampler2D uSampler;
+        uniform sampler2D uTex;
+        uniform sampler2D uDis;
+        //uniform vec2 uResolution;
+        uniform float uTime;
+
+        void main() {
+            //vec2 uv = gl_FragCoord.xy / uResolution;
+            vec2 uv = vTextureCoord;
+            vec4 noise = texture2D(uDis, uv);
+            float val = clamp(noise.a + uTime - 0.5, 0.0, 1.0) - 0.5;
+            if (abs(val) < 0.01 + 0.02*noise.r) {
+                gl_FragColor = vec4(noise.rgb, 1.0);
+            } else {
+                vec3 img1 = texture2D(uSampler, uv).rgb;
+                vec3 img2 = texture2D(uTex, uv).rgb;
+                //vec3 grayscale = vec3(dot(colored, vec3(0.299, 0.587, 0.114)));
+                gl_FragColor = vec4(mix(img1, img2, sign(val)/2.0 + 0.5), 1.0);
+            }
+        }
+        `;
+        PIXI.utils.sayHello("I'm PIXI");
+        const ele = document.getElementById("pixi");
+        const app = new PIXI.Application({
+            antialias: true,
+            autoDensity: true,
+            resolution: 1,
+            backgroundAlpha: 0,
+        });
+        app.renderer.view.style.position = "absolute";
+        app.renderer.view.style.display = "block";
+        app.renderer.resize(ele.clientWidth, ele.clientHeight);
+        ele.appendChild(app.view);
+        let texDisplacement = new PIXI.Texture.from(`<svg viewBox="0 0 ${window.innerWidth} ${window.innerHeight}" width="${window.innerWidth}px" height="${window.innerHeight}" xmlns="http://www.w3.org/2000/svg">
+        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="13" /></filter>
+            <circle r="5000" filter="url(#n)"></circle>
+        </svg>`);
+        let texMain = new PIXI.Texture.from("./car/car1.jpg");
+        let tex1 = new PIXI.Texture.from("./bg/cat1.jpg");
+        let backgroundFilter;
+        function initBackground() {
+            let background = new PIXI.Sprite(texMain);
+            backgroundFilter = new PIXI.Filter(undefined, shader, {
+                // uResolution: new PIXI.Point(window.innerWidth,  window.innerHeight),
+                uDis: texDisplacement,
+                uTime: 0.5,
+                uTex: tex1
+            })
+            // backgroundFilter.height = window.innerWidth;
+            background.filters = [backgroundFilter]
+            app.stage.addChild(background)
+        }
+        initBackground();
+        gsap.ticker.add(animate);
+        function animate(t,e,f) {
+            // console.log(e, f);
+            backgroundFilter.uniforms.uTime = Math.min(t/2, 1);
+        }
+    </script>
+</body>
+
+</html>
