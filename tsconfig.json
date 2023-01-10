@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "lib": ["ES2019", "dom"],
+    "strict": true,
+    "esModuleInterop": false,
+    "typeRoots" : ["node_modules/pixi.js"],
+    "types": ["pixi.js"],
+    // "outDir": "webgl",
+    "rootDir": "./"
+  },
+  "include": ["webgl/**/*.ts"],
+  "exclude": ["node_modules"]
+}
