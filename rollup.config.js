@@ -1,7 +1,7 @@
 import typescript from "@rollup/plugin-typescript";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import nodePolyfills from "rollup-plugin-polyfill-node";
+// import { nodeResolve } from "@rollup/plugin-node-resolve";
+// import commonjs from "@rollup/plugin-commonjs";
+// import nodePolyfills from "rollup-plugin-polyfill-node";
 import terser from "@rollup/plugin-terser";
 
 // const devMode = (process.env.NODE_ENV === 'development');
@@ -12,12 +12,17 @@ export default {
   output: {
     dir: "./webgl/example1",
     format: "iife",
+    globals: {
+      "pixi.js": 'PIXI',
+      gsap: "gsap",
+    }
   },
+  external: ["pixi.js", "gsap"],
   plugins: [
     typescript(),
-    commonjs(),
-    nodePolyfills(),
-    nodeResolve({ browser: true }),
+    // commonjs(),
+    // nodePolyfills(),
+    // nodeResolve({ browser: true }),
     production &&
       terser({
         ecma: 2020,

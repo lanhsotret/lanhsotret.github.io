@@ -25,6 +25,46 @@
 
   <body>
     <div id="canvas"></div>
+    <script id="vertex-shader" type="shader">
+        #version 300 es
+        precision mediump float;
+        in vec2 a_Position;
+        uniform mat3 translationMatrix;
+        uniform mat3 projectionMatrix;
+        uniform vec2 u_img;
+        out vec2 vUvs;
+        void main() {
+        vUvs = a_Position/u_img;
+        gl_Position = vec4((projectionMatrix * translationMatrix * vec3(a_Position, 1.0)), 1.0);
+        }
+      </script>
+      <script id="fragment-shader" type="shader">
+        #version 300 es
+        precision mediump float;
+        in vec2 vUvs;
+        out vec4 fragColor;
+        uniform sampler2D uSampler1;
+        uniform sampler2D uSampler2;
+        uniform float uZoom1;
+        uniform float uZoom2;
+        uniform float uTime;
+        uniform sampler2D uDis;
+        uniform float uTurnOn;
+        void main() {
+            vec4 noise = texture(uDis, vUvs);
+            float val = clamp(noise.a + uTime - 0.5, 0.0, 1.0) - 0.5;
+            if (abs(val) < 0.01 + 0.02*noise.r) {
+                fragColor = vec4(noise.rgb, 1.0);
+            } else {
+                vec3 img1 = texture(uSampler1, (vUvs - vec2(0.5)) * uZoom1 + vec2(0.5)).rgb;
+                vec3 img2 = texture(uSampler2, (vUvs - vec2(0.5)) * uZoom2 + vec2(0.5)).rgb;
+                fragColor = vec4(mix(img1, img2, (sign(val)/2.0 + 0.5) * uTurnOn), 1.0);
+            }
+            
+        }
+      </script>
+    <script src="../pixi.min.js"></script>
+    <script src="../gsap.min.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
