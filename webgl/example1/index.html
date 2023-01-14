@@ -49,7 +49,6 @@
         uniform float uZoom2;
         uniform float uTime;
         uniform sampler2D uDis;
-        uniform float uTurnOn;
         void main() {
             vec4 noise = texture(uDis, vUvs);
             float val = clamp(noise.a + uTime - 0.5, 0.0, 1.0) - 0.5;
@@ -58,7 +57,7 @@
             } else {
                 vec3 img1 = texture(uSampler1, (vUvs - vec2(0.5)) * uZoom1 + vec2(0.5)).rgb;
                 vec3 img2 = texture(uSampler2, (vUvs - vec2(0.5)) * uZoom2 + vec2(0.5)).rgb;
-                fragColor = vec4(mix(img1, img2, (sign(val)/2.0 + 0.5) * uTurnOn), 1.0);
+                fragColor = vec4(mix(img1, img2, sign(val)/2.0 + 0.5), 1.0);
             }
             
         }

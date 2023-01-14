@@ -37,15 +37,6 @@
     const texturesPromise = PIXI__namespace.Assets.load(["cat1", "cat2", "cat3"]);
     let uniformGlobal;
     let bufferTex = {};
-    // function play(obj: UniformSource, duration: number, delay: number) {
-    //   let tl = gsap.timeline({ onComplete: () => play(obj, duration, delay) });
-    //   tl.to(obj, {
-    //     uTime: 1,
-    //     duration: duration,
-    //     ease: "sine.inOut",
-    //     repeat: 1,
-    //   });
-    // }
     texturesPromise.then((tex) => {
         Object.entries(tex).forEach(([key, _texture]) => {
             let _sprite = new PIXI__namespace.Sprite(_texture);
@@ -87,8 +78,7 @@
         <circle r="5000" filter="url(#n)"></circle>
     </svg>`),
             uZoom2: 1,
-            uZoom1: 1,
-            uTurnOn: 1,
+            uZoom1: 1
         };
         const shader = PIXI__namespace.Shader.from(document.getElementById("vertex-shader").innerHTML.trim(), document.getElementById("fragment-shader").innerHTML.trim(), uniformGlobal);
         const test = new PIXI__namespace.Mesh(geometry, shader);
@@ -106,7 +96,7 @@
                 .to(obj, {
                 uZoom2: 0.8,
                 duration: 10
-            }, "<3");
+            }, `<=+${first ? 3 : 6}`);
             if (!first) {
                 tlZoom.seek(3);
             }

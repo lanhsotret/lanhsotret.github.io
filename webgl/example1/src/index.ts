@@ -29,21 +29,10 @@ interface UniformSource {
   uDis: PIXI.Texture;
   uZoom2: number;
   uZoom1: number;
-  uTurnOn: number;
 }
 
 let uniformGlobal: UniformSource;
 let bufferTex: { [k in string]: PIXI.Texture } = {};
-
-// function play(obj: UniformSource, duration: number, delay: number) {
-//   let tl = gsap.timeline({ onComplete: () => play(obj, duration, delay) });
-//   tl.to(obj, {
-//     uTime: 1,
-//     duration: duration,
-//     ease: "sine.inOut",
-//     repeat: 1,
-//   });
-// }
 
 texturesPromise.then((tex: TextureCollect) => {
   Object.entries(tex).forEach(([key, _texture]) => {
@@ -94,8 +83,7 @@ texturesPromise.then((tex: TextureCollect) => {
         <circle r="5000" filter="url(#n)"></circle>
     </svg>`),
     uZoom2: 1,
-    uZoom1: 1,
-    uTurnOn: 1,
+    uZoom1: 1
   };
   const shader = PIXI.Shader.from(
     (document.getElementById("vertex-shader") as HTMLElement).innerHTML.trim(),
@@ -110,7 +98,7 @@ texturesPromise.then((tex: TextureCollect) => {
   let count = 0;
   let imgs = Object.keys(bufferTex);
   function play(obj: UniformSource, duration: number, delay: number, first?: boolean) {
-    let tlZoom = gsap.timeline({ ease: "sine.inOut" });
+    let tlZoom = gsap.timeline({ ease: "sine.inOut"});
     tlZoom
       .to(obj, {
         uZoom1: 0.8,
@@ -122,7 +110,7 @@ texturesPromise.then((tex: TextureCollect) => {
           uZoom2: 0.8,
           duration: 10
         },
-        "<3"
+        `<=+${first? 3: 6}`
       );
     if(!first) {
       tlZoom.seek(3);
