@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .gradient {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scaleY(0);
+            /* transform-origin: ; */
+        }
+
+        .test {
+            height: 300px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+        <div class="gradient">
+
+        </div>
+    </div>
+    <script src="./gsap.min.js"></script>
+    <script>
+
+        function sheetGradient(eleClass, color, num) {
+            let ele = document.querySelector(eleClass);
+            let widthGradient = ele.clientHeight / num;
+            let positionGradient = Array.from({ length: num }, (_, index) => ({
+                start: index * widthGradient,
+                end: (index + 1) * widthGradient
+            }));
+            const mapGradient = () => {
+                let match = Array.from({ length: num }, (_, index) => {
+                    return `${color} ${positionGradient[index].start}px ${positionGradient[index].end}px, transparent ${positionGradient[index].end}px ${(index + 1) === num ? "100%" : (index + 1) * widthGradient + "px"}`;
+                })
+                ele.style.backgroundImage = `linear-gradient(to top, ${match.join(",")} )`;
+            }
+            mapGradient();
+            let tl = gsap.timeline();
+            tl.set(eleClass, { transformOrigin: "top center" })
+                .to(eleClass, { scaleY: 1, duration: 0.8 })
+                .set(eleClass, { transformOrigin: "bottom center" })
+                .to(positionGradient, {
+                    end: (_, item) => {
+                        return item.start;
+                    },
+                    duration: 0.6,
+                    delay: (index) => (num - 1 - index) * 0.1,
+                    onUpdate: mapGradient
+                }, "<+=0.1")
+                .to(eleClass, {
+                    scaleY: 0.5, duration: 0.8
+                }, "<+=0.1")
+
+        }
+
+        function sheetPercentGradient(eleClass, color, num) {
+            let ele = document.querySelector(eleClass);
+            let widthGradient = 100 / num;
+            let positionGradient = Array.from({ length: num }, (_, index) => ({
+                start: index * widthGradient,
+                end: (index + 1) * widthGradient
+            }));
+            const mapGradient = () => {
+                let match = Array.from({ length: num }, (_, index) => {
+                    return `${color} ${positionGradient[index].start}% ${positionGradient[index].end}%, transparent ${positionGradient[index].end}% ${(index + 1) * widthGradient}%`;
+                })
+                ele.style.backgroundImage = `linear-gradient(to top, ${match.join(",")} )`;
+            }
+            mapGradient();
+            let tl = gsap.timeline();
+            tl.set(eleClass, { transformOrigin: "top center" })
+                .to(eleClass, { scaleY: 1, duration: 0.8 })
+                .set(eleClass, { transformOrigin: "bottom center" })
+                .to(positionGradient, {
+                    end: (_, item) => {
+                        return item.start;
+                    },
+                    duration: 0.6,
+                    delay: (index) => (num - 1 - index) * 0.1,
+                    onUpdate: mapGradient
+                }, "<+=0.1")
+                .to(eleClass, {
+                    scaleY: 0.5, duration: 0.8
+                }, "<+=0.1")
+
+        }
+
+        setTimeout(() => {
+            sheetPercentGradient(".gradient", "red", 10);
+            // sheetGradient(".gradient", "red", 10);
+        }, 500)
+
+    </script>
+</body>
+
+</html>
