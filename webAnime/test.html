@@ -212,6 +212,7 @@
       let figure = document.querySelectorAll(".imgs figure");
       let content = document.querySelectorAll(".content");
       let rotate = [15, -10, 0];
+      let rotate1 = [15, 190, 0]
       window.addEventListener("load", () => {
         // y = sect.clientHeight / 4;
         sect.style.height = sect.clientHeight * 6 + "px";
@@ -260,7 +261,7 @@
                   content[order + 1]
                     .querySelectorAll("figure span")
                     .forEach((ele,index) => {
-                      ele.style.transform = "translate(0px, 100px)";
+                      ele.style.transform = `translate(${rotate1[index] !==0?Math.cos(rotate1[index])*100: 0}px, 100px)`;
                       ele.style.opacity = 0;
                         ele.style.transitionDelay = 0.2*index + "s";
                     });
