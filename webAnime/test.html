@@ -209,53 +209,17 @@
       let space = [];
       let m = [];
       let f = [];
+      let figure = document.querySelectorAll(".imgs figure");
+      let content = document.querySelectorAll(".content");
+      let rotate = [15, -10, 0];
       window.addEventListener("load", () => {
         // y = sect.clientHeight / 4;
         sect.style.height = sect.clientHeight * 6 + "px";
         y = (sect.clientHeight - main.clientHeight) / 2;
         f = [(2 * y) / 5, (3 * y) / 5, (4 * y) / 5, y];
         m = [0, y, 2 * y];
-      });
-      let figure = document.querySelectorAll(".imgs figure");
-      //   let imgs = document.querySelectorAll(".imgs img");
-      //   function detect(position) {
-      //     // console.log(Math.abs(position*2) - y);
-      //     // if (position > -y) {
-      //     //   console.log("run1");
-      //     //   return {
-      //     //     state: "start",
-      //     //     parent: figure[0],
-      //     //   };
-      //     // }
-      //     // if (position > -y * 2) {
-      //     //   console.log("run2");
-      //     //   return {
-      //     //     state: "play",
-      //     //     parent: figure[0],
-      //     //     img: imgs[0],
-      //     //     transform: `rotate(15deg) translateY(-${Math.max(Math.abs(position) - y, 0)}px)`,
-      //     //   };
-      //     // }
-      //     // if (position > -y * 3) {
-      //     //   console.log("run3");
-      //     //   return {
-      //     //     state: "play",
-      //     //     parent: figure[0],
-      //     //     img: imgs[1],
-      //     //     transform: `rotate(-10deg) translateY(-${
-      //     //       Math.max(Math.abs(position) - y * 2, 0)
-      //     //     }px)`,
-      //     //   };
-      //     // }
-      //     return {
-      //         // state: "end",
-      //         parent: figure[0],
-      //         y: [y/7,2*y/7,2*y/7, y/7]
-      //       };
-      //   }
-      let content = document.querySelectorAll(".content");
-      let rotate = [15, -10, 0];
-      window.addEventListener("scroll", () => {
+
+        window.addEventListener("scroll", () => {
         if (sect.getBoundingClientRect().top <= 0) {
           if (sect.getBoundingClientRect().bottom <= main.clientHeight) {
             main.classList.remove("fixed");
@@ -332,8 +296,10 @@
         } else {
           main.classList.remove("fixed");
         }
-        // console.log(sect.getBoundingClientRect())
       });
+      });
+      
+      
     </script>
   </body>
 </html>
