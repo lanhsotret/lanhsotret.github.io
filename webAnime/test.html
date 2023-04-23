@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        box-sizing: border-box;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 20px;
+        position: relative;
+      }
+      .viewmore {
+        height: 50vh;
+      }
+      .content {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 0;
+        width: 100%;
+        transition: all 1s ease;
+      }
+      .content > * {
+        max-width: calc(50% - 15px);
+        width: 100%;
+      }
+      .content h3 {
+        font-size: 32px;
+        line-height: 1.2;
+      }
+      .content .ttl span {
+        display: block;
+        font-size: 16px;
+        margin-top: 5px;
+      }
+      .content .txt {
+        margin-top: 30px;
+        font-size: 18px;
+      }
+      .content .txt .big {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .content .imgs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 0;
+      }
+      .content .imgs figure {
+        position: absolute;
+        width: 60%;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .content .imgs span {
+        display: block;
+        width: 100%;
+        height: 80%;
+        position: absolute;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+      .content .imgs img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        height: 100%;
+        border-radius: 20px;
+        transition: all 0.5s ease;
+      }
+      .content .imgs span:nth-child(1) {
+        z-index: 3;
+        transition-delay: 0.4s;
+      }
+      .content .imgs span:nth-child(2) {
+        z-index: 2;
+        transition-delay: 0.2s;
+      }
+      /* .content .imgs span:nth-child(3) {
+        transition-delay: 0.4s;
+      } */
+      .content .imgs span:nth-child(1) img {
+        transform: rotate(15deg);
+      }
+      .content .imgs span:nth-child(2) img {
+        transform: rotate(-10deg);
+      }
+      .flexmore {
+        height: 100vh;
+        background-color: black;
+      }
+      .fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      section {
+        /* height: 200vh; */
+        position: relative;
+      }
+      .areamain {
+        width: 100%;
+      }
+      .content02 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      /* html {
+        overflow: hidden;
+      } */
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="viewmore"></div>
+      <section>
+        <div class="areamain">
+          <div class="container">
+            <div class="content content01">
+              <div class="line">
+                <div class="ttl">
+                  <h3 class="js-view">
+                    COMMUNICATION<br />
+                    PRODUCE
+                  </h3>
+                  <span class="js-view">広告事業</span>
+                </div>
+                <div class="txt">
+                  <p class="big js-view">
+                    デジタル/SNSコミュニケーションにおける戦略から実行までをワンストッププロデュース
+                  </p>
+                  <p class="small js-view">
+                    デジタル/SNSを主戦場に、コミュニケーション・広告における上流のリサーチ・戦略設計からサービスブランディング、広告キャンペーンのプロジェクトマネジメント、企画、クリエイティブ、キャスティング、SNSアカウント運用、広告運用などの施策実行まで、ワンストップで提供します。
+                  </p>
+                </div>
+                <div class="btn js-view">view more</div>
+              </div>
+              <div class="imgs">
+                <figure>
+                  <span><img src="./img/cat1.jpg" alt="" /></span>
+                  <span><img src="./img/cat2.jpg" alt="" /></span>
+                  <span><img src="./img/cat3.jpg" alt="" /></span>
+                </figure>
+              </div>
+            </div>
+            <div class="content content02">
+              <div class="line">
+                <div class="ttl">
+                  <h3 class="js-view">
+                    COMMUNICATION<br />
+                    PRODUCE
+                  </h3>
+                  <span class="js-view">広告事業</span>
+                </div>
+                <div class="txt">
+                  <p class="big js-view">
+                    デジタル/SNSコミュニケーションにおける戦略から実行までをワンストッププロデュース
+                  </p>
+                  <p class="small js-view">
+                    デジタル/SNSを主戦場に、コミュニケーション・広告における上流のリサーチ・戦略設計からサービスブランディング、広告キャンペーンのプロジェクトマネジメント、企画、クリエイティブ、キャスティング、SNSアカウント運用、広告運用などの施策実行まで、ワンストップで提供します。
+                  </p>
+                </div>
+                <div class="btn js-view">view more</div>
+              </div>
+              <div class="imgs">
+                <figure>
+                  <span><img src="./img/cat4.jpg" alt="" /></span>
+                  <span><img src="./img/cat5.jpg" alt="" /></span>
+                  <span><img src="./img/cat6.jpg" alt="" /></span>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="flexmore"></div>
+    </main>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script src="./gsap.min.js"></script>
+    <script>
+      let sect = document.querySelector("section");
+      let main = document.querySelector(".areamain");
+      let y = 0;
+      let space = [];
+      let m = [];
+      let f = [];
+      window.addEventListener("load", () => {
+        // y = sect.clientHeight / 4;
+        sect.style.height = sect.clientHeight * 6 + "px";
+        y = (sect.clientHeight - main.clientHeight) / 2;
+        f = [(2 * y) / 5, (3 * y) / 5, (4 * y) / 5, y];
+        m = [0, y, 2 * y];
+      });
+      let figure = document.querySelectorAll(".imgs figure");
+      //   let imgs = document.querySelectorAll(".imgs img");
+      //   function detect(position) {
+      //     // console.log(Math.abs(position*2) - y);
+      //     // if (position > -y) {
+      //     //   console.log("run1");
+      //     //   return {
+      //     //     state: "start",
+      //     //     parent: figure[0],
+      //     //   };
+      //     // }
+      //     // if (position > -y * 2) {
+      //     //   console.log("run2");
+      //     //   return {
+      //     //     state: "play",
+      //     //     parent: figure[0],
+      //     //     img: imgs[0],
+      //     //     transform: `rotate(15deg) translateY(-${Math.max(Math.abs(position) - y, 0)}px)`,
+      //     //   };
+      //     // }
+      //     // if (position > -y * 3) {
+      //     //   console.log("run3");
+      //     //   return {
+      //     //     state: "play",
+      //     //     parent: figure[0],
+      //     //     img: imgs[1],
+      //     //     transform: `rotate(-10deg) translateY(-${
+      //     //       Math.max(Math.abs(position) - y * 2, 0)
+      //     //     }px)`,
+      //     //   };
+      //     // }
+      //     return {
+      //         // state: "end",
+      //         parent: figure[0],
+      //         y: [y/7,2*y/7,2*y/7, y/7]
+      //       };
+      //   }
+      let content = document.querySelectorAll(".content");
+      let rotate = [15, -10, 0];
+      window.addEventListener("scroll", () => {
+        if (sect.getBoundingClientRect().top <= 0) {
+          if (sect.getBoundingClientRect().bottom <= main.clientHeight) {
+            main.classList.remove("fixed");
+            $(main).css({
+              position: "absolute",
+              bottom: "0px",
+              zIndex: "1",
+              left: "0px",
+            });
+          } else {
+            $(main).removeAttr("style");
+            main.classList.add("fixed");
+            let h = Math.abs(sect.getBoundingClientRect().top);
+
+            figure.forEach((el, order) => {
+              if (h >= m[order] && h < m[order + 1]) {
+                space = f.map((num) => num + order * y);
+                // let wrap = el.querySelectorAll("span");
+                el.style.transform = `scale(${
+                  (Math.abs(sect.getBoundingClientRect().top) - m[order]) /
+                    3000 +
+                  1
+                })`;
+                content[order].style.opacity = 1;
+                content[order].style.transform = `translateY(0px)`;
+                content[order].querySelectorAll("figure span").forEach((ele,index) => {
+                    ele.style.transform = "translate(0px, 0px)";
+                    ele.style.opacity = 1;
+                    ele.style.transitionDelay = 0.2*(2 - index) + "s";
+                })
+                if (content[order - 1]) {
+                  content[order - 1].style.opacity = 0;
+                  content[order - 1].style.transform = `translateY(-100px)`;
+                }
+                if (content[order + 1]) {
+                  content[order + 1].style.opacity = 0;
+                  content[order + 1].style.transform = `translateY(100px)`;
+                  content[order + 1]
+                    .querySelectorAll("figure span")
+                    .forEach((ele,index) => {
+                      ele.style.transform = "translate(0px, 100px)";
+                      ele.style.opacity = 0;
+                        ele.style.transitionDelay = 0.2*index + "s";
+                    });
+                }
+                let imgs = el.querySelectorAll("img");
+
+                imgs.forEach((ele, index) => {
+                  let trans =
+                    Math.abs(sect.getBoundingClientRect().top) - space[index];
+                  let p =
+                    1 -
+                    (Math.abs(sect.getBoundingClientRect().top) -
+                      space[index]) /
+                      200;
+                  if (h <= space[index]) {
+                    trans = 0;
+                    p = 1;
+                  }
+                  if (h >= space[index + 1]) {
+                    trans = y * (index + 3);
+                    p = 0;
+                  }
+                  if (index !== imgs.length - 1) {
+                    ele.style.opacity = p;
+                    ele.style.transform = `rotate(${
+                      rotate[index]
+                    }deg) translateY(-${Math.min(trans, 150)}px)`;
+                  }
+                });
+              }
+            });
+          }
+        } else {
+          main.classList.remove("fixed");
+        }
+        // console.log(sect.getBoundingClientRect())
+      });
+    </script>
+  </body>
+</html>
