@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            width: 265px;
+            height: 265px;
+            border-radius: 50%;
+            /* background-image: conic-gradient(#108E45 0 60%, #65B687 0 80%, #81C39D 0 90%, #F2F9F5 0 100%, transparent 0% 100%); */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+    </div>
+    <script src="./gsap.min.js"></script>
+    <script>
+
+        function conicGradient(eleClass) {
+            let ele = document.querySelector(eleClass);
+            let colorArray = ["#108E45", "#65B687", "#81C39D", "#F2F9F5"]
+            let percent = [60, 80, 90, 100];
+            let positionGradient = percent.map((num) => ({
+                start: 0,
+                end: 0
+            }));
+            const mapGradient = () => {
+                let match = colorArray.map((color, index) => {
+                    return `${color} ${positionGradient[index].start}% ${positionGradient[index].end}%`;
+                })
+                ele.style.backgroundImage = `conic-gradient(${match.join(",")}, transparent 0% 100%)`;
+            }
+            mapGradient();
+            gsap.to(positionGradient, {
+                end: (index) => {
+                    return percent[index];
+                },
+                duration: 0.6,
+                delay: (index) => index * 0.1,
+                onUpdate: mapGradient
+            })
+        }
+
+        setTimeout(() => {
+            conicGradient(".test");
+        }, 500)
+       
+
+    </script>
+</body>
+
+</html>

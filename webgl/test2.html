@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    input {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0;
+    }
+    label {
+        position: relative;
+        display: block;
+    }
+    label::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        content: "";
+        pointer-events: none;
+        border: 1px solid red;
+    }
+</style>
+<body>
+    <label for="checkbox_accepted-1">
+        <input type="checkbox" name="privacy[data][]" value="個人情報保護方針を確認の上、同意する。" id="checkbox_accepted-1">
+        <span class="mwform-checkbox-field-text">個人情報保護方針を確認の上、同意する。</span>
+    </label>
+</body>
+</html>
