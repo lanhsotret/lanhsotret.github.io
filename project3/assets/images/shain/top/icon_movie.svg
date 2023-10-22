@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="211" height="211" viewBox="0 0 211 211">
+  <g id="Group_677" data-name="Group 677" transform="translate(-540 -6667)">
+    <g id="Polygon_3" data-name="Polygon 3" transform="translate(690 6734) rotate(90)" fill="#fff" opacity="0.27">
+      <path d="M 76.13602447509766 66.5 L 0.8639787435531616 66.5 L 38.5 1.003547430038452 L 76.13602447509766 66.5 Z" stroke="none"/>
+      <path d="M 38.5 2.007118225097656 L 1.72796630859375 66 L 75.27203369140625 66 L 38.5 2.007118225097656 M 38.5 0 L 77 67 L 0 67 L 38.5 0 Z" stroke="none" fill="#000"/>
+    </g>
+    <g id="Ellipse_39" data-name="Ellipse 39" transform="translate(540 6667)" fill="none" stroke="#000" stroke-width="1" opacity="0.27">
+      <circle cx="105.5" cy="105.5" r="105.5" stroke="none"/>
+      <circle cx="105.5" cy="105.5" r="105" fill="none"/>
+    </g>
+  </g>
+</svg>
