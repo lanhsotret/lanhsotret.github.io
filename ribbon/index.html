@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --ribbon-animation-duration: 5000ms;
+            --ribbon-animation-dellay: 0s;
+            --ribbon-animation-loop: 1;
+            --ribbon-animation-method: ease-in;
+            --ribbon-animation-setting: ribbon var(--ribbon-animation-duration) var(--ribbon-animation-method) var(--ribbon-animation-dellay) var(--ribbon-animation-loop) both;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .test path {
+            --stroke-width: 100px;
+            --stroke-dasharray: 2100px;
+            --stroke-dashoffset: 0px;
+            backface-visibility: hidden;
+            isolation: isolate;
+            fill: none;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            stroke-linecap: round;
+            stroke-width: var(--stroke-width);
+            stroke-dasharray: var(--stroke-dasharray);
+            stroke-dashoffset: var(--stroke-dashoffset);
+        }
+
+        .test2 path {
+            --stroke-width: 100px;
+            --stroke-dasharray: 2500px;
+            --stroke-dashoffset: 2500px;
+            backface-visibility: hidden;
+            isolation: isolate;
+            fill: none;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            stroke-linecap: round;
+            stroke-width: var(--stroke-width);
+            stroke-dasharray: var(--stroke-dasharray);
+            stroke-dashoffset: var(--stroke-dashoffset);
+            animation: dash 8s linear forwards;
+        }
+
+        .ribbon_after svg path {
+            animation-delay: 2.1s;
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dashoffset: 2500px;
+            }
+            30% {
+                stroke-dashoffset: 0;
+            }
+            70% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: -2500px;
+            }
+        }
+        .ribbon {
+            position: relative;
+            width: 84%;
+        }
+        .ribbon_after {
+            position: absolute;
+            width: calc(936.55/1341.18*100%);
+            top: 8.8%;
+            right: -19.5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ribbon">
+        <div class="ribbon_before">
+            <svg class="test2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1341.18 819.07">
+                <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="./img_ribbon01.png" width="1341.18"
+                    mask="url(#mask01)"></image>
+                <mask id="mask01">
+                    <g>
+                        <path id="Path_1" data-name="Path 1" class="cls-1"
+                            d="m44.36,796s192-369.33,342.67-389.33,197.33,26.67,264,64,224,90.67,293.33,80,233.33-76,284-168,78.67-200,53.33-249.33-50.67-74.67-108-82.67-104,57.33-117.33,101.33-41.33,142.67-41.33,142.67" />
+                    </g>
+                </mask>
+            </svg>
+        </div>
+        <div class="ribbon_after">
+            <svg class="test2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 936.55 477.44">
+                <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="./img_ribbon02.png" width="936.55"
+                    mask="url(#mask02)"></image>
+                <mask id="mask02">
+                    <g>
+                        <path id="Path_2" data-name="Path 2" class="cls-1"
+                            d="m351.68,214.87s-54.67-130.67-141.33-158.67S54.35,101.53,53.01,146.87s-22.67,116,70.67,169.33,224,98.67,302.67,106.67,212,6.67,260-13.33,180-82.67,201.33-181.33" />
+                    </g>
+                </mask>
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>
