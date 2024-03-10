@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle Animation with Snap.svg</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+    svg {
+      height: auto;
+      width: 100%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: calc(100vh + 100vw - 20px);
+    }
+
+    body.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+    }
+
+    #wrapper {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* width: 100%; */
+      height: 100%;
+    }
+
+    .grid {
+      display: flex;
+      flex-shrink: 0;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="fixed">
+  <div id="wrapper">
+    <div class="grid">
+      <svg id="mySvg" width="1000" height="800" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="myPath"
+          d="M1 485C113.5 504.5 266.5 594 469 529.5C612.5 483.793 597 361.167 553 336.5L612.5 232L512.5 290.5C446.5 232 392.2 250.5 337 290.5L266.5 222.5L298.5 327.5C240.167 389 271.701 561.309 495.5 545.5C722 529.5 801 460 1001 460"
+          stroke="black" stroke-width="8" />
+      </svg>
+    </div>
+    <div class="grid">
+      <svg id="mySvg2" width="1000" height="800" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="myPath2"
+          d="M0 460C143.5 460 265.5 569 468 504.5C611.5 458.793 596 361.167 552 336.5L611.5 232L511.5 290.5C445.5 232 391.2 250.5 336 290.5L265.5 222.5L297.5 327.5C239.167 389 268.701 561.309 492.5 545.5C719 529.5 796 416 1000 416"
+          stroke="black" stroke-width="8" />
+      </svg>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    //stroke-linecap="round"
+
+
+
+    let path1 = "M1 485C113.5 504.5 266.5 594 469 529.5C612.5 483.793 597 361.167 553 336.5L612.5 232L512.5 290.5C446.5 232 392.2 250.5 337 290.5L266.5 222.5L298.5 327.5C240.167 389 271.701 561.309 495.5 545.5C722 529.5 801 460 1001 460"
+    let path2 = "M0 485C186 485 281.5 614.699 484 550.199C627.5 504.492 632 386 572 327.5L632 222.5L542 266C476 207.5 423.2 236 368 276L252 236L332 346C273.667 407.5 339.534 619.887 572 530C722 472 800 504 1000 504"
+
+    let path = true;
+
+    var s = Snap("#mySvg");
+
+    var myPath = s.select("#myPath");
+    let length = Math.max(Snap.path.getTotalLength(path1), Snap.path.getTotalLength(path2));
+    myPath.attr({
+      "stroke-dashoffset": length,
+      "stroke-dasharray": length
+    });
+
+    function ani() {
+      myPath.animate({ d: path ? path2 : path1 }, 3000, mina.easeinout(), () => {
+        path = !path;
+        ani();
+      });
+    }
+
+    var s2 = Snap("#mySvg2");
+
+    let path3 = "M0 460C143.5 460 265.5 569 468 504.5C611.5 458.793 596 361.167 552 336.5L611.5 232L511.5 290.5C445.5 232 391.2 250.5 336 290.5L265.5 222.5L297.5 327.5C239.167 389 268.701 561.309 492.5 545.5C719 529.5 796 416 1000 416";
+    let path4 = "M0 504C143.5 504 333 607.386 535.5 542.886C679 497.178 638 352.167 594 327.5L611.5 232L543.5 277.5C477.5 219 432.2 246.5 377 286.5L265.5 222.5L326.5 327.5C268.167 389 266.201 570.525 490 554.716C716.5 538.716 796 446 1000 446";
+    let path02 = true;
+
+    var myPath2 = s2.select("#myPath2");
+    let length2 = Math.max(Snap.path.getTotalLength(path3), Snap.path.getTotalLength(path4));
+      myPath2.attr({
+      "stroke-dashoffset": length2,
+      "stroke-dasharray": length2
+    });
+
+    function ani2() {
+      myPath2.animate({ d: path02 ? path4 : path3 }, 3000, mina.easeinout(), () => {
+        path02 = !path02;
+        ani2();
+      });
+    }
+
+    window.addEventListener("load", function () {
+      ani();
+      ani2();
+      Snap.animate(0, length, function (val) {
+        // console.log(length - val);
+        myPath.attr({
+          'stroke-dashoffset': length - val
+        });
+      }, 3000, mina.easeinout(), () => {
+        document.body.classList.remove("fixed");
+      });
+    });
+    let offset = {
+        x: length2
+      }
+    window.addEventListener("scroll", function () {
+      document.querySelector("#wrapper").style.transform = `translateX(-${window.scrollY}px)`;
+      gsap.to(offset, 3, {x: length2 - window.scrollY*(length2/window.innerWidth), onUpdate: () => {
+        console.log(offset.x);
+        myPath2.attr({
+          'stroke-dashoffset': offset.x
+        });
+      }})
+    })
+
+
+
+  </script>
+
+</body>
+
+</html>
